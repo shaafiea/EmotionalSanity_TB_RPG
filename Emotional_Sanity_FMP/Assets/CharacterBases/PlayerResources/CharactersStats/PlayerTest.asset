@@ -20,7 +20,7 @@ MonoBehaviour:
   _maxHp: 39
   _sanitybar: 52
   _weaponStrength: 0
-  _weaponAttack: 43
+  _weaponAttack: 40
   _magicAttack: 60
   _defense: 50
   _speed: 65
