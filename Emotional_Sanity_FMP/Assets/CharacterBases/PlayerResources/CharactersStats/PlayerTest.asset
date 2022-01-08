@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c4354c7188adb4a9906d0141369128, type: 3}
   m_Name: PlayerTest
   m_EditorClassIdentifier: 
-  name: Test Character
+  name: Ninja Warrior
   description: This is a dummy character for testing the battle system :D
-  playerPrefab: {fileID: 3572338039302351854, guid: 8f7810b0c22cd1847ab20036ce01d78b, type: 3}
-  _type1: 1
+  playerPrefab: {fileID: 5887286807994542743, guid: 732dd1e74ef3dbb479b3b00248fe4898, type: 3}
+  _type1: 2
   _type2: 0
   _maxHp: 39
   _sanitybar: 52

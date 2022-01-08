@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de702a4b54f86804eac0948bebbaa9eb, type: 3}
   m_Name: Bones
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3345842549167547900, guid: 48d7bc037f7a59d41a8a4e5f4b77dae6, type: 3}
+  id: 0
+  uiDisplay: {fileID: 1660957820977104790, guid: 6f6fbe81bca94ae41b12870a35f336dc, type: 3}
   type: 2
   description: "This be bones \n"

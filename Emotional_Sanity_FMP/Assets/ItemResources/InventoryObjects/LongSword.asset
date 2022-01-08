@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab0f5b84cf050b478c6b0f58698b1f4, type: 3}
   m_Name: LongSword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5465321984268300405, guid: bbe41e18e995cbf46945449626fce3ff, type: 3}
+  id: 0
+  uiDisplay: {fileID: -7296337056529428220, guid: 6f6fbe81bca94ae41b12870a35f336dc, type: 3}
   type: 1
   description: 'Long Sword
 
 '
-  atkBonus: 8
-  defenceBonus: 0
+  buffs:
+  - attribute: 0
+    value: 0
+    min: -5
+    max: -12
+  - attribute: 1
+    value: 0
+    min: 10
+    max: 20

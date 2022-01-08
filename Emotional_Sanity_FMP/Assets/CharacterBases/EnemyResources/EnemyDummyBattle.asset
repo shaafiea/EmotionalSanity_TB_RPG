@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c4354c7188adb4a9906d0141369128, type: 3}
+  m_Name: EnemyDummyBattle
+  m_EditorClassIdentifier: 
+  name: Skully
+  description: 'Enemy Dummy
+
+'
+  playerPrefab: {fileID: 8658591846708312949, guid: d14a8f1916e2a0f43b8eac63033d26a3, type: 3}
+  _type1: 1
+  _type2: 0
+  _maxHp: 100
+  _sanitybar: 40
+  _weaponStrength: 0
+  _weaponAttack: 49
+  _magicAttack: 30
+  _defense: 30
+  _speed: 30
