@@ -340,6 +340,7 @@
 "Assets/Scripts/PartyFollow.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/SceneScripts/TrackSwitcher.cs"
 "Assets/Scripts/TeamAIController.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"

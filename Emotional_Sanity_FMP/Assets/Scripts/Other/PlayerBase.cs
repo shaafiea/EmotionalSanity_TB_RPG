@@ -19,8 +19,12 @@ public class PlayerBase : ScriptableObject
     [SerializeField] CharacterType _type2;
 
     //Character Stats
+    [SerializeField] private int _curHp;
     [SerializeField] private int _maxHp;
-    [SerializeField] private int _sanitybar;
+    [SerializeField] private int _curMP;
+    [SerializeField] private int _maxMP;
+    [SerializeField] private int _curSanitybar;
+    [SerializeField] private int _maxSanitybar;
     [SerializeField] private int _weaponStrength;
     [SerializeField] private int _weaponAttack;
     [SerializeField] private int _magicAttack;
@@ -34,7 +38,8 @@ public class PlayerBase : ScriptableObject
         Normal,
         Fire,
         Water,
-        Grass
+        Grass,
+        Magic,
     }
 
     //Creating a property to call the names of private variables
@@ -60,13 +65,35 @@ public class PlayerBase : ScriptableObject
     {
         get { return _type2; }
     }
+
+    public int CurHP
+    {
+        get { return _curHp; }
+    }
+
     public int MaxHP
     {
         get { return _maxHp; }
     }
-    public int SanityBar
+
+    public int CurMP
     {
-        get { return _sanitybar; }
+        get { return _curMP; }
+    }
+
+    public int MaxMP
+    {
+        get { return _maxMP; }
+    }
+
+    public int CurSanityBar
+    {
+        get { return _curSanitybar; }
+    }
+
+    public int MaxSanityBar
+    {
+        get { return _maxSanitybar; }
     }
 
     public int WeaponStrength

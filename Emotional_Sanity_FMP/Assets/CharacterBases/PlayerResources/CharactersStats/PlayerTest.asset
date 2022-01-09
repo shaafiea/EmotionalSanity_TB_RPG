@@ -17,10 +17,14 @@ MonoBehaviour:
   playerPrefab: {fileID: 5887286807994542743, guid: 732dd1e74ef3dbb479b3b00248fe4898, type: 3}
   _type1: 2
   _type2: 0
-  _maxHp: 39
-  _sanitybar: 52
+  _curHp: 45
+  _maxHp: 45
+  _curMP: 30
+  _maxMP: 30
+  _curSanitybar: 25
+  _maxSanitybar: 50
   _weaponStrength: 0
-  _weaponAttack: 40
-  _magicAttack: 60
-  _defense: 50
-  _speed: 65
+  _weaponAttack: 50
+  _magicAttack: 50
+  _defense: 45
+  _speed: 50

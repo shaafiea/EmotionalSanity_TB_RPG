@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    
     public CharacterController controller;
     public float moveSpeed = 5f;
     [SerializeField] private Animator anim;
@@ -25,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = gameObject.GetComponent<CharacterController>();
         anim = gameObject.GetComponentInChildren<Animator>();
+        //Debug.Log("Current HP: " + playerStats.CurHP);
     }
 
     // Update is called once per frame
@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
         {
             cooldown -= Time.deltaTime;
         }
+
+        
     }
 
 
