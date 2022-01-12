@@ -9,7 +9,7 @@ public class TeamAIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Current HP of " + gameObject + ": " + teamMateStats.CurHP);
+        //Debug.Log("Current HP of " + gameObject + ": " + teamMateStats.CurHP);
     }
 
     // Update is called once per frame

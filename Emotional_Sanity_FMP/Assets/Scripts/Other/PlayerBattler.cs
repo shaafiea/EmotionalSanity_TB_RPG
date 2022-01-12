@@ -17,14 +17,14 @@ public class PlayerBattler : MonoBehaviour
     //Reference for magic attack damage calculation: https://bulbapedia.bulbagarden.net/wiki/Stat
     public int magicAttack
     {
-        get { return Mathf.FloorToInt(((_base.MagicAttack * level) / 100f) + 5); }
+        get { return Mathf.FloorToInt(((_base._magicAttack * level) / 100f) + 5); }
     }
 
     //This is the damage calculation for weapon attacks
     //Reference for weapon attack damage calculation: https://megamitensei.fandom.com/wiki/Battle_Stats#Agility
     public int weaponAttack
     {
-        get { return Mathf.FloorToInt(((_base.WeaponStrength * (level) / 5) / 100f) + weaponAttack); }
+        get { return Mathf.FloorToInt(((_base._weaponAttack * (level) / 5) / 100f) + weaponAttack); }
     }
 
 }
