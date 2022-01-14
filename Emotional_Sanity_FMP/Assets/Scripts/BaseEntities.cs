@@ -29,6 +29,7 @@ public class BaseEntities : MonoBehaviour
 
     public List<PlayerType> entityType; // Player Types to show in UI of what they are strong at
     public List<PlayerType> entityWeakness; //Player Weakness for damage scaling and know what they are weak against
+    public List<EntityMoves> spellmoves;
 
     private void Awake()
     {
@@ -52,7 +53,7 @@ public class BaseEntities : MonoBehaviour
         {
             if (ptype == entityWeakness[i])
             {
-                HP -= (int)((damage * (int)strength) / (int)weapondefence * 1.5);
+                HP -= (int)((damage * (int)strength) / (int)manadefence * 1.5);
                 break;
             }
             

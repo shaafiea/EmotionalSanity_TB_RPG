@@ -30,7 +30,8 @@ public class BattleUIVisuals : MonoBehaviour
 
     public void Spell()
     {
-        enemy.TakeSpecialDamage(enemy.entityWeakness[0],player.damage,player.manastrength);
+        enemy.TakeSpecialDamage(enemy.entityWeakness[0],(player.spellmoves[0].damage),player.manastrength);
+        Debug.Log(player.spellmoves[0].damage * player.manastrength / enemy.manadefence);
         Debug.Log("Enemy Spell Hurt");
     }
 

@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a877b97682c0346876d14045e3d29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCanvas: {fileID: 0}
 --- !u!1 &86401332
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,6 +993,8 @@ MonoBehaviour:
   isDead: 0
   entityType: 03000000
   entityWeakness: 04000000
+  spellmoves:
+  - {fileID: 11400000, guid: a05e02878b9e792478f5ce86df8d26f3, type: 2}
   hpImage: {fileID: 209155339}
 --- !u!1 &745840573
 GameObject:
@@ -1245,6 +1248,8 @@ MonoBehaviour:
   isDead: 0
   entityType: 02000000
   entityWeakness: 03000000
+  spellmoves:
+  - {fileID: 11400000, guid: 7a0ce07bc9d190e4086930fcf3231a6f, type: 2}
   hpImage: {fileID: 873216866}
 --- !u!1 &780901370
 GameObject:
@@ -1789,6 +1794,7 @@ MonoBehaviour:
   isDead: 0
   entityType: 
   entityWeakness: 
+  spellmoves: []
   hpImage: {fileID: 0}
 --- !u!114 &1248899463
 MonoBehaviour:
@@ -2979,6 +2985,7 @@ MonoBehaviour:
   isDead: 0
   entityType: 
   entityWeakness: 
+  spellmoves: []
   hpImage: {fileID: 0}
 --- !u!114 &1776514810
 MonoBehaviour:
@@ -3311,6 +3318,7 @@ MonoBehaviour:
   isDead: 0
   entityType: 
   entityWeakness: 
+  spellmoves: []
   hpImage: {fileID: 0}
 --- !u!114 &1902448688
 MonoBehaviour:
