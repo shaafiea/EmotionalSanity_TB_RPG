@@ -359,6 +359,7 @@
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/SceneScripts/TrackSwitcher.cs"
 "Assets/Scripts/SpellMoves/EntityMoves.cs"
+"Assets/Scripts/SpellMoves/PlaySpellAnim.cs"
 "Assets/Scripts/TeamAIController.cs"
 "Assets/Scripts/TurnBasedBattleSystem.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"

@@ -8,6 +8,8 @@ public class BaseEntities : MonoBehaviour
 
     [Header("Base Stats")]
     public float HP = 0;
+    public float MP = 0;
+    public float SP = 0;
     public string entityName;
     public int maxHP = 0;
     public int maxMP = 0;
@@ -35,6 +37,8 @@ public class BaseEntities : MonoBehaviour
     {
         gameObject.name = entityName;
         HP = maxHP;
+        MP = maxMP;
+        SP = maxSP;
         isDead = false;
     }
 

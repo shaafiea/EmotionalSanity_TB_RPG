@@ -17,5 +17,7 @@ public class EntityMoves : ScriptableObject
     public string entityName;
     public string entityDescription;
     public int damage = 10;
+    public int mpUsed = 10;
+    public int spUsed = 10;
     public SpellType spellType;
 }
