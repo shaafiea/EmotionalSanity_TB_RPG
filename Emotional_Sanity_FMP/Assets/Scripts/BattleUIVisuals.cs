@@ -10,6 +10,8 @@ public class BattleUIVisuals : MonoBehaviour
     [SerializeField] BaseEntities player;
     [SerializeField] PlaySpellAnim spellPlayer;
 
+    public TurnBasedBattleSystem tbbs;
+
     //UI    
     public GameObject commandsUI;
     public GameObject spellsUI;
@@ -25,6 +27,7 @@ public class BattleUIVisuals : MonoBehaviour
     void Start()
     {
         spellPlayer.GetComponent<Animator>();
+        tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class BattleUIVisuals : MonoBehaviour
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
         enemy.TakeWeaponDamage(player.damage,player.weaponstrength);
+        tbbs.EndPlayerTurn();
         Debug.Log("Enemy Weapon Hurt");
     }
 

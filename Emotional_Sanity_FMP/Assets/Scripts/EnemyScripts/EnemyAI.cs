@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] BaseEntities enemy;
-    [SerializeField] BaseEntities player;
+    [SerializeField] BaseEntities enemyStats;
+    [SerializeField] private List<BaseEntities> playersOnScreen;
+    public TurnBasedBattleSystem tbbs;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemyStats = GetComponent<BaseEntities>();
+        tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
     }
 
     // Update is called once per frame
@@ -20,18 +22,18 @@ public class EnemyAI : MonoBehaviour
     }
 
     //Basic Attacking Scripts to test damage
-    public void Attack()
+    public void EnemyWeaponAttack()
     {
-        player.TakeWeaponDamage(enemy.damage, enemy.weaponstrength);
-        Debug.Log("Enemy Weapon Hurt");
+        playersOnScreen[Random.Range(0, playersOnScreen.Count)].TakeWeaponDamage(enemyStats.damage, enemyStats.weaponstrength);
+        tbbs.EndEnemyTurn();
     }
 
     public void Spell()
     {
-        enemy.TakeSpecialDamage(player.entityWeakness[0], (enemy.spellmoves[0].damage), player.manastrength);
+        /*enemy.TakeSpecialDamage(player.entityWeakness[0], (enemy.spellmoves[0].damage), player.manastrength);
         Debug.Log("Enemy Used Their Attack!");
         Debug.Log(enemy.spellmoves[0].damage * enemy.manastrength / player.manadefence);
-        Debug.Log("Enemy Spell Hurt");
+        Debug.Log("Enemy Spell Hurt");*/
     }
 
 

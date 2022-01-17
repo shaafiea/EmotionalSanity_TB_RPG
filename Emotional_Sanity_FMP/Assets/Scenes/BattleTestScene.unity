@@ -166,11 +166,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a877b97682c0346876d14045e3d29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUI: {fileID: 0}
-  enemy: {fileID: 0}
-  player2stats: {fileID: 0}
-  player3stats: {fileID: 0}
-  player4stats: {fileID: 0}
+  players:
+  - {fileID: 589406831}
+  - {fileID: 1902448685}
+  - {fileID: 1248899459}
+  - {fileID: 1776514805}
+  enemies:
+  - {fileID: 759566939}
+  playerIndex: 0
+  enemyIndex: 0
+  currentTurns: 0
+  bui: {fileID: 0}
 --- !u!1 &48263908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,6 +2452,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 180483112008025614, guid: 732dd1e74ef3dbb479b3b00248fe4898, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4454259529042385755, guid: 732dd1e74ef3dbb479b3b00248fe4898, type: 3}
       propertyPath: playerStats
       value: 
@@ -2990,6 +3000,7 @@ GameObject:
   - component: {fileID: 759566941}
   - component: {fileID: 759566940}
   - component: {fileID: 759566944}
+  - component: {fileID: 759566945}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -3104,6 +3115,25 @@ MonoBehaviour:
   spellmoves:
   - {fileID: 11400000, guid: df99434cb2f5ff746ab981a971a0233d, type: 2}
   hpImage: {fileID: 873216866}
+--- !u!114 &759566945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759566939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d46330f0dced842bc541ad0c281307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStats: {fileID: 759566944}
+  playersOnScreen:
+  - {fileID: 589406832}
+  - {fileID: 1902448686}
+  - {fileID: 1248899460}
+  - {fileID: 1776514806}
+  tbbs: {fileID: 0}
 --- !u!1 &770837332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4609,30 +4639,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248899459}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f36754e70e1d3a148a7bf8a222782f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
-  MP: 0
-  SP: 0
-  entityName: 
-  maxHP: 0
-  maxMP: 0
-  maxSP: 0
-  weaponstrength: 1
-  manastrength: 1
-  weapondefence: 1
-  manadefence: 0
+  HP: 50
+  MP: 50
+  SP: 50
+  entityName: SorceressWarrior
+  maxHP: 100
+  maxMP: 100
+  maxSP: 50
+  weaponstrength: 100
+  manastrength: 100
+  weapondefence: 50
+  manadefence: 50
   damage: 10
   isDead: 0
-  entityType: 
-  entityWeakness: 
-  spellmoves: []
-  hpImage: {fileID: 0}
-  mpImage: {fileID: 0}
-  spImage: {fileID: 0}
+  entityType: 04000000
+  entityWeakness: 02000000
+  spellmoves:
+  - {fileID: 11400000, guid: df99434cb2f5ff746ab981a971a0233d, type: 2}
+  hpImage: {fileID: 1659343402}
+  mpImage: {fileID: 1618618353}
+  spImage: {fileID: 1615089777}
 --- !u!114 &1248899463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4646,6 +4677,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamMateStats: {fileID: 11400000, guid: 65690655511a7944a800bcfcb21c76c9, type: 2}
+  enemiesOnScreen:
+  - {fileID: 759566944}
+  aiStats: {fileID: 0}
+  tbbs: {fileID: 0}
 --- !u!1 &1257469603
 GameObject:
   m_ObjectHideFlags: 0
@@ -5571,7 +5606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000061035156, y: 139.39001}
+  m_AnchoredPosition: {x: 0, y: 139.39001}
   m_SizeDelta: {x: 917.258, y: 436.376}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1466361766
@@ -7671,30 +7706,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776514805}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f36754e70e1d3a148a7bf8a222782f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
-  MP: 0
-  SP: 0
-  entityName: 
-  maxHP: 0
-  maxMP: 0
-  maxSP: 0
-  weaponstrength: 1
-  manastrength: 1
-  weapondefence: 1
-  manadefence: 0
+  HP: 50
+  MP: 50
+  SP: 50
+  entityName: Brute
+  maxHP: 100
+  maxMP: 100
+  maxSP: 50
+  weaponstrength: 100
+  manastrength: 100
+  weapondefence: 50
+  manadefence: 50
   damage: 10
   isDead: 0
-  entityType: 
+  entityType: 01000000
   entityWeakness: 
-  spellmoves: []
-  hpImage: {fileID: 0}
-  mpImage: {fileID: 0}
-  spImage: {fileID: 0}
+  spellmoves:
+  - {fileID: 11400000, guid: df99434cb2f5ff746ab981a971a0233d, type: 2}
+  hpImage: {fileID: 1003732149}
+  mpImage: {fileID: 351176397}
+  spImage: {fileID: 1995836886}
 --- !u!114 &1776514810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7708,6 +7744,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamMateStats: {fileID: 11400000, guid: 0bdb2054c5ffe8640a659678f577d362, type: 2}
+  enemiesOnScreen:
+  - {fileID: 759566944}
+  aiStats: {fileID: 0}
+  tbbs: {fileID: 0}
 --- !u!1 &1803271105
 GameObject:
   m_ObjectHideFlags: 0
@@ -8083,30 +8123,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902448685}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f36754e70e1d3a148a7bf8a222782f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
-  MP: 0
-  SP: 0
-  entityName: 
-  maxHP: 0
-  maxMP: 0
-  maxSP: 0
-  weaponstrength: 1
-  manastrength: 1
-  weapondefence: 1
-  manadefence: 0
+  HP: 50
+  MP: 50
+  SP: 50
+  entityName: Karate
+  maxHP: 100
+  maxMP: 100
+  maxSP: 50
+  weaponstrength: 100
+  manastrength: 100
+  weapondefence: 50
+  manadefence: 50
   damage: 10
   isDead: 0
-  entityType: 
-  entityWeakness: 
-  spellmoves: []
-  hpImage: {fileID: 0}
-  mpImage: {fileID: 0}
-  spImage: {fileID: 0}
+  entityType: 03000000
+  entityWeakness: 04000000
+  spellmoves:
+  - {fileID: 11400000, guid: a05e02878b9e792478f5ce86df8d26f3, type: 2}
+  hpImage: {fileID: 48263910}
+  mpImage: {fileID: 2147399578}
+  spImage: {fileID: 1661501175}
 --- !u!114 &1902448688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8120,6 +8161,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamMateStats: {fileID: 11400000, guid: ad79c3cd723566d46a1864b9d982dd80, type: 2}
+  enemiesOnScreen:
+  - {fileID: 759566944}
+  aiStats: {fileID: 0}
+  tbbs: {fileID: 0}
 --- !u!1 &1912352877
 GameObject:
   m_ObjectHideFlags: 0
@@ -8610,6 +8655,7 @@ MonoBehaviour:
   enemy: {fileID: 759566944}
   player: {fileID: 589406832}
   spellPlayer: {fileID: 2076991565}
+  tbbs: {fileID: 0}
   commandsUI: {fileID: 1466361764}
   spellsUI: {fileID: 336837403}
   fireVFX: {fileID: 5500179151457076298, guid: 20c1ac28f0a1c744aa482c589789892a, type: 3}
@@ -8797,11 +8843,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 180483112008025614, guid: 732dd1e74ef3dbb479b3b00248fe4898, type: 3}
   m_PrefabInstance: {fileID: 589406830}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2076991564 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 180483112015459428, guid: 732dd1e74ef3dbb479b3b00248fe4898, type: 3}
-  m_PrefabInstance: {fileID: 589406830}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2076991565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8814,9 +8855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f28eb3ca295a5a418172e741f59b85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bm: {fileID: 2004535817}
-  anim: {fileID: 2076991564}
-  BUIV: {fileID: 2004535818}
+  anim: {fileID: 0}
+  BUIV: {fileID: 0}
 --- !u!1 &2079427618
 GameObject:
   m_ObjectHideFlags: 0
