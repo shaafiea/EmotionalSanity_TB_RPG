@@ -15,6 +15,6 @@ MonoBehaviour:
   entityName: FireBurn
   entityDescription: This move shoots a fire blast at the opponent
   damage: 10
-  mpUsed: 50
+  mpUsed: 25
   spUsed: -5
   spellType: 2

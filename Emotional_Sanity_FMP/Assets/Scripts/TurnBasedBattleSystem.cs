@@ -28,6 +28,17 @@ public class TurnBasedBattleSystem : MonoBehaviour
     public turns currentTurns;
     private bool uiOff;
 
+    //Player Targets
+    public GameObject player1Target;
+    public GameObject player2Target;
+    public GameObject player3Target;
+    public GameObject player4Target;
+
+    //Enemy Targets
+    public GameObject enemy1Target;
+    public GameObject enemy2Target;
+    public GameObject enemy3Target;
+
     public BattleUIVisuals bui;
 
     // Start is called before the first frame update

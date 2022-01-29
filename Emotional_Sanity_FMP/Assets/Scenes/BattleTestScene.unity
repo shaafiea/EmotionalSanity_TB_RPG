@@ -176,6 +176,13 @@ MonoBehaviour:
   playerIndex: 0
   enemyIndex: 0
   currentTurns: 0
+  player1Target: {fileID: 1682931756}
+  player2Target: {fileID: 1738466761}
+  player3Target: {fileID: 1890363042}
+  player4Target: {fileID: 832001992}
+  enemy1Target: {fileID: 1272406842}
+  enemy2Target: {fileID: 0}
+  enemy3Target: {fileID: 0}
   bui: {fileID: 0}
 --- !u!1 &48263908
 GameObject:
@@ -2456,6 +2463,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 180483112015459428, guid: 732dd1e74ef3dbb479b3b00248fe4898, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4454259529042385755, guid: 732dd1e74ef3dbb479b3b00248fe4898, type: 3}
       propertyPath: playerStats
       value: 
@@ -2532,7 +2543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 50
-  MP: 51
+  MP: 100
   SP: 50
   entityName: NinjaWarrior
   maxHP: 100
@@ -2549,7 +2560,7 @@ MonoBehaviour:
   spellmoves:
   - {fileID: 11400000, guid: 7a0ce07bc9d190e4086930fcf3231a6f, type: 2}
   hpImage: {fileID: 209155339}
-  mpImage: {fileID: 542197201}
+  mpImage: {fileID: 1512232733}
   spImage: {fileID: 542197201}
 --- !u!1 &602113522
 GameObject:
@@ -3003,7 +3014,7 @@ GameObject:
   - component: {fileID: 759566945}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3097,7 +3108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4138793cc372084458ecbb304e72637c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 150
   MP: 0
   SP: 0
   entityName: BaseEnemyDummy
@@ -3106,8 +3117,8 @@ MonoBehaviour:
   maxSP: 50
   weaponstrength: 10
   manastrength: 10
-  weapondefence: 50
-  manadefence: 50
+  weapondefence: 300
+  manadefence: 300
   damage: 10
   isDead: 0
   entityType: 04000000
@@ -3653,6 +3664,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786203182}
   m_CullTransparentMesh: 1
+--- !u!1 &832001992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 832001993}
+  m_Layer: 0
+  m_Name: Player4OP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &832001993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832001992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 504.8, y: 0.03, z: 500.39554}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &871744656
 GameObject:
   m_ObjectHideFlags: 0
@@ -3810,6 +3851,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4808296941446381015, guid: 0b97559b46c247f4d9ab72bbfb5e35a8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d6618ef19109cd949815fb949317e6cf, type: 2}
     - target: {fileID: 8603292959175151843, guid: 0b97559b46c247f4d9ab72bbfb5e35a8, type: 3}
       propertyPath: m_Name
       value: Sorceress Warrior
@@ -3820,7 +3865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8603292959175511235, guid: 0b97559b46c247f4d9ab72bbfb5e35a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 502.16
+      value: 501.23
       objectReference: {fileID: 0}
     - target: {fileID: 8603292959175511235, guid: 0b97559b46c247f4d9ab72bbfb5e35a8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4116,6 +4161,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2479917152196218953, guid: 1e13516566059ea458d641941edc9936, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ad039637feeefae44ae593ba9b49dca9, type: 2}
     - target: {fileID: 2479917152205488079, guid: 1e13516566059ea458d641941edc9936, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4676,7 +4725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bee1ced25206e945a17f1e2a2cfa85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamMateStats: {fileID: 11400000, guid: 65690655511a7944a800bcfcb21c76c9, type: 2}
   enemiesOnScreen:
   - {fileID: 759566944}
   aiStats: {fileID: 0}
@@ -4814,6 +4862,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257469603}
   m_CullTransparentMesh: 1
+--- !u!1 &1272406842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1272406843}
+  m_Layer: 0
+  m_Name: Enemy1OP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1272406843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272406842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 499.92, y: 0.26, z: 511.73}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1305764900
 GameObject:
   m_ObjectHideFlags: 0
@@ -7381,6 +7459,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679456850}
   m_CullTransparentMesh: 1
+--- !u!1 &1682931756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682931757}
+  m_Layer: 0
+  m_Name: Player1OP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1682931757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682931756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 494.47, y: 0.03, z: 500.39554}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1710200235
 GameObject:
   m_ObjectHideFlags: 0
@@ -7619,6 +7727,36 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1738466761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738466762}
+  m_Layer: 0
+  m_Name: Player2OP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1738466762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738466761}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 498.39, y: 0.03, z: 500.39554}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1748606205
 GameObject:
   m_ObjectHideFlags: 0
@@ -7743,7 +7881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bee1ced25206e945a17f1e2a2cfa85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamMateStats: {fileID: 11400000, guid: 0bdb2054c5ffe8640a659678f577d362, type: 2}
   enemiesOnScreen:
   - {fileID: 759566944}
   aiStats: {fileID: 0}
@@ -7905,6 +8042,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4574468028281852653, guid: d75c23b3d15cfe846b27008b69cb7722, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e0c9631bd3c89674fab2d6d458ab5ad0, type: 2}
     - target: {fileID: 4574468028288859489, guid: d75c23b3d15cfe846b27008b69cb7722, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -8036,6 +8177,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888617294}
   m_CullTransparentMesh: 1
+--- !u!1 &1890363042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1890363043}
+  m_Layer: 0
+  m_Name: Player3OP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1890363043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890363042}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 501.24, y: 0.03, z: 500.39554}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1891437141
 GameObject:
   m_ObjectHideFlags: 0
@@ -8160,7 +8331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bee1ced25206e945a17f1e2a2cfa85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamMateStats: {fileID: 11400000, guid: ad79c3cd723566d46a1864b9d982dd80, type: 2}
   enemiesOnScreen:
   - {fileID: 759566944}
   aiStats: {fileID: 0}
@@ -8652,14 +8822,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ff7612f14938044a279382139ff417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 759566944}
-  player: {fileID: 589406832}
-  spellPlayer: {fileID: 2076991565}
+  enemy: {fileID: 0}
+  player: {fileID: 0}
+  spellPlayer: {fileID: 0}
   tbbs: {fileID: 0}
   commandsUI: {fileID: 1466361764}
   spellsUI: {fileID: 336837403}
   fireVFX: {fileID: 5500179151457076298, guid: 20c1ac28f0a1c744aa482c589789892a, type: 3}
   playerUI: {fileID: 169745919}
+  speed: 10
 --- !u!4 &2004535819
 Transform:
   m_ObjectHideFlags: 0

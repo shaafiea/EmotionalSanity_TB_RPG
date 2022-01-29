@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SpellPanel
   - BattleManager
+  - Enemy
   layers:
   - Default
   - TransparentFX

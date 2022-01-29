@@ -28,6 +28,25 @@ public class PlaySpellAnim : MonoBehaviour
 
     void PlayerWeaponAttack()
     {
-        BUIV.Attack();
+        BUIV.AttackDamageDealt();
+    }
+
+    void PlayerEndTurn()
+    {
+        BUIV.EndTurnAfterAnim();
+    }
+
+    void PlayerWalkBack()
+    {
+        BUIV.WalkBack();
+    }
+
+    void FootR()
+    {
+
+    }
+
+    void FootL()
+    {
     }
 }

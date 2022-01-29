@@ -38,7 +38,7 @@ public class BaseEntities : MonoBehaviour
         gameObject.name = entityName;
         HP = maxHP;
         MP = maxMP;
-        SP = maxSP;
+        SP = maxSP / 2;
         isDead = false;
     }
 
@@ -48,6 +48,7 @@ public class BaseEntities : MonoBehaviour
     public void TakeWeaponDamage(int damage, float strength = 1)
     {
         HP -= (damage * (int)strength) / (int)weapondefence;
+        Debug.Log("Weapon Effective!");
     }
 
     public void TakeSpecialDamage(PlayerType ptype, int damage, float strength = 1)
@@ -58,10 +59,12 @@ public class BaseEntities : MonoBehaviour
             if (ptype == entityWeakness[i])
             {
                 HP -= (int)((damage * (int)strength) / (int)manadefence * 1.5);
+                Debug.Log("Super Effective!");
                 break;
             }
             
         }
         HP -= (damage * (int)strength) / (int)manadefence;
+        Debug.Log("Effective!");
     }
 }
