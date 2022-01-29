@@ -23,9 +23,10 @@ public class BattleUIVisuals : MonoBehaviour
     bool spellUsed = false;
     float spellLifetime;
 
-    //AttackBools
+    //PlayerBools
     bool isAttacking = false;
     bool playerTurn = false;
+    bool blocking = false;
 
     // Adjust the speed for the application.
     public float speed = 25.0f;
@@ -42,26 +43,53 @@ public class BattleUIVisuals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players && tbbs.playerIndex != 0 && blocking == true)
+        {
+            spellPlayer.anim.SetBool("isBlocking", true);
+            Debug.Log("Blocking is true whilst not the players turn");
+        }
+        if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players && tbbs.playerIndex == 0 && blocking == true)
+        {
+            spellPlayer.anim.SetBool("isBlocking", false);
+            spellPlayer.anim.Play("Idle");
+            blocking = false;
+            player.isBlocking = false;
+            Debug.Log("Players Turn Now player block is now: " + player.isBlocking);
+        }
+
         // Move our position a step closer to the target.
         float step = speed * Time.deltaTime; // calculate distance to move
 
         if (isAttacking == true)
         {
             player.gameObject.transform.position = Vector3.MoveTowards(player.gameObject.transform.position, enemy.gameObject.transform.position, step);
-
-            // Check if the position of the cube and sphere are approximately equal.
-            if (Vector3.Distance(player.gameObject.transform.position, enemy.gameObject.transform.position) < 2f)
+            if (Vector3.Distance(player.gameObject.transform.position, enemy.gameObject.transform.position) > 3f)
             {
+                spellPlayer.anim.SetBool("isWalking", true);
+            }
+               
+            // Check if the position of the cube and sphere are approximately equal.
+            if (Vector3.Distance(player.gameObject.transform.position, enemy.gameObject.transform.position) <= 3f)
+            {
+                spellPlayer.anim.SetBool("isWalking", false);
                 spellPlayer.anim.Play("DWAttack");
+                
             }
         } 
 
         if (isAttacking == false && playerTurn == true)
         {
             player.gameObject.transform.position = Vector3.MoveTowards(player.gameObject.transform.position, tbbs.player1Target.gameObject.transform.position, step);
+            if (Vector3.Distance(player.gameObject.transform.position, tbbs.player1Target.gameObject.transform.position) > 5f)
+            {
+                spellPlayer.anim.SetBool("isWalking", true);
+            }
+
             if (player.gameObject.transform.position == tbbs.player1Target.gameObject.transform.position)
             {
+                spellPlayer.anim.SetBool("isWalking", false);
                 playerTurn = false;
+                spellPlayer.anim.Play("Idle");
                 EndTurnAfterAnim();
             }
             
@@ -77,6 +105,18 @@ public class BattleUIVisuals : MonoBehaviour
         isAttacking = true;
         playerTurn = true;
         Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
+    }
+
+    public void Block()
+    {
+        playerUI.SetActive(false);
+        spellsUI.SetActive(false);
+        commandsUI.SetActive(false);
+        blocking = true;
+        player.isBlocking = true;
+        Debug.Log(player.isBlocking);
+        tbbs.EndPlayerTurn();
+        
     }
 
     public void Spell()
@@ -150,8 +190,13 @@ public class BattleUIVisuals : MonoBehaviour
 
     public void WalkBack()
     {
-        Debug.Log("ur mum");
+        Debug.Log("Walk To Original Position");
         isAttacking = false;
+        spellPlayer.anim.Play("Walk");
     }
 
+    public void Escape()
+    {
+
+    }
 }

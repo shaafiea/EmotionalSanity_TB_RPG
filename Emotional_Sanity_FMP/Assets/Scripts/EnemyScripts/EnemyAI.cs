@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] BaseEntities enemyStats;
     [SerializeField] private List<BaseEntities> playersOnScreen;
+    [SerializeField] BattleUIVisuals BUIV;
     public TurnBasedBattleSystem tbbs;
 
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class EnemyAI : MonoBehaviour
     {
         enemyStats = GetComponent<BaseEntities>();
         tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
+        BUIV = GameObject.Find("BattleUIManager").GetComponent<BattleUIVisuals>();
     }
 
     // Update is called once per frame

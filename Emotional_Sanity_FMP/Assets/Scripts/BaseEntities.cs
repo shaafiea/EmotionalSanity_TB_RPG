@@ -19,6 +19,7 @@ public class BaseEntities : MonoBehaviour
     public float weapondefence = 1;
     public float manadefence;
     public int damage = 10;
+    public bool isBlocking;
     public bool isDead;
     public enum PlayerType
     {
@@ -40,6 +41,7 @@ public class BaseEntities : MonoBehaviour
         MP = maxMP;
         SP = maxSP / 2;
         isDead = false;
+        isBlocking = false;
     }
 
     // Player/Enemy Attacks
@@ -47,8 +49,20 @@ public class BaseEntities : MonoBehaviour
     //Weapon Damage is just a simple damage script from the weapon stat and characters damage stat
     public void TakeWeaponDamage(int damage, float strength = 1)
     {
-        HP -= (damage * (int)strength) / (int)weapondefence;
-        Debug.Log("Weapon Effective!");
+        if (isBlocking == false)
+        {
+            HP -= (damage * (int)strength) / (int)weapondefence;
+            Debug.Log("Weapon Effective!");
+            Debug.Log(HP);
+        }
+
+        if (isBlocking == true)
+        {
+            HP -= ((damage * (int)strength) / (int)weapondefence) * 25/100;
+            Debug.Log("Blocked! Damage Reduction");
+            Debug.Log(HP);
+        }
+        
     }
 
     public void TakeSpecialDamage(PlayerType ptype, int damage, float strength = 1)
@@ -56,15 +70,32 @@ public class BaseEntities : MonoBehaviour
         //Weaknesses from special moves if a player or enemy has a weakness. Give a damage multiplier to the spell attack
         for (int i = 0; i < entityWeakness.Count; i++)
         {
-            if (ptype == entityWeakness[i])
+            if (ptype == entityWeakness[i] && isBlocking == false)
             {
                 HP -= (int)((damage * (int)strength) / (int)manadefence * 1.5);
                 Debug.Log("Super Effective!");
                 break;
             }
-            
+
+            if (ptype == entityWeakness[i] && isBlocking == true)
+            {
+                HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 25/100);
+                Debug.Log("Blocked Damage Reduction But still Super Effective!");
+                break;
+            }
+
         }
-        HP -= (damage * (int)strength) / (int)manadefence;
-        Debug.Log("Effective!");
+
+        if (isBlocking == false)
+        {
+            HP -= (damage * (int)strength) / (int)manadefence;
+            Debug.Log("Spell Attack: Effective!");
+        }
+
+        if (isBlocking == true)
+        {
+            HP -= ((damage * (int)strength) / (int)manadefence) * 25/100;
+            Debug.Log("Blocked! Spell Attack: Effective!");
+        }
     }
 }

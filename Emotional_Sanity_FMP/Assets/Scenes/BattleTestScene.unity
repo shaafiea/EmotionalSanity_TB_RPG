@@ -2553,7 +2553,8 @@ MonoBehaviour:
   manastrength: 100
   weapondefence: 50
   manadefence: 50
-  damage: 10
+  damage: 60
+  isBlocking: 0
   isDead: 0
   entityType: 02000000
   entityWeakness: 03000000
@@ -3117,9 +3118,10 @@ MonoBehaviour:
   maxSP: 50
   weaponstrength: 10
   manastrength: 10
-  weapondefence: 300
+  weapondefence: 200
   manadefence: 300
-  damage: 10
+  damage: 100
+  isBlocking: 0
   isDead: 0
   entityType: 04000000
   entityWeakness: 02000000
@@ -3144,6 +3146,7 @@ MonoBehaviour:
   - {fileID: 1902448686}
   - {fileID: 1248899460}
   - {fileID: 1776514806}
+  BUIV: {fileID: 0}
   tbbs: {fileID: 0}
 --- !u!1 &770837332
 GameObject:
@@ -4705,6 +4708,7 @@ MonoBehaviour:
   weapondefence: 50
   manadefence: 50
   damage: 10
+  isBlocking: 0
   isDead: 0
   entityType: 04000000
   entityWeakness: 02000000
@@ -5049,7 +5053,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1342978148}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2004535818}
+        m_TargetAssemblyTypeName: BattleUIVisuals, Assembly-CSharp
+        m_MethodName: Block
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1342978148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7861,6 +7877,7 @@ MonoBehaviour:
   weapondefence: 50
   manadefence: 50
   damage: 10
+  isBlocking: 0
   isDead: 0
   entityType: 01000000
   entityWeakness: 
@@ -8311,6 +8328,7 @@ MonoBehaviour:
   weapondefence: 50
   manadefence: 50
   damage: 10
+  isBlocking: 0
   isDead: 0
   entityType: 03000000
   entityWeakness: 04000000
