@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     public TurnBasedBattleSystem tbbs;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         enemyStats = GetComponent<BaseEntities>();
         tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();

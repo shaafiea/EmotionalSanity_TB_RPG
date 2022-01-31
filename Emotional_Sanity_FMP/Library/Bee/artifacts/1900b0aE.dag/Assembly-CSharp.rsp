@@ -345,6 +345,7 @@
 "Assets/ItemResources/ItemScript/HealingObject.cs"
 "Assets/ItemResources/ItemScript/ItemDatabaseObject.cs"
 "Assets/ItemResources/ItemScript/ItemObject.cs"
+"Assets/Scripts/AddToList.cs"
 "Assets/Scripts/BaseEntities.cs"
 "Assets/Scripts/BasePlayerBattleInfo.cs"
 "Assets/Scripts/BattleUIVisuals.cs"

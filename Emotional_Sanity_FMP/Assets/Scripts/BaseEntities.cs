@@ -53,14 +53,14 @@ public class BaseEntities : MonoBehaviour
         {
             HP -= (damage * (int)strength) / (int)weapondefence;
             Debug.Log("Weapon Effective!");
-            Debug.Log(HP);
+            //Debug.Log(HP);
         }
 
         if (isBlocking == true)
         {
             HP -= ((damage * (int)strength) / (int)weapondefence) * 25/100;
             Debug.Log("Blocked! Damage Reduction");
-            Debug.Log(HP);
+            //Debug.Log(HP);
         }
         
     }
