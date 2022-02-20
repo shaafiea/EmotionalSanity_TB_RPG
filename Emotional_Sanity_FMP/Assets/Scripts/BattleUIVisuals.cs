@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BattleUIVisuals : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class BattleUIVisuals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //If the turn is equal to the player then make blocking true
         if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players && tbbs.playerIndex != 0 && blocking == true)
         {
             spellPlayer.anim.SetBool("isBlocking", true);
@@ -50,6 +52,7 @@ public class BattleUIVisuals : MonoBehaviour
         }
         if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players && tbbs.playerIndex == 0 && blocking == true)
         {
+            //If the turn returns back to 0 and the player is blocking turn off the blocking state
             spellPlayer.anim.SetBool("isBlocking", false);
             spellPlayer.anim.Play("Idle");
             blocking = false;
@@ -60,6 +63,7 @@ public class BattleUIVisuals : MonoBehaviour
         // Move our position a step closer to the target.
         float step = speed * Time.deltaTime; // calculate distance to move
 
+        //If the player is attacking set the player to move to the enemy position and attack the enemy
         if (isAttacking == true)
         {
             player.gameObject.transform.position = Vector3.MoveTowards(player.gameObject.transform.position, enemy.gameObject.transform.position, step);
@@ -68,7 +72,7 @@ public class BattleUIVisuals : MonoBehaviour
                 spellPlayer.anim.SetBool("isWalking", true);
             }
                
-            // Check if the position of the cube and sphere are approximately equal.
+            // If the player has reached the enemy position, then play the attack animation
             if (Vector3.Distance(player.gameObject.transform.position, enemy.gameObject.transform.position) <= 3f)
             {
                 spellPlayer.anim.SetBool("isWalking", false);
@@ -77,6 +81,7 @@ public class BattleUIVisuals : MonoBehaviour
             }
         } 
 
+        //Once the player has attacked start returning to the original position
         if (isAttacking == false && playerTurn == true)
         {
             player.gameObject.transform.position = Vector3.MoveTowards(player.gameObject.transform.position, tbbs.player1Target.gameObject.transform.position, step);
@@ -85,6 +90,7 @@ public class BattleUIVisuals : MonoBehaviour
                 spellPlayer.anim.SetBool("isWalking", true);
             }
 
+            //Once the player has reached his original position end their turn
             if (player.gameObject.transform.position == tbbs.player1Target.gameObject.transform.position)
             {
                 spellPlayer.anim.SetBool("isWalking", false);
@@ -107,6 +113,8 @@ public class BattleUIVisuals : MonoBehaviour
         Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
     }
 
+
+    //Block function (allows the player to take a blocking stance and ends their turn)
     public void Block()
     {
         playerUI.SetActive(false);
@@ -119,6 +127,7 @@ public class BattleUIVisuals : MonoBehaviour
         
     }
 
+    //Allows the player to check their list of spell moves
     public void Spell()
     {
         playerUI.SetActive(false);
@@ -127,6 +136,8 @@ public class BattleUIVisuals : MonoBehaviour
         spellUIMenu = true;
     }
 
+
+    //Allows the player to look at the current commands of his team mates
     public void Command()
     {
         commandsUI.SetActive(true);
@@ -134,6 +145,7 @@ public class BattleUIVisuals : MonoBehaviour
         spellsUI.SetActive(false);
     }
 
+    //Allows the player to go back in a menu
     public void GoBack()
     {
         playerUI.SetActive(true);
@@ -197,6 +209,8 @@ public class BattleUIVisuals : MonoBehaviour
 
     public void Escape()
     {
-
+        Debug.Log("You Tried To Escape");
+        SceneManager.LoadScene(0);
+        
     }
 }

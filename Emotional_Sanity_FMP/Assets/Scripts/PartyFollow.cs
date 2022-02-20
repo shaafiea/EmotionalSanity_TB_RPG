@@ -31,4 +31,14 @@ public class PartyFollow : MonoBehaviour
             anim.SetBool("isRunning", false);
         }
     }
+
+    void FootL()
+    {
+
+    }
+
+    void FootR()
+    {
+
+    }
 }

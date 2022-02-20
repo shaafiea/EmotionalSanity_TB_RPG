@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BaseEntities : MonoBehaviour
 {
-
+    //Basic Stats for All Fightable Characters
     [Header("Base Stats")]
     public float HP = 0;
     public float MP = 0;
@@ -19,6 +19,7 @@ public class BaseEntities : MonoBehaviour
     public float weapondefence = 1;
     public float manadefence;
     public int damage = 10;
+    public int speed = 0;
     public bool isBlocking;
     public bool isDead;
     public enum PlayerType
@@ -36,6 +37,7 @@ public class BaseEntities : MonoBehaviour
 
     private void Awake()
     {
+        //Always set the hp, mp, and sp to max if the player has started a new game!
         gameObject.name = entityName;
         HP = maxHP;
         MP = maxMP;
@@ -46,7 +48,8 @@ public class BaseEntities : MonoBehaviour
 
     // Player/Enemy Attacks
 
-    //Weapon Damage is just a simple damage script from the weapon stat and characters damage stat
+    //Weapon Damage is just a simple damage script from the weapon stat and characters damage stat 
+    //If the player are blocking do less damage than usual
     public void TakeWeaponDamage(int damage, float strength = 1)
     {
         if (isBlocking == false)

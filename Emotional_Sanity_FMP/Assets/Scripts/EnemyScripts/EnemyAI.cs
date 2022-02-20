@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private List<BaseEntities> playersOnScreen;
     [SerializeField] BattleUIVisuals BUIV;
     public TurnBasedBattleSystem tbbs;
+
+    //EnemyBools
+    bool isAttacking = false;
+    bool enemyTurn = false;
+    bool blocking = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,7 +26,23 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (tbbs.currentTurns == TurnBasedBattleSystem.turns.enemies && tbbs.enemyIndex != 0 && blocking == true)
+        {
+            //would be where their anim goes.
+            Debug.Log("Not enemies turn");
+        }
+
+        if (tbbs.currentTurns == TurnBasedBattleSystem.turns.enemies && tbbs.enemyIndex == 0 && blocking == true)
+        {
+            blocking = false;
+            enemyStats.isBlocking = false;
+            Debug.Log("Enemies Turn Blocking state is now : " + this.gameObject + enemyStats.isBlocking);
+        }
+
+        if (enemyStats.HP <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     //Basic Attacking Scripts to test damage
@@ -30,12 +52,21 @@ public class EnemyAI : MonoBehaviour
         tbbs.EndEnemyTurn();
     }
 
-    public void Spell()
+    public void EnemyBlock()
     {
-        /*enemy.TakeSpecialDamage(player.entityWeakness[0], (enemy.spellmoves[0].damage), player.manastrength);
+        blocking = true;
+        enemyStats.isBlocking = true;
+        tbbs.EndEnemyTurn();
+    }
+
+    public void EnemySpell()
+    {
+        int randomPlayer = Random.Range(0, playersOnScreen.Count);
+
+        playersOnScreen[randomPlayer].TakeSpecialDamage(playersOnScreen[randomPlayer].entityWeakness[0], (enemyStats.spellmoves[0].damage), enemyStats.manastrength);
         Debug.Log("Enemy Used Their Attack!");
-        Debug.Log(enemy.spellmoves[0].damage * enemy.manastrength / player.manadefence);
-        Debug.Log("Enemy Spell Hurt");*/
+        Debug.Log("Enemy Spell Hurt");
+        tbbs.EndEnemyTurn();
     }
 
 

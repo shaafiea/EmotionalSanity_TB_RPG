@@ -6,10 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] PlayerBase player1;
-    [SerializeField] PlayerBase player2;
-    [SerializeField] PlayerBase player3;
-    [SerializeField] PlayerBase player4;
+    [SerializeField] PlayerBase player1stats;
+    [SerializeField] PlayerBase player2stats;
+    [SerializeField] PlayerBase player3stats;
+    [SerializeField] PlayerBase player4stats;
+
+    public GameObject player;
+    public GameObject player2;
+    public GameObject player3;
+    public GameObject player4;
+
+    public Vector3 playerlp;
+    public Vector3 player2lp;
+    public Vector3 player3lp;
+    public Vector3 player4lp;
+
+
     public static GameManager Instance
     {
         get { return instance; }
@@ -42,4 +54,6 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    
 }
