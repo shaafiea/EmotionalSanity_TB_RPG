@@ -13,6 +13,7 @@ public class BattleUIVisuals : MonoBehaviour
 
     public TurnBasedBattleSystem tbbs;
 
+    public DisplayMoveDescription display;
     //UI    
     public GameObject commandsUI;
     public GameObject spellsUI;
@@ -184,10 +185,10 @@ public class BattleUIVisuals : MonoBehaviour
             //spellUIMenu = false;
             spellPlayer.anim.SetBool("spellUsed", true);
             spellsUI.SetActive(false);
+            display.OnClickVanish();
 
         } else
         {
-
             GoBack();
         }
         //spellLifetime = 3;

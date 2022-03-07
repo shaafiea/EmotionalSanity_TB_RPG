@@ -105,100 +105,121 @@ public class TurnBasedBattleSystem : MonoBehaviour
     void Update()
     {
         //Turn Based System
-
         //If the turn is equal to the players turns go through each player in the list
-        if (currentTurns == turns.players)
+
+        for (int i = 0; i < players.Count; i++)
         {
-            if (playerIndex == 0)
+            if (currentTurns == turns.players)
             {
-                //If the player isnt dead then allow them to fight in battle
-                if (player1.HP > 0)
+                if (players[i].GetComponent<BaseEntities>().entityName == "NinjaWarrior")
                 {
-                    if (uiOff == true)
+                    Debug.Log("Player 1 Turn");
+                    //If the player isnt dead then allow them to fight in battle
+                    if (player1.HP > 0)
                     {
-                        //Activate the UI
-                        bui.playerUI.SetActive(true);
-                        uiOff = false;
+                        if (uiOff == true)
+                        {
+                            //Activate the UI
+                            bui.playerUI.SetActive(true);
+                            uiOff = false;
+                        }
                     }
-                } else
-                {
-                    //If the player is dead then move on to the next player
-                    bui.playerUI.SetActive(false);
-                    EndPlayerTurn();
-                }
-            }
-            //Debug.Log("Players Turn");
-            if (playerIndex == 1)
-            {
-                if (player2.HP > 0)
-                {
-                    Debug.Log("Player 2 Turn");
-                    //Depending on what state the AI is in do that specific command
-                    if (p2_State.state == TeamAIController.AIState.Attack)
+                    else
                     {
-                        players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack();
-                        uiOff = true;
-                    }
-
-                    if (p2_State.state == TeamAIController.AIState.Block)
-                    {
-                        players[playerIndex].GetComponent<TeamAIController>().AIBlock();
-                        uiOff = true;
-                    }
-                } else
-                {
-                    EndPlayerTurn();
-                }
-            }
-
-            if (playerIndex == 2)
-            {
-                if (player3.HP > 0)
-                {
-                    if (p3_State.state == TeamAIController.AIState.Attack)
-                    {
-                        players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack();
-                        uiOff = true;
-                    }
-
-                    if (p3_State.state == TeamAIController.AIState.Block)
-                    {
-                        players[playerIndex].GetComponent<TeamAIController>().AIBlock();
-                        uiOff = true;
-                    }
-                } else
-                {
-                    EndPlayerTurn();
-                }
-            }
-
-            if (playerIndex == 3)
-            {
-                if (player4.HP > 0)
-                {
-                    if (p4_State.state == TeamAIController.AIState.Attack)
-                    {
-                        players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack();
-                        uiOff = true;
-                    }
-
-                    if (p4_State.state == TeamAIController.AIState.Block)
-                    {
-                        players[playerIndex].GetComponent<TeamAIController>().AIBlock();
-                        uiOff = true;
+                        //If the player is dead then move on to the next player
+                        bui.playerUI.SetActive(false);
+                        EndPlayerTurn();
                     }
                 }
-            }
 
-        } else if (currentTurns == turns.enemies) //Once all players have done their moves make it so it is the enemies turn.
-        {
-            if (enemyIndex == 0)
-            {
-                //CALL Enemy Function to decide attack or block
-                EnemyState();
+                if (players[i].GetComponent<BaseEntities>().entityName == "Karate")
+                {
+                    if (player2.HP > 0)
+                    {
+                        Debug.Log("Player 2 Turn");
+                        //Depending on what state the AI is in do that specific command
+                        if (p2_State.state == TeamAIController.AIState.Attack)
+                        {
+                            players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack();
+                            uiOff = true;
+                        }
+
+                        if (p2_State.state == TeamAIController.AIState.Block)
+                        {
+                            players[playerIndex].GetComponent<TeamAIController>().AIBlock();
+                            uiOff = true;
+                        }
+                    }
+                    else
+                    {
+                        EndPlayerTurn();
+                        players.Remove(players[1]);
+                    }
+                }
+
+                if (players[i].GetComponent<BaseEntities>().entityName == "SorceressWarrior")
+                {
+                    if (player3.HP > 0)
+                    {
+                        Debug.Log("Player 3 Turn");
+                        if (p3_State.state == TeamAIController.AIState.Attack)
+                        {
+                            
+                            players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack();
+                            uiOff = true;
+                        }
+
+                        if (p3_State.state == TeamAIController.AIState.Block)
+                        {
+                            players[playerIndex].GetComponent<TeamAIController>().AIBlock();
+                            uiOff = true;
+                        }
+                    }
+                    else
+                    {
+                        EndPlayerTurn();
+                        players.Remove(players[2]);
+                    }
+                }
+
+                if (players[i].GetComponent<BaseEntities>().entityName == "Brute")
+                {
+                    if (player4.HP > 0)
+                    {
+                        Debug.Log("Player 4 Turn");
+                        if (p4_State.state == TeamAIController.AIState.Attack)
+                        {
+                            players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack();
+                            uiOff = true;
+                        }
+
+                        if (p4_State.state == TeamAIController.AIState.Block)
+                        {
+                            players[playerIndex].GetComponent<TeamAIController>().AIBlock();
+                            uiOff = true;
+                        }
+                    }
+                    else if (player4.HP <= 0)
+                    {
+                        EndPlayerTurn();
+                        players.Remove(players[3]);
+                    }
+                }
+
             }
         }
+        
+        if (currentTurns == turns.enemies) //Once all players have done their moves make it so it is the enemies turn.
+            {
+                if (enemyIndex == 0)
+                {
+                    //CALL Enemy Function to decide attack or block
+                    EnemyState();
+                }
+            }
+        
     }
+        
 
     //Once a player has done a move. Proceed to the person in the list
     public void EndPlayerTurn()
@@ -230,12 +251,12 @@ public class TurnBasedBattleSystem : MonoBehaviour
     {
         if (p2_State.state == TeamAIController.AIState.Attack)
         {
-            Debug.Log("Block State");
+            Debug.Log("P2 Block State");
             p2_Text_State.text = "Block";
             p2_State.state = TeamAIController.AIState.Block;
         } else if (p2_State.state == TeamAIController.AIState.Block)
         {
-            Debug.Log("Attack State");
+            Debug.Log("P2 Attack State");
             p2_Text_State.text = "Attack";
             p2_State.state = TeamAIController.AIState.Attack;
         }
@@ -245,10 +266,12 @@ public class TurnBasedBattleSystem : MonoBehaviour
     {
         if (p3_State.state == TeamAIController.AIState.Attack)
         {
+            Debug.Log("P3 Block State");
             p3_Text_State.text = "Block";
             p3_State.state = TeamAIController.AIState.Block;
         } else if (p3_State.state == TeamAIController.AIState.Block)
         {
+            Debug.Log("P3 Attack State");
             p3_Text_State.text = "Attack";
             p3_State.state = TeamAIController.AIState.Attack;
         }
@@ -258,10 +281,12 @@ public class TurnBasedBattleSystem : MonoBehaviour
     {
         if (p4_State.state == TeamAIController.AIState.Attack)
         {
+            Debug.Log("P4 Block State");
             p4_Text_State.text = "Block";
             p4_State.state = TeamAIController.AIState.Block;
         } else if (p4_State.state == TeamAIController.AIState.Block)
         {
+            Debug.Log("P4 Attack State");
             p4_Text_State.text = "Attack";
             p4_State.state = TeamAIController.AIState.Attack;
         }

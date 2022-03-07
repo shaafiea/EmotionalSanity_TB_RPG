@@ -81,8 +81,13 @@ public class PlayerController : MonoBehaviour
                 cooldown -= Time.deltaTime;
             }
 
+            if (Input.GetMouseButtonDown(1) && cooldown <= 0)
+            {
+                SceneManager.LoadScene(1);
+            }
+
         }
-        
+
     }
 
 
