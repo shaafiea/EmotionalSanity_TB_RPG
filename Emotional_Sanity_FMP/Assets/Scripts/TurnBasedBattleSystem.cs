@@ -36,6 +36,11 @@ public class TurnBasedBattleSystem : MonoBehaviour
     public BaseEntities player3;
     public BaseEntities player4;
 
+    //Team AI Animators
+    public Animator k_anim;
+    public Animator s_anim;
+    public Animator b_anim;
+
     //Enemy
     public BaseEntities enemy1;
 
@@ -62,6 +67,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
     public TextMeshProUGUI p3_Text_State;
     public TextMeshProUGUI p4_Text_State;
 
+    // Adjust the speed for the application.
+    public float speed = 8.0f;
+
+
+    //Attacking States
+    public bool p2_isAttacking = false;
+    public bool p3_isAttacking = false;
+    public bool p4_isAttacking = false;
+
+    public bool p2_turn = false;
+    public bool p3_turn = false;
+    public bool p4_turn = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +91,10 @@ public class TurnBasedBattleSystem : MonoBehaviour
         p2_State = GameObject.Find("Karate").GetComponent<TeamAIController>();
         p3_State = GameObject.Find("SorceressWarrior").GetComponent<TeamAIController>();
         p4_State = GameObject.Find("Brute").GetComponent<TeamAIController>();
+
+        k_anim = GameObject.Find("Karate").GetComponent<Animator>();
+        s_anim = GameObject.Find("Sorceress").GetComponent<Animator>();
+        b_anim = GameObject.Find("Brute").GetComponent<Animator>();
 
         //When the battle scene starts automatically set the teammate states to attack
         p2_State.state = TeamAIController.AIState.Attack;
@@ -94,8 +116,8 @@ public class TurnBasedBattleSystem : MonoBehaviour
         players.Insert(3, player4.gameObject);
 
         //Find Enemies stats and then insert that gameObject into the enemyList
-        enemy1 = GameObject.FindWithTag("Enemy").GetComponent<BaseEntities>();
-        enemies.Insert(0, enemy1.gameObject);
+   /*     enemy1 = GameObject.FindWithTag("Enemy").GetComponent<BaseEntities>();
+        enemies.Insert(0, enemy1.gameObject);*/
 
         bui = GameObject.Find("BattleUIManager").GetComponent<BattleUIVisuals>();
         uiOff = true;
@@ -111,7 +133,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
         {
             if (currentTurns == turns.players)
             {
-                if (players[i].GetComponent<BaseEntities>().entityName == "NinjaWarrior")
+                if (players[i].GetComponent<BaseEntities>().entityName == "NinjaWarrior" && playerIndex == i) 
                 {
                     Debug.Log("Player 1 Turn");
                     //If the player isnt dead then allow them to fight in battle
@@ -132,15 +154,54 @@ public class TurnBasedBattleSystem : MonoBehaviour
                     }
                 }
 
-                if (players[i].GetComponent<BaseEntities>().entityName == "Karate")
+                if (players[i].GetComponent<BaseEntities>().entityName == "Karate" && playerIndex == i)
                 {
                     if (player2.HP > 0)
                     {
+                        // Move our position a step closer to the target.
+                        float step = speed * Time.deltaTime; // calculate distance to move
                         Debug.Log("Player 2 Turn");
+
                         //Depending on what state the AI is in do that specific command
-                        if (p2_State.state == TeamAIController.AIState.Attack)
+                        if (p2_State.state == TeamAIController.AIState.Attack && p2_turn == true)
                         {
-                            players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack();
+                            p2_State.AITarget();
+                            if (p2_isAttacking == true)
+                            {
+                                player2.gameObject.transform.position = Vector3.MoveTowards(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position, step);
+                                if (Vector3.Distance(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position) > 5f)
+                                {
+                                    k_anim.SetBool("isWalking", true);
+                                }
+
+                                // If the player has reached the enemy position, then play the attack animation
+                                if (Vector3.Distance(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position) <= 5f)
+                                {
+                                    k_anim.SetBool("isWalking", false);
+                                    k_anim.Play("Attack");
+                                    
+                                }
+                                //Once the player has attacked start returning to the original position
+                                if (p2_isAttacking == false && p2_turn == true)
+                                {
+                                    player2.gameObject.transform.position = Vector3.MoveTowards(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position, step);
+                                    if (Vector3.Distance(player2.gameObject.transform.position, player2Target.gameObject.transform.position) > 5f)
+                                    {
+                                        k_anim.SetBool("isWalking", true);
+                                    }
+
+                                    //Once the player has reached his original position end their turn
+                                    if (player2.gameObject.transform.position == player2Target.gameObject.transform.position)
+                                    {
+                                        Debug.Log("Im back to my positon!");
+                                        k_anim.SetBool("isWalking", false);
+                                        p2_turn = false;
+                                        k_anim.Play("Idle");
+                                        EndPlayerTurn();
+                                    }
+
+                                }
+                            }
                             uiOff = true;
                         }
 
@@ -153,11 +214,11 @@ public class TurnBasedBattleSystem : MonoBehaviour
                     else
                     {
                         EndPlayerTurn();
-                        players.Remove(players[1]);
+                        //players.Remove(players[1]);
                     }
                 }
 
-                if (players[i].GetComponent<BaseEntities>().entityName == "SorceressWarrior")
+                if (players[i].GetComponent<BaseEntities>().entityName == "SorceressWarrior" && playerIndex == i)
                 {
                     if (player3.HP > 0)
                     {
@@ -165,7 +226,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         if (p3_State.state == TeamAIController.AIState.Attack)
                         {
                             
-                            players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack();
+                            players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack2();
                             uiOff = true;
                         }
 
@@ -182,14 +243,14 @@ public class TurnBasedBattleSystem : MonoBehaviour
                     }
                 }
 
-                if (players[i].GetComponent<BaseEntities>().entityName == "Brute")
+                if (players[i].GetComponent<BaseEntities>().entityName == "Brute" && playerIndex == i)
                 {
                     if (player4.HP > 0)
                     {
                         Debug.Log("Player 4 Turn");
                         if (p4_State.state == TeamAIController.AIState.Attack)
                         {
-                            players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack();
+                            players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack2();
                             uiOff = true;
                         }
 

@@ -3,22 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class BattleUIVisuals : MonoBehaviour
 {
 
-    [SerializeField] BaseEntities enemy;
+    public List<BaseEntities> enemies;
     [SerializeField] BaseEntities player;
     [SerializeField] PlaySpellAnim spellPlayer;
+    [SerializeField] private PlayerTargetPicker targetPicker = null;
 
     public TurnBasedBattleSystem tbbs;
 
     public DisplayMoveDescription display;
+
     //UI    
     public GameObject commandsUI;
     public GameObject spellsUI;
     public GameObject fireVFX;
     public GameObject playerUI;
+    public GameObject targetUI;
+
+    //Show Target Button and Back Button
+    public List<GameObject> targetAttackButtons = null;
+    [SerializeField] private GameObject backButton = null;
 
     //Spells
     bool spellUIMenu = false;
@@ -33,12 +41,13 @@ public class BattleUIVisuals : MonoBehaviour
     // Adjust the speed for the application.
     public float speed = 25.0f;
 
+    public BaseEntities target;
+
     // Start is called before the first frame update
     void Start()
     {
         tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
         player = GameObject.Find("NinjaWarrior").GetComponent<BaseEntities>();
-        enemy = GameObject.FindWithTag("Enemy").GetComponent<BaseEntities>();
         spellPlayer = GameObject.Find("NinjaWarrior").GetComponentInChildren<PlaySpellAnim>();
     }
 
@@ -67,14 +76,14 @@ public class BattleUIVisuals : MonoBehaviour
         //If the player is attacking set the player to move to the enemy position and attack the enemy
         if (isAttacking == true)
         {
-            player.gameObject.transform.position = Vector3.MoveTowards(player.gameObject.transform.position, enemy.gameObject.transform.position, step);
-            if (Vector3.Distance(player.gameObject.transform.position, enemy.gameObject.transform.position) > 3f)
+            player.gameObject.transform.position = Vector3.MoveTowards(player.gameObject.transform.position, target.gameObject.transform.position, step);
+            if (Vector3.Distance(player.gameObject.transform.position, target.gameObject.transform.position) > 3f)
             {
                 spellPlayer.anim.SetBool("isWalking", true);
             }
                
             // If the player has reached the enemy position, then play the attack animation
-            if (Vector3.Distance(player.gameObject.transform.position, enemy.gameObject.transform.position) <= 3f)
+            if (Vector3.Distance(player.gameObject.transform.position, target.gameObject.transform.position) <= 3f)
             {
                 spellPlayer.anim.SetBool("isWalking", false);
                 spellPlayer.anim.Play("DWAttack");
@@ -94,9 +103,12 @@ public class BattleUIVisuals : MonoBehaviour
             //Once the player has reached his original position end their turn
             if (player.gameObject.transform.position == tbbs.player1Target.gameObject.transform.position)
             {
+               
                 spellPlayer.anim.SetBool("isWalking", false);
                 playerTurn = false;
                 spellPlayer.anim.Play("Idle");
+                tbbs.p2_turn = true;
+                tbbs.p2_isAttacking = true;
                 EndTurnAfterAnim();
             }
             
@@ -104,16 +116,28 @@ public class BattleUIVisuals : MonoBehaviour
     }
 
     //Basic Attacking Scripts to test damage
-    public void Attack()
+    public void DealAttack()
     {
         playerUI.SetActive(false);
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
+        target.gameObject.SetActive(true);
         isAttacking = true;
         playerTurn = true;
+        
         Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
     }
 
+    //Targeting Different Enemies
+    public void GetTargetAttack(int index)
+    {
+        target = enemies[index];
+        playerUI.SetActive(false);
+        spellsUI.SetActive(false);
+        commandsUI.SetActive(false);
+        targetUI.SetActive(true);
+        DealAttack();
+    }
 
     //Block function (allows the player to take a blocking stance and ends their turn)
     public void Block()
@@ -124,6 +148,8 @@ public class BattleUIVisuals : MonoBehaviour
         blocking = true;
         player.isBlocking = true;
         Debug.Log(player.isBlocking);
+        tbbs.p2_turn = true;
+        tbbs.p2_isAttacking = true;
         tbbs.EndPlayerTurn();
         
     }
@@ -159,20 +185,20 @@ public class BattleUIVisuals : MonoBehaviour
     {
         Debug.Log("Player MP Before Spell: " + player.MP);
         Debug.Log("Spell MP: " + player.spellmoves[0].mpUsed);
-        enemy.TakeSpecialDamage(enemy.entityWeakness[0], (player.spellmoves[0].damage), player.manastrength);
+        target.TakeSpecialDamage(target.entityWeakness[0], (player.spellmoves[0].damage), player.manastrength);
         player.MP = player.MP - player.spellmoves[0].mpUsed;
         Debug.Log("PlayerMP After Spell: " + player.MP);
         player.SP = player.SP + player.spellmoves[0].spUsed;
-        Debug.Log("Damage Done: " + player.spellmoves[0].damage * player.manastrength / enemy.manadefence);
+        Debug.Log("Damage Done: " + player.spellmoves[0].damage * player.manastrength / target.manadefence);
         Debug.Log("Enemy Has taken a " + player.spellmoves[0] + " It hurt!");
-        fireVFX = Instantiate(fireVFX, enemy.transform.position, enemy.transform.rotation);
+        fireVFX = Instantiate(fireVFX, target.transform.position, target.transform.rotation);
         spellPlayer.anim.SetBool("spellUsed", false);
     }
 
     public void AttackDamageDealt()
     {
         //isAttacking = false;
-        enemy.TakeWeaponDamage(player.damage, player.weaponstrength);
+        target.TakeWeaponDamage(player.damage, player.weaponstrength);
     }
 
     public void PlayFireSpellVFX()
@@ -213,5 +239,15 @@ public class BattleUIVisuals : MonoBehaviour
         Debug.Log("You Tried To Escape");
         SceneManager.LoadScene(0);
         
+    }
+
+    void FootL()
+    {
+
+    }
+
+    void FootR()
+    {
+
     }
 }

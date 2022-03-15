@@ -14,6 +14,7 @@ public class BaseEntities : MonoBehaviour
     public int maxHP = 0;
     public int maxMP = 0;
     public int maxSP = 0;
+    public int accuracy = 0;
     public float weaponstrength = 1;
     public float manastrength = 1;
     public float weapondefence = 1;

@@ -13,7 +13,7 @@ public class DisplayMoveDescription : MonoBehaviour, IPointerEnterHandler, IPoin
 
     private void Start()
     {
-        displayMoveScript = GameObject.Find("Info Text (TMP)").GetComponent<DisplayMoves>();
+        displayMoveScript = GameObject.Find("Spell Info Text (TMP)").GetComponent<DisplayMoves>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

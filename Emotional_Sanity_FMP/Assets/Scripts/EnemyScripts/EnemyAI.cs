@@ -21,6 +21,7 @@ public class EnemyAI : MonoBehaviour
         enemyStats = GetComponent<BaseEntities>();
         tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
         BUIV = GameObject.Find("BattleUIManager").GetComponent<BattleUIVisuals>();
+        BUIV.enemies.Add(this.gameObject.GetComponent<BaseEntities>());
     }
 
     // Update is called once per frame

@@ -25,10 +25,10 @@ public class PartyFollow : MonoBehaviour
         //if the player is not at the targetPoint, play their running animation else, play their idle animation
         if (nav.remainingDistance != 0)
         {
-            anim.SetBool("isRunning", true);
+            anim.SetBool("isWalking", true);
         } else
         {
-            anim.SetBool("isRunning", false);
+            anim.SetBool("isWalking", false);
         }
     }
 
