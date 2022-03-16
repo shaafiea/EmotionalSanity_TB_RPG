@@ -35,13 +35,7 @@ public class StatsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().name == "OverworldScene")
-        {
-            player1 = GameObject.Find("NinjaWarrior").GetComponent<BaseEntities>();
-            player2 = GameObject.Find("Karate").GetComponent<BaseEntities>();
-            player3 = GameObject.Find("SorceressWarrior").GetComponent<BaseEntities>();
-            player4 = GameObject.Find("Brute").GetComponent<BaseEntities>();
-        }
+        
     }
 
     // Update is called once per frame

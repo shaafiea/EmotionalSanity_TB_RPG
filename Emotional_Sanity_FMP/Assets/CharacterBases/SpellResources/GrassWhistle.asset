@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityName: GrassWhistle
   entityDescription: Shoot small pebbles at your opponent
-  damage: 10
+  damage: 40
+  mpUsed: 25
+  spUsed: -7
   spellType: 4

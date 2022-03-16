@@ -12,6 +12,8 @@ public class EntityMoves : ScriptableObject
         Fire,
         Water,
         Grass,
+        Ice,
+        Special,
     }
 
     public string entityName;

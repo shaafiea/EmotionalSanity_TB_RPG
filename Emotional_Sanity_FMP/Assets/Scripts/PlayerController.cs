@@ -90,5 +90,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void FootL()
+    {
+
+    }
+
+    public void FootR()
+    {
+
+    }
 
 }

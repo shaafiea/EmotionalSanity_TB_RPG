@@ -19,18 +19,14 @@ public class BasePlayerBattleInfo : BaseEntities
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "BattleTestScene")
+       if (entityName == "NinjaWarrior")
         {
-            sm = GameObject.Find("StatsManager").GetComponent<StatsManager>();
-            if (name == sm.player1.name)
-            {
-                HP = sm.player1.HP;
-                SP = sm.player1.SP;
-                accuracy = sm.player1.accuracy;
-                weaponstrength = sm.player1.weaponstrength;
-                weapondefence = sm.player1.weapondefence;
+            HP = PlayerPrefs.GetFloat("Player1HP");
+        }
 
-            }
+        if (entityName == "Karate")
+        {
+            HP = PlayerPrefs.GetFloat("Player2HP");
         }
     }
 
@@ -71,5 +67,15 @@ public class BasePlayerBattleInfo : BaseEntities
         {
 
         }
+    }
+
+    void FootL()
+    {
+
+    }
+
+    void FootR()
+    {
+
     }
 }

@@ -70,7 +70,6 @@ public class TurnBasedBattleSystem : MonoBehaviour
     // Adjust the speed for the application.
     public float speed = 8.0f;
 
-
     //Attacking States
     public bool p2_isAttacking = false;
     public bool p3_isAttacking = false;
@@ -79,6 +78,9 @@ public class TurnBasedBattleSystem : MonoBehaviour
     public bool p2_turn = false;
     public bool p3_turn = false;
     public bool p4_turn = false;
+
+    //Targeted State (to stop target from being repeated)
+    public bool isTargeting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -93,7 +95,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
         p4_State = GameObject.Find("Brute").GetComponent<TeamAIController>();
 
         k_anim = GameObject.Find("Karate").GetComponent<Animator>();
-        s_anim = GameObject.Find("Sorceress").GetComponent<Animator>();
+        s_anim = GameObject.Find("SorceressWarrior").GetComponent<Animator>();
         b_anim = GameObject.Find("Brute").GetComponent<Animator>();
 
         //When the battle scene starts automatically set the teammate states to attack
@@ -154,8 +156,11 @@ public class TurnBasedBattleSystem : MonoBehaviour
                     }
                 }
 
+                //If the player (Karate) in the list is the same as the player index variable then they are able to attack
                 if (players[i].GetComponent<BaseEntities>().entityName == "Karate" && playerIndex == i)
                 {
+                    //They can only do attacks if their HP is above 0
+                    p2_turn = true;
                     if (player2.HP > 0)
                     {
                         // Move our position a step closer to the target.
@@ -165,9 +170,17 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         //Depending on what state the AI is in do that specific command
                         if (p2_State.state == TeamAIController.AIState.Attack && p2_turn == true)
                         {
-                            p2_State.AITarget();
+                            //If the player hasnt decided on a target yet then decide on a target at random
+                            if (isTargeting == true)
+                            {
+                                p2_State.AITarget();
+                                isTargeting = false;
+                            }
+                            
+                            //If the player attacking state is true then play their attack
                             if (p2_isAttacking == true)
                             {
+                                Debug.Log("Karate is targeting " + p2_State.target);
                                 player2.gameObject.transform.position = Vector3.MoveTowards(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position, step);
                                 if (Vector3.Distance(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position) > 5f)
                                 {
@@ -175,40 +188,53 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 }
 
                                 // If the player has reached the enemy position, then play the attack animation
-                                if (Vector3.Distance(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position) <= 5f)
+                                if (Vector3.Distance(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position) <= 1f)
                                 {
+                                    speed = 0f;
                                     k_anim.SetBool("isWalking", false);
                                     k_anim.Play("Attack");
                                     
                                 }
-                                //Once the player has attacked start returning to the original position
-                                if (p2_isAttacking == false && p2_turn == true)
-                                {
-                                    player2.gameObject.transform.position = Vector3.MoveTowards(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position, step);
-                                    if (Vector3.Distance(player2.gameObject.transform.position, player2Target.gameObject.transform.position) > 5f)
-                                    {
-                                        k_anim.SetBool("isWalking", true);
-                                    }
 
-                                    //Once the player has reached his original position end their turn
-                                    if (player2.gameObject.transform.position == player2Target.gameObject.transform.position)
-                                    {
-                                        Debug.Log("Im back to my positon!");
-                                        k_anim.SetBool("isWalking", false);
-                                        p2_turn = false;
-                                        k_anim.Play("Idle");
-                                        EndPlayerTurn();
-                                    }
-
-                                }
                             }
+                        }
+
+                        //Once the player has attacked start returning to the original position
+                        if (p2_isAttacking == false && p2_turn == true)
+                        {
+                            speed = 8.0f;
+                            Debug.Log("WalkBack");
+                            player2.gameObject.transform.position = Vector3.MoveTowards(player2.gameObject.transform.position, player2Target.gameObject.transform.position, step);
+                            if (Vector3.Distance(player2.gameObject.transform.position, player2Target.gameObject.transform.position) > 6f)
+                            {
+                                k_anim.SetBool("isWalking", true);
+                            }
+
+                            //Once the player has reached his original position end their turn
+                            if (player2.gameObject.transform.position == player2Target.gameObject.transform.position)
+                            {
+                                Debug.Log("Im back to my positon!");
+                                k_anim.SetBool("isWalking", false);
+                                p2_turn = false;
+                                k_anim.Play("Idle");
+                                isTargeting = true;
+                                p3_isAttacking = true;
+                                EndPlayerTurn();
+                            }
+
                             uiOff = true;
                         }
 
                         if (p2_State.state == TeamAIController.AIState.Block)
                         {
-                            players[playerIndex].GetComponent<TeamAIController>().AIBlock();
-                            uiOff = true;
+                            if (player2.HP > 0)
+                            {
+                                k_anim.SetBool("isBlocking", true);
+                                players[playerIndex].GetComponent<TeamAIController>().AIBlock();
+                                isTargeting = true;
+                                p3_isAttacking = true;
+                                uiOff = true;
+                            }
                         }
                     }
                     else
@@ -220,44 +246,165 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                 if (players[i].GetComponent<BaseEntities>().entityName == "SorceressWarrior" && playerIndex == i)
                 {
+                    p3_turn = true;
                     if (player3.HP > 0)
                     {
-                        Debug.Log("Player 3 Turn");
-                        if (p3_State.state == TeamAIController.AIState.Attack)
+                        // Move our position a step closer to the target.
+                        float step = speed * Time.deltaTime; // calculate distance to move
+                        //Debug.Log("Player 2 Turn");
+
+                        //Depending on what state the AI is in do that specific command
+                        if (p3_State.state == TeamAIController.AIState.Attack && p3_turn == true)
                         {
-                            
-                            players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack2();
+                            //If the player hasnt decided on a target yet then decide on a target at random
+                            if (isTargeting == true)
+                            {
+                                p3_State.AITarget();
+                                isTargeting = false;
+                            }
+
+                            //If the player attacking state is true then play their attack
+                            if (p3_isAttacking == true)
+                            {
+                                //Debug.Log("Karate is targeting " + p3_State.target);
+                                player3.gameObject.transform.position = Vector3.MoveTowards(player3.gameObject.transform.position, p3_State.target.gameObject.transform.position, step);
+                                if (Vector3.Distance(player3.gameObject.transform.position, p3_State.target.gameObject.transform.position) > 5f)
+                                {
+                                    s_anim.SetBool("isWalking", true);
+                                }
+
+                                // If the player has reached the enemy position, then play the attack animation
+                                if (Vector3.Distance(player3.gameObject.transform.position, p3_State.target.gameObject.transform.position) <= 1f)
+                                {
+                                    speed = 0f;
+                                    s_anim.SetBool("isWalking", false);
+                                    s_anim.Play("Attack");
+
+                                }
+
+                            }
+                        }
+
+                        //Once the player has attacked start returning to the original position
+                        if (p3_isAttacking == false && p3_turn == true)
+                        {
+                            speed = 8.0f;
+                            Debug.Log("WalkBack");
+                            player3.gameObject.transform.position = Vector3.MoveTowards(player3.gameObject.transform.position, player3Target.gameObject.transform.position, step);
+                            if (Vector3.Distance(player3.gameObject.transform.position, player3Target.gameObject.transform.position) > 6f)
+                            {
+                                s_anim.SetBool("isWalking", true);
+                            }
+
+                            //Once the player has reached his original position end their turn
+                            if (player3.gameObject.transform.position == player3Target.gameObject.transform.position)
+                            {
+                                Debug.Log("Im back to my positon!");
+                                s_anim.SetBool("isWalking", false);
+                                p3_turn = false;
+                                s_anim.Play("Idle");
+                                isTargeting = true;
+                                p4_isAttacking = true;
+                                EndPlayerTurn();
+                            }
+
                             uiOff = true;
                         }
 
                         if (p3_State.state == TeamAIController.AIState.Block)
                         {
-                            players[playerIndex].GetComponent<TeamAIController>().AIBlock();
-                            uiOff = true;
+                            if (player3.HP > 0)
+                            {
+                                s_anim.SetBool("isBlocking", true);
+                                players[playerIndex].GetComponent<TeamAIController>().AIBlock();
+                                isTargeting = true;
+                                p4_isAttacking = true;
+                                uiOff = true;
+                            }
                         }
                     }
                     else
                     {
                         EndPlayerTurn();
-                        players.Remove(players[2]);
+                        players.Remove(players[i]);
                     }
                 }
 
                 if (players[i].GetComponent<BaseEntities>().entityName == "Brute" && playerIndex == i)
                 {
+                    p4_turn = true;
                     if (player4.HP > 0)
                     {
-                        Debug.Log("Player 4 Turn");
-                        if (p4_State.state == TeamAIController.AIState.Attack)
+                        // Move our position a step closer to the target.
+                        float step = speed * Time.deltaTime; // calculate distance to move
+                        //Debug.Log("Player 2 Turn");
+
+                        //Depending on what state the AI is in do that specific command
+                        if (p4_State.state == TeamAIController.AIState.Attack && p4_turn == true)
                         {
-                            players[playerIndex].GetComponent<TeamAIController>().AIWeaponAttack2();
+                            //If the player hasnt decided on a target yet then decide on a target at random
+                            if (isTargeting == true)
+                            {
+                                p4_State.AITarget();
+                                isTargeting = false;
+                            }
+
+                            //If the player attacking state is true then play their attack
+                            if (p4_isAttacking == true)
+                            {
+                                Debug.Log("Karate is targeting " + p4_State.target);
+                                player4.gameObject.transform.position = Vector3.MoveTowards(player4.gameObject.transform.position, p4_State.target.gameObject.transform.position, step);
+                                if (Vector3.Distance(player4.gameObject.transform.position, p4_State.target.gameObject.transform.position) > 5f)
+                                {
+                                    b_anim.SetBool("isWalking", true);
+                                }
+
+                                // If the player has reached the enemy position, then play the attack animation
+                                if (Vector3.Distance(player4.gameObject.transform.position, p4_State.target.gameObject.transform.position) <= 1f)
+                                {
+                                    speed = 0f;
+                                    b_anim.SetBool("isWalking", false);
+                                    b_anim.Play("Attack");
+
+                                }
+
+                            }
+                        }
+
+                        //Once the player has attacked start returning to the original position
+                        if (p4_isAttacking == false && p4_turn == true)
+                        {
+                            speed = 8.0f;
+                            Debug.Log("WalkBack");
+                            player4.gameObject.transform.position = Vector3.MoveTowards(player4.gameObject.transform.position, player4Target.gameObject.transform.position, step);
+                            if (Vector3.Distance(player4.gameObject.transform.position, player4Target.gameObject.transform.position) > 6f)
+                            {
+                                b_anim.SetBool("isWalking", true);
+                            }
+
+                            //Once the player has reached his original position end their turn
+                            if (player4.gameObject.transform.position == player4Target.gameObject.transform.position)
+                            {
+                                Debug.Log("Im back to my positon!");
+                                b_anim.SetBool("isWalking", false);
+                                p4_turn = false;
+                                b_anim.Play("Idle");
+                                isTargeting = true;
+                                EndPlayerTurn();
+                            }
+
                             uiOff = true;
                         }
 
                         if (p4_State.state == TeamAIController.AIState.Block)
                         {
-                            players[playerIndex].GetComponent<TeamAIController>().AIBlock();
-                            uiOff = true;
+                            if (player4.HP > 0)
+                            {
+                                b_anim.SetBool("isBlocking", true);
+                                players[playerIndex].GetComponent<TeamAIController>().AIBlock();
+
+                                uiOff = true;
+                            }
                         }
                     }
                     else if (player4.HP <= 0)
@@ -277,6 +424,17 @@ public class TurnBasedBattleSystem : MonoBehaviour
                     //CALL Enemy Function to decide attack or block
                     EnemyState();
                 }
+
+                if (enemyIndex == 1)
+                {
+                    //CALL Enemy Function to decide attack or block
+                    EnemyState();
+                }
+                if (enemyIndex == 2)
+                {
+                    //CALL Enemy Function to decide attack or block
+                    EnemyState();
+                }
             }
         
     }
@@ -285,6 +443,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
     //Once a player has done a move. Proceed to the person in the list
     public void EndPlayerTurn()
     {
+
         playerIndex++;
 
         //If the playerindex is more than the player count then make the enemies turn
@@ -297,6 +456,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
     public void EndEnemyTurn()
     {
+
         enemyIndex++;
 
         if (enemyIndex >= enemies.Count)

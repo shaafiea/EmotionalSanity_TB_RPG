@@ -107,8 +107,9 @@ public class BattleUIVisuals : MonoBehaviour
                 spellPlayer.anim.SetBool("isWalking", false);
                 playerTurn = false;
                 spellPlayer.anim.Play("Idle");
-                tbbs.p2_turn = true;
+                //tbbs.p2_turn = true;
                 tbbs.p2_isAttacking = true;
+                tbbs.isTargeting = true;
                 EndTurnAfterAnim();
             }
             
@@ -148,8 +149,9 @@ public class BattleUIVisuals : MonoBehaviour
         blocking = true;
         player.isBlocking = true;
         Debug.Log(player.isBlocking);
-        tbbs.p2_turn = true;
+        //tbbs.p2_turn = true;
         tbbs.p2_isAttacking = true;
+        tbbs.isTargeting = true;
         tbbs.EndPlayerTurn();
         
     }

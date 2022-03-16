@@ -48,15 +48,22 @@ public class TeamAIController : MonoBehaviour
         {
             blockCountdown -= Time.deltaTime;
         }
-        //If it is the players(AI) turn turn off the blocking state when it is the players turn
-        if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players && tbbs.playerIndex == 0 && blocking == true)
+
+        for (int i = 0; i < tbbs.players.Count; i++)
         {
-            blocking = false;
-            aiStats.isBlocking = false;
-            Debug.Log("Players Turn AI teammate block is now: " + this.gameObject + aiStats.isBlocking);
-            tbbs.k_anim.Play("Idle");
-            tbbs.s_anim.Play("Idle");
-            tbbs.b_anim.Play("Idle");
+            //If it is the players(AI) turn turn off the blocking state when it is the players turn
+            if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players && tbbs.players[i].GetComponent<BaseEntities>().entityName == "NinjaWarrior" && tbbs.playerIndex == i && blocking == true)
+            {
+                blocking = false;
+                aiStats.isBlocking = false;
+                tbbs.k_anim.SetBool("isBlocking", false);
+                tbbs.s_anim.SetBool("isBlocking", false);
+                tbbs.b_anim.SetBool("isBlocking", false);
+                Debug.Log("Players Turn AI teammate block is now: " + this.gameObject + aiStats.isBlocking);
+                tbbs.k_anim.Play("Idle");
+                tbbs.s_anim.Play("Idle");
+                tbbs.b_anim.Play("Idle");
+            }
         }
     }
 
@@ -69,7 +76,7 @@ public class TeamAIController : MonoBehaviour
     public void AIWeaponAttack()
     {
         target.TakeWeaponDamage(aiStats.damage, aiStats.weaponstrength);
-        Debug.Log(this.gameObject + " Has Attacked!");
+        Debug.Log(this.gameObject + " Has Attacked " + target);
         //tbbs.EndPlayerTurn();
     }
     //Do damage to the Enemy Targeted
@@ -85,6 +92,7 @@ public class TeamAIController : MonoBehaviour
         blockCountdown = 2;
         blocking = true;
         aiStats.isBlocking = true;
+        tbbs.EndPlayerTurn();
         Debug.Log(this.gameObject + "Has Blocked " + aiStats.isBlocking);
     }
     
@@ -100,6 +108,19 @@ public class TeamAIController : MonoBehaviour
         tbbs.k_anim.Play("Walk");
     }
 
+    public void WalkBackP3()
+    {
+        Debug.Log("Walk To Original Position");
+        tbbs.p3_isAttacking = false;
+        tbbs.s_anim.Play("Walk");
+    }
+
+    public void WalkBackP4()
+    {
+        Debug.Log("Walk To Original Position");
+        tbbs.p4_isAttacking = false;
+        tbbs.b_anim.Play("Walk");
+    }
 
     void FootL()
     {

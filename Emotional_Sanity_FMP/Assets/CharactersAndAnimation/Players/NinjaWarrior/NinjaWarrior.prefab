@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7908278521211365548}
   - component: {fileID: 4454259529042385755}
   m_Layer: 0
-  m_Name: Ninja Warrior
+  m_Name: NinjaWarrior
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,6 +65,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 7908278521211365548}
   moveSpeed: 5
+  anim: {fileID: 0}
+  turnSmoothTime: 0.1
+  turnSmoothVelocity: 0
+  cooldown: 0
+  attackCooldown: 1.5
+  playerStats: {fileID: 0}
 --- !u!1001 &180483112008122628
 PrefabInstance:
   m_ObjectHideFlags: 0

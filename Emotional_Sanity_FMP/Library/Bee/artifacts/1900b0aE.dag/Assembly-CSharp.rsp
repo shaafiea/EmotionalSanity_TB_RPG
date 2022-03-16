@@ -355,6 +355,7 @@
 "Assets/Scripts/DisplayMoves.cs"
 "Assets/Scripts/EnemyScripts/BaseEnemyBattleInfo.cs"
 "Assets/Scripts/EnemyScripts/EnemyAI.cs"
+"Assets/Scripts/MMButtons.cs"
 "Assets/Scripts/Other/PlayerBase.cs"
 "Assets/Scripts/Other/PlayerBattler.cs"
 "Assets/Scripts/PartyFollow.cs"
