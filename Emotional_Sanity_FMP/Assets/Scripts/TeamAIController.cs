@@ -60,9 +60,19 @@ public class TeamAIController : MonoBehaviour
                 tbbs.s_anim.SetBool("isBlocking", false);
                 tbbs.b_anim.SetBool("isBlocking", false);
                 Debug.Log("Players Turn AI teammate block is now: " + this.gameObject + aiStats.isBlocking);
-                tbbs.k_anim.Play("Idle");
-                tbbs.s_anim.Play("Idle");
-                tbbs.b_anim.Play("Idle");
+                if (tbbs.p2_State.aiStats.HP > 0)
+                {
+                    tbbs.k_anim.Play("Idle");
+                }
+                if (tbbs.p3_State.aiStats.HP > 0)
+                {
+                    tbbs.s_anim.Play("Idle");
+                }
+                if (tbbs.p4_State.aiStats.HP > 0)
+                {
+                    tbbs.b_anim.Play("Idle");
+                }
+               
             }
         }
     }
@@ -72,23 +82,26 @@ public class TeamAIController : MonoBehaviour
     {
         target = tbbs.enemies[Random.Range(0, tbbs.enemies.Count)].GetComponent<BaseEntities>();
     }
+
     //Do damage to the Enemy Targeted
     public void AIWeaponAttack()
     {
+        aiStats.WeaponSanity();
         target.TakeWeaponDamage(aiStats.damage, aiStats.weaponstrength);
         Debug.Log(this.gameObject + " Has Attacked " + target);
         //tbbs.EndPlayerTurn();
     }
-    //Do damage to the Enemy Targeted
+   /* //Do damage to the Enemy Targeted
     public void AIWeaponAttack2()
     {
         tbbs.enemies[Random.Range(0, tbbs.enemies.Count)].GetComponent<BaseEntities>().TakeWeaponDamage(aiStats.damage, aiStats.weaponstrength);
         Debug.Log(this.gameObject + " Has Attacked!");
         tbbs.EndPlayerTurn();
-    }
+    }*/
     //Enable Blocking
     public void AIBlock()
     {
+        aiStats.BlockSanity();
         blockCountdown = 2;
         blocking = true;
         aiStats.isBlocking = true;

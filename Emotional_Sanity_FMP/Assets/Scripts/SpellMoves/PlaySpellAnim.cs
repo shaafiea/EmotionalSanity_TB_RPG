@@ -41,6 +41,11 @@ public class PlaySpellAnim : MonoBehaviour
         BUIV.WalkBack();
     }
 
+    void PlayerSpellUsed()
+    {
+        BUIV.isSpellUsed = false;
+    }
+
     void FootR()
     {
 

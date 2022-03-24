@@ -10,10 +10,23 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] BattleUIVisuals BUIV;
     public TurnBasedBattleSystem tbbs;
 
+    //Team Target
+    public BaseEntities target;
+
     //EnemyBools
     bool isAttacking = false;
     bool enemyTurn = false;
     bool blocking = false;
+
+    //States
+    public enum EnemyState
+    {
+        Attack,
+        Block,
+        Spell
+    }
+
+    public EnemyState state;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,7 +62,7 @@ public class EnemyAI : MonoBehaviour
     //Basic Attacking Scripts to test damage
     public void EnemyWeaponAttack()
     {
-        playersOnScreen[Random.Range(0, playersOnScreen.Count)].TakeWeaponDamage(enemyStats.damage, enemyStats.weaponstrength);
+        target.TakeWeaponDamage(enemyStats.damage, enemyStats.weaponstrength);
         tbbs.EndEnemyTurn();
     }
 
@@ -62,13 +75,15 @@ public class EnemyAI : MonoBehaviour
 
     public void EnemySpell()
     {
-        int randomPlayer = Random.Range(0, playersOnScreen.Count);
-
-        playersOnScreen[randomPlayer].TakeSpecialDamage(playersOnScreen[randomPlayer].entityWeakness[0], (enemyStats.spellmoves[0].damage), enemyStats.manastrength);
+        target.TakeSpecialDamage(target.entityWeakness[0], (enemyStats.spellmoves[0].damage), enemyStats.manastrength);
         Debug.Log("Enemy Used Their Attack!");
         Debug.Log("Enemy Spell Hurt");
         tbbs.EndEnemyTurn();
     }
 
+    public void TeamTarget()
+    {
+        target = tbbs.players[Random.Range(0, tbbs.players.Count)].GetComponent<BaseEntities>();
+    }
 
 }

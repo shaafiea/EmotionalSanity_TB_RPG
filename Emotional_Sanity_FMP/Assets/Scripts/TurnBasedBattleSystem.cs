@@ -41,19 +41,12 @@ public class TurnBasedBattleSystem : MonoBehaviour
     public Animator s_anim;
     public Animator b_anim;
 
-    //Enemy
-    public BaseEntities enemy1;
 
     //Player Targets
     public GameObject player1Target;
     public GameObject player2Target;
     public GameObject player3Target;
     public GameObject player4Target;
-
-    //Enemy Targets
-    public GameObject enemy1Target;
-    public GameObject enemy2Target;
-    public GameObject enemy3Target;
 
     public BattleUIVisuals bui;
 
@@ -67,6 +60,29 @@ public class TurnBasedBattleSystem : MonoBehaviour
     public TextMeshProUGUI p3_Text_State;
     public TextMeshProUGUI p4_Text_State;
 
+    //Enemy
+    public BaseEntities enemy1;
+    public BaseEntities enemy2;
+    public BaseEntities enemy3;
+
+    //Enemy Team States
+    public EnemyAI e1_state;
+    public EnemyAI e2_state;
+    public EnemyAI e3_state;
+
+
+    //EnemyAnimators
+    public Animator e1_anim;
+    public Animator e2_anim;
+    public Animator e3_anim;
+    
+
+    //Enemy Targets
+    public GameObject enemy1Target;
+    public GameObject enemy2Target;
+    public GameObject enemy3Target;
+
+
     // Adjust the speed for the application.
     public float speed = 8.0f;
 
@@ -79,8 +95,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
     public bool p3_turn = false;
     public bool p4_turn = false;
 
+    public bool e1_turn = false;
+    public bool e2_turn = false;
+    public bool e3_turn = false;
+
+    //Dead States
+    public bool isP2_Alive = true;
+    public bool isP3_Alive = true;
+    public bool isP4_Alive = true;
+
     //Targeted State (to stop target from being repeated)
     public bool isTargeting = false;
+
+    public int randomrange;
 
     // Start is called before the first frame update
     void Start()
@@ -97,6 +124,47 @@ public class TurnBasedBattleSystem : MonoBehaviour
         k_anim = GameObject.Find("Karate").GetComponent<Animator>();
         s_anim = GameObject.Find("SorceressWarrior").GetComponent<Animator>();
         b_anim = GameObject.Find("Brute").GetComponent<Animator>();
+
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (enemies.Count == 1)
+            {
+                Debug.Log("Taking On 1 Enemy");
+                enemy1 = GameObject.FindWithTag("Enemy1").GetComponent<BaseEntities>();
+                e1_anim = GameObject.FindWithTag("Enemy1").GetComponent<Animator>();
+                e1_state = GameObject.FindWithTag("Enemy1").GetComponent<EnemyAI>();
+
+            }
+            else if (enemies.Count == 2)
+            {
+                Debug.Log("Taking On 2 Enemies");
+                enemy1 = GameObject.FindWithTag("Enemy1").GetComponent<BaseEntities>();
+                enemy2 = GameObject.FindWithTag("Enemy2").GetComponent<BaseEntities>();
+
+                e1_state = GameObject.FindWithTag("Enemy1").GetComponent<EnemyAI>();
+                e2_state = GameObject.FindWithTag("Enemy2").GetComponent<EnemyAI>();
+
+                e1_anim = GameObject.FindWithTag("Enemy1").GetComponent<Animator>();
+                e2_anim = GameObject.FindWithTag("Enemy2").GetComponent<Animator>();
+
+            }
+            else if (enemies.Count == 3)
+            {
+                Debug.Log("Taking On 3 Enemies");
+                enemy1 = GameObject.FindWithTag("Enemy1").GetComponent<BaseEntities>();
+                enemy2 = GameObject.FindWithTag("Enemy2").GetComponent<BaseEntities>();
+                enemy3 = GameObject.FindWithTag("Enemy3").GetComponent<BaseEntities>();
+
+                e1_state = GameObject.FindWithTag("Enemy1").GetComponent<EnemyAI>();
+                e2_state = GameObject.FindWithTag("Enemy2").GetComponent<EnemyAI>();
+                e3_state = GameObject.FindWithTag("Enemy3").GetComponent<EnemyAI>();
+
+                e1_anim = GameObject.FindWithTag("Enemy1").GetComponent<Animator>();
+                e2_anim = GameObject.FindWithTag("Enemy2").GetComponent<Animator>();
+                e3_anim = GameObject.FindWithTag("Enemy3").GetComponent<Animator>();
+
+            }
+        }
 
         //When the battle scene starts automatically set the teammate states to attack
         p2_State.state = TeamAIController.AIState.Attack;
@@ -154,6 +222,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         bui.playerUI.SetActive(false);
                         EndPlayerTurn();
                     }
+                 
                 }
 
                 //If the player (Karate) in the list is the same as the player index variable then they are able to attack
@@ -225,7 +294,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             uiOff = true;
                         }
 
-                        if (p2_State.state == TeamAIController.AIState.Block)
+                        if (p2_State.state == TeamAIController.AIState.Block && p2_turn == true)
                         {
                             if (player2.HP > 0)
                             {
@@ -311,7 +380,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             uiOff = true;
                         }
 
-                        if (p3_State.state == TeamAIController.AIState.Block)
+                        if (p3_State.state == TeamAIController.AIState.Block && p3_turn == true)
                         {
                             if (player3.HP > 0)
                             {
@@ -396,13 +465,12 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             uiOff = true;
                         }
 
-                        if (p4_State.state == TeamAIController.AIState.Block)
+                        if (p4_State.state == TeamAIController.AIState.Block && p4_turn == true)
                         {
                             if (player4.HP > 0)
                             {
                                 b_anim.SetBool("isBlocking", true);
                                 players[playerIndex].GetComponent<TeamAIController>().AIBlock();
-
                                 uiOff = true;
                             }
                         }
@@ -410,30 +478,86 @@ public class TurnBasedBattleSystem : MonoBehaviour
                     else if (player4.HP <= 0)
                     {
                         EndPlayerTurn();
-                        players.Remove(players[3]);
+                        players.Remove(players[i]);
                     }
                 }
 
             }
+
+            if (player2.HP <= 0 && isP2_Alive)
+            {
+                isP2_Alive = false;
+                k_anim.SetBool("isP2Alive", false);
+                k_anim.Play("Death");
+            }
         }
         
         if (currentTurns == turns.enemies) //Once all players have done their moves make it so it is the enemies turn.
+        {
+           /* for (int i = 0; i < enemies.Count; i++)
             {
+
+                if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Grass)" && enemyIndex == i)
+                {
+                    // Move our position a step closer to the target.
+                    float step = speed * Time.deltaTime; // calculate distance to move
+
+                    if (isTargeting == true)
+                    {
+                        e1_state.TeamTarget();
+                        isTargeting = false;
+                    }
+                                                       
+                    if (enemies[i].GetComponent<BaseEntities>().HP > 0)
+                    {
+                        EnemyState();
+                        if (randomrange == 0)
+                        {
+                            enemy1.gameObject.transform.position = Vector3.MoveTowards(enemy1.gameObject.transform.position, e1_state.target.gameObject.transform.position, step);
+                            if (Vector3.Distance(enemy1.gameObject.transform.position, e1_state.target.gameObject.transform.position) > 5f)
+                            {
+                                speed = 7.0f;
+                                e1_anim.SetBool("isWalking", true);
+                            }
+
+                            // If the player has reached the enemy position, then play the attack animation
+                            if (Vector3.Distance(enemy1.gameObject.transform.position, e1_state.target.gameObject.transform.position) <= 1f)
+                            {
+                                speed = 0f;
+                                e1_anim.SetBool("isWalking", false);
+                                e1_anim.Play("Attack");
+
+                            }
+                        }
+
+                        if (randomrange == 1)
+                        {
+                            EnemyStateNoAnim();
+                        }
+
+                        if (randomrange == 2)
+                        {
+                            EnemyStateNoAnim();
+                        }    
+                    }
+                }
+            }*/
+
                 if (enemyIndex == 0)
                 {
                     //CALL Enemy Function to decide attack or block
-                    EnemyState();
+                    EnemyStateNoAnim();
                 }
-
+           
                 if (enemyIndex == 1)
                 {
                     //CALL Enemy Function to decide attack or block
-                    EnemyState();
+                    EnemyStateNoAnim();
                 }
                 if (enemyIndex == 2)
                 {
                     //CALL Enemy Function to decide attack or block
-                    EnemyState();
+                    EnemyStateNoAnim();
                 }
             }
         
@@ -517,6 +641,31 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
     //The Enemies state is decided on a random range.
     public void EnemyState()
+    {
+        bool randomdone = false;
+
+        if (randomdone == false)
+        {
+            randomrange = Random.Range(0, 2);
+            randomdone = true;
+        }
+
+        if (randomrange == 0)
+        {
+            Debug.Log("Enemy Attacks");
+        }
+        else if (randomrange == 1)
+        {
+            Debug.Log("Enemy Blocks");
+        }
+        else if (randomrange == 2)
+        {
+            Debug.Log("Enemy Spell");
+        }
+
+    }
+
+    public void EnemyStateNoAnim()
     {
         int randomrange = Random.Range(0, 2);
 

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class BaseEnemyBattleInfo : BaseEntities
 {
     [SerializeField] private Image hpImage = null;
+    [SerializeField] private Image spImage = null;
 
     private void Start()
     {
@@ -25,6 +26,14 @@ public class BaseEnemyBattleInfo : BaseEntities
         if (HP <= 0)
         {
 
+        }
+
+
+        spImage.fillAmount = (float)SP / maxSP;
+
+        if (SP >= maxSP)
+        {
+            SP = maxSP;
         }
     }
 }

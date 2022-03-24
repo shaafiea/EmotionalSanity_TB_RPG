@@ -19,6 +19,8 @@ public class BaseEntities : MonoBehaviour
     public float manastrength = 1;
     public float weapondefence = 1;
     public float manadefence;
+    public float weaponsanity = 5;
+    public float blocksanity = 10;
     public int damage = 10;
     public int speed = 0;
     public bool isBlocking;
@@ -53,40 +55,97 @@ public class BaseEntities : MonoBehaviour
     //If the player are blocking do less damage than usual
     public void TakeWeaponDamage(int damage, float strength = 1)
     {
-        if (isBlocking == false)
+        int randomrange = Random.Range(0, 100);
+        if (randomrange < accuracy)
         {
-            HP -= (damage * (int)strength) / (int)weapondefence;
-            Debug.Log("Weapon Effective!");
-            //Debug.Log(HP);
-        }
+            if (isBlocking == false)
+            {
+                if (SP <= 25)
+                {
+                    HP -= ((damage * (int)strength) / (int)weapondefence) * 1.5f;
+                    Debug.Log("Weapon Effective! + YOUR SANITY IS LOW THEREFORE YOU TOOK MORE DAMAGE THAN USUAL");
+                    //Debug.Log(HP);
+                } else if (SP >= 75)
+                {
+                    HP -= ((damage * (int)strength) / (int)weapondefence) * 0.5f;
+                    Debug.Log("Weapon Effective! + YOUR SANITY IS HIGH THEREFORE YOU TOOK LESS DAMAGE THAN USUAL");
+                    //Debug.Log(HP);
+                } else
+                {
+                    HP -= (damage * (int)strength) / (int)weapondefence;
+                    Debug.Log("Weapon Effective!");
+                }
+            }
 
-        if (isBlocking == true)
+            if (isBlocking == true)
+            {
+                if (SP <= 25)
+                {
+                    HP -= (((damage * (int)strength) / (int)weapondefence) * 25 / 100) * 1.5f;
+                    Debug.Log("Blocked!: Weapon Effective! + YOUR SANITY IS LOW THEREFORE YOU TOOK MORE DAMAGE THAN USUAL");
+                    //Debug.Log(HP);
+                }
+                else if (SP >= 75)
+                {
+                    HP -= (((damage * (int)strength) / (int)weapondefence) * 25 / 100) * 0.5f;
+                    Debug.Log("Blocked!: Weapon Effective! + YOUR SANITY IS HIGH THEREFORE YOU TOOK LESS DAMAGE THAN USUAL");
+                    //Debug.Log(HP);
+                }
+                else
+                {
+                    HP -= ((damage * (int)strength) / (int)weapondefence) * 25 / 100;
+                    Debug.Log("Blocked!: Weapon Effective!");
+                }
+            }
+        } else
         {
-            HP -= ((damage * (int)strength) / (int)weapondefence) * 25/100;
-            Debug.Log("Blocked! Damage Reduction");
-            //Debug.Log(HP);
+            Debug.Log("Missed Attack");
         }
-        
     }
 
     public void TakeSpecialDamage(PlayerType ptype, int damage, float strength = 1)
     {
+        int randomrange = Random.Range(0, 100);
         //Weaknesses from special moves if a player or enemy has a weakness. Give a damage multiplier to the spell attack
         for (int i = 0; i < entityWeakness.Count; i++)
         {
-            if (ptype == entityWeakness[i] && isBlocking == false)
-            {
-                HP -= (int)((damage * (int)strength) / (int)manadefence * 1.5);
-                Debug.Log("Super Effective!");
-                break;
-            }
+                if (ptype == entityWeakness[i] && isBlocking == false)
+                {
+                    if (SP <= 25)
+                    {
+                        HP -= (int)((((damage * (int)strength) / (int)manadefence * 1.5)) * 1.5f);
+                        Debug.Log("Super Effective! + YOUR SANITY IS LOW SO YOU TOOK MORE DAMAGE THAN USUAL");
+                       
+                    } else if (SP >= 75)
+                    {
+                        HP -= (int)((((damage * (int)strength) / (int)manadefence * 1.5)) * 0.5f);
+                         Debug.Log("Super Effective! + YOUR SANITY IS HIGH SO YOU TOOK LESS DAMAGE THAN USUAL");
 
-            if (ptype == entityWeakness[i] && isBlocking == true)
-            {
-                HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 25/100);
-                Debug.Log("Blocked Damage Reduction But still Super Effective!");
-                break;
-            }
+                    } else
+                    {
+                        HP -= (int)((damage * (int)strength) / (int)manadefence * 1.5);
+                        Debug.Log("Super Effective!");
+                    }
+                    break;
+                }
+
+                if (ptype == entityWeakness[i] && isBlocking == true)
+                {
+                    if (SP <= 25)
+                    {
+                        HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 25 / 100) * 1.5f;
+                        Debug.Log("Blocked Damage Reduction But still Super Effective! + SANITY IS LOW SO YOU TOOK MORE DAMAGE THAN USUAL");
+                    } else if (SP >= 75)
+                    {
+                        HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 25 / 100) * 0.5f;
+                        Debug.Log("Blocked Damage Reduction But still Super Effective! + SANIITY IS HIGH SO YOU DROPPED TOOK LESS DAMAGE THAN USUAL");
+                    } else
+                    {
+                        HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 25 / 100);
+                        Debug.Log("Blocked Damage Reduction But still Super Effective!");
+                    }
+                    break;
+                }
 
         }
 
@@ -101,5 +160,17 @@ public class BaseEntities : MonoBehaviour
             HP -= ((damage * (int)strength) / (int)manadefence) * 25/100;
             Debug.Log("Blocked! Spell Attack: Effective!");
         }
+    }
+
+    //Take away sanity if the player attacks with a weapon
+    public void WeaponSanity()
+    {
+        SP -= weaponsanity;
+    }
+
+    //Add Sanity if the player is blocking
+    public void BlockSanity()
+    {
+        SP += blocksanity;
     }
 }

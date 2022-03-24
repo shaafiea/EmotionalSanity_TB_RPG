@@ -23,6 +23,7 @@ public class BattleUIVisuals : MonoBehaviour
     public GameObject fireVFX;
     public GameObject playerUI;
     public GameObject targetUI;
+    public GameObject spellTargetUI;
 
     //Show Target Button and Back Button
     public List<GameObject> targetAttackButtons = null;
@@ -34,6 +35,7 @@ public class BattleUIVisuals : MonoBehaviour
     float spellLifetime;
 
     //PlayerBools
+    public bool isSpellUsed = false;
     bool isAttacking = false;
     bool playerTurn = false;
     bool blocking = false;
@@ -101,7 +103,7 @@ public class BattleUIVisuals : MonoBehaviour
             }
 
             //Once the player has reached his original position end their turn
-            if (player.gameObject.transform.position == tbbs.player1Target.gameObject.transform.position)
+            if (player.gameObject.transform.position == tbbs.player1Target.gameObject.transform.position && isSpellUsed == false)
             {
                
                 spellPlayer.anim.SetBool("isWalking", false);
@@ -116,19 +118,25 @@ public class BattleUIVisuals : MonoBehaviour
         }
     }
 
-    //Basic Attacking Scripts to test damage
-    public void DealAttack()
+    //Target Menu
+    public void OpenTargetMenu()
     {
         playerUI.SetActive(false);
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
-        target.gameObject.SetActive(true);
-        isAttacking = true;
-        playerTurn = true;
-        
-        Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
+        targetUI.SetActive(true);
+        spellTargetUI.SetActive(false);
     }
 
+    public void OpenSpellTargetMenu()
+    {
+        playerUI.SetActive(false);
+        spellsUI.SetActive(false);
+        commandsUI.SetActive(false);
+        targetUI.SetActive(false);
+        spellTargetUI.SetActive(true);
+        display.OnClickVanish();
+    }
     //Targeting Different Enemies
     public void GetTargetAttack(int index)
     {
@@ -137,8 +145,47 @@ public class BattleUIVisuals : MonoBehaviour
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
         targetUI.SetActive(true);
+        spellTargetUI.SetActive(false);
         DealAttack();
     }
+    public void GetTargetSpellAttack(int index)
+    {
+        target = enemies[index];
+        playerUI.SetActive(false);
+        spellsUI.SetActive(false);
+        commandsUI.SetActive(false);
+        targetUI.SetActive(false);
+        spellTargetUI.SetActive(true);
+        DealSpellAttack();
+    }
+
+    //Basic Attacking Scripts to test damage
+    public void DealAttack()
+    {
+        playerUI.SetActive(false);
+        spellsUI.SetActive(false);
+        commandsUI.SetActive(false);
+        targetUI.SetActive(false);
+        target.gameObject.SetActive(true);
+        isAttacking = true;
+        playerTurn = true;
+        // Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
+    }
+
+    public void DealSpellAttack()
+    {
+        playerUI.SetActive(false);
+        spellsUI.SetActive(false);
+        commandsUI.SetActive(false);
+        targetUI.SetActive(false);
+        target.gameObject.SetActive(true);
+        isSpellUsed = true;
+        playerTurn = true;
+        PlayFireSpellVFX();
+        // Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
+    }
+
+
 
     //Block function (allows the player to take a blocking stance and ends their turn)
     public void Block()
@@ -146,14 +193,16 @@ public class BattleUIVisuals : MonoBehaviour
         playerUI.SetActive(false);
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
+        targetUI.SetActive(false);
+        spellTargetUI.SetActive(false);
         blocking = true;
         player.isBlocking = true;
         Debug.Log(player.isBlocking);
+        player.BlockSanity();
         //tbbs.p2_turn = true;
         tbbs.p2_isAttacking = true;
         tbbs.isTargeting = true;
         tbbs.EndPlayerTurn();
-        
     }
 
     //Allows the player to check their list of spell moves
@@ -172,6 +221,7 @@ public class BattleUIVisuals : MonoBehaviour
         commandsUI.SetActive(true);
         playerUI.SetActive(false);
         spellsUI.SetActive(false);
+        targetUI.SetActive(false);
     }
 
     //Allows the player to go back in a menu
@@ -180,6 +230,8 @@ public class BattleUIVisuals : MonoBehaviour
         playerUI.SetActive(true);
         commandsUI.SetActive(false);
         spellsUI.SetActive(false);
+        targetUI.SetActive(false);
+        spellTargetUI.SetActive(false);
         spellUIMenu = false;
     }
 
@@ -199,8 +251,10 @@ public class BattleUIVisuals : MonoBehaviour
 
     public void AttackDamageDealt()
     {
+        player.WeaponSanity();
         //isAttacking = false;
         target.TakeWeaponDamage(player.damage, player.weaponstrength);
+        Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
     }
 
     public void PlayFireSpellVFX()
@@ -213,6 +267,7 @@ public class BattleUIVisuals : MonoBehaviour
             //spellUIMenu = false;
             spellPlayer.anim.SetBool("spellUsed", true);
             spellsUI.SetActive(false);
+            spellTargetUI.SetActive(false);
             display.OnClickVanish();
 
         } else
