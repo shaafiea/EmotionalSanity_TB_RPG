@@ -59,18 +59,31 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    public void AITarget()
+    {
+        target = tbbs.players[Random.Range(0, tbbs.players.Count)].GetComponent<BaseEntities>();
+    }
+
     //Basic Attacking Scripts to test damage
     public void EnemyWeaponAttack()
     {
+        AITarget();
         target.TakeWeaponDamage(enemyStats.damage, enemyStats.weaponstrength);
-        tbbs.EndEnemyTurn();
+        //ttbs.EndEnemyTurn();
+    }
+    //Basic Attacking Scripts to test damage
+    public void EnemyWeaponAttack2()
+    {
+        AITarget();
+        target.TakeWeaponDamage(enemyStats.damage, enemyStats.weaponstrength);
+        //tbbs.EndEnemyTurn();
     }
 
     public void EnemyBlock()
     {
         blocking = true;
         enemyStats.isBlocking = true;
-        tbbs.EndEnemyTurn();
+        //tbbs.EndEnemyTurn();
     }
 
     public void EnemySpell()
@@ -81,9 +94,27 @@ public class EnemyAI : MonoBehaviour
         tbbs.EndEnemyTurn();
     }
 
-    public void TeamTarget()
+    public void EWalkBack()
     {
-        target = tbbs.players[Random.Range(0, tbbs.players.Count)].GetComponent<BaseEntities>();
-    }
+        for (int i = 0; i < tbbs.enemies.Count; i++)
+        {
+            if (tbbs.enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Grass)" && tbbs.enemyIndex == i)
+            {
+                tbbs.e1_isAttacking = false;
+                tbbs.e1_anim.Play("Walk");
+            }
 
+            if (tbbs.enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Water)" && tbbs.enemyIndex == i)
+            {
+                tbbs.e2_isAttacking = false;
+                tbbs.e2_anim.Play("Walk");
+            }
+
+            if (tbbs.enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Fire)" && tbbs.enemyIndex == i)
+            {
+                tbbs.e3_isAttacking = false;
+                tbbs.e3_anim.Play("Walk");
+            }
+        }
+    }
 }
