@@ -11,6 +11,7 @@ public class BaseEntities : MonoBehaviour
     public float MP = 0;
     public float SP = 0;
     public string entityName;
+    public string enemyOrder;
     public int maxHP = 0;
     public int maxMP = 0;
     public int maxSP = 0;
@@ -32,6 +33,8 @@ public class BaseEntities : MonoBehaviour
         Fire,
         Water,
         Grass,
+        Ice,
+        Rock,
     }
 
     public List<PlayerType> entityType; // Player Types to show in UI of what they are strong at
@@ -55,9 +58,6 @@ public class BaseEntities : MonoBehaviour
     //If the player are blocking do less damage than usual
     public void TakeWeaponDamage(int damage, float strength = 1)
     {
-        int randomrange = Random.Range(0, 100);
-        if (randomrange < accuracy)
-        {
             if (isBlocking == false)
             {
                 if (SP <= 25)
@@ -96,16 +96,12 @@ public class BaseEntities : MonoBehaviour
                     HP -= ((damage * (int)strength) / (int)weapondefence) * 25 / 100;
                     Debug.Log("Blocked!: Weapon Effective!");
                 }
-            }
-        } else
-        {
-            Debug.Log("Missed Attack");
+            
         }
     }
 
     public void TakeSpecialDamage(PlayerType ptype, int damage, float strength = 1)
     {
-        int randomrange = Random.Range(0, 100);
         //Weaknesses from special moves if a player or enemy has a weakness. Give a damage multiplier to the spell attack
         for (int i = 0; i < entityWeakness.Count; i++)
         {

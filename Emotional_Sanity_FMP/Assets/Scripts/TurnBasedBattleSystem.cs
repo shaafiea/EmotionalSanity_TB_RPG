@@ -82,6 +82,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
     public GameObject enemy2Target;
     public GameObject enemy3Target;
 
+    public DisplayMoves dpMove;
 
     // Adjust the speed for the application.
     public float speed = 8.0f;
@@ -112,7 +113,15 @@ public class TurnBasedBattleSystem : MonoBehaviour
     //Targeted State (to stop target from being repeated)
     public bool isTargeting = false;
 
+    //enemyrandom
     public int randomrange;
+    public bool enemyTD = false;
+
+    public int randomrangeacc;
+
+    public bool e1_newState = false;
+    public bool e2_newState = false;
+    public bool e3_newState = false;
 
     // Start is called before the first frame update
     void Start()
@@ -191,9 +200,10 @@ public class TurnBasedBattleSystem : MonoBehaviour
         players.Insert(3, player4.gameObject);
 
         //Find Enemies stats and then insert that gameObject into the enemyList
-   /*     enemy1 = GameObject.FindWithTag("Enemy").GetComponent<BaseEntities>();
-        enemies.Insert(0, enemy1.gameObject);*/
+        /*     enemy1 = GameObject.FindWithTag("Enemy").GetComponent<BaseEntities>();
+             enemies.Insert(0, enemy1.gameObject);*/
 
+        dpMove = GameObject.Find("Battle Info Text (TMP)").GetComponent<DisplayMoves>();
         bui = GameObject.Find("BattleUIManager").GetComponent<BattleUIVisuals>();
         uiOff = true;
     }
@@ -251,6 +261,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             //If the player hasnt decided on a target yet then decide on a target at random
                             if (isTargeting == true)
                             {
+                                randomrangeacc = Random.Range(0, 100);
                                 p2_State.AITarget();
                                 isTargeting = false;
                             }
@@ -337,6 +348,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             //If the player hasnt decided on a target yet then decide on a target at random
                             if (isTargeting == true)
                             {
+                                randomrangeacc = Random.Range(0, 100);
                                 p3_State.AITarget();
                                 isTargeting = false;
                             }
@@ -423,6 +435,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             //If the player hasnt decided on a target yet then decide on a target at random
                             if (isTargeting == true)
                             {
+                                randomrangeacc = Random.Range(0, 100);
                                 p4_State.AITarget();
                                 isTargeting = false;
                             }
@@ -506,11 +519,8 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
             if (currentTurns == turns.enemies) //Once all players have done their moves make it so it is the enemies turn.
             {
-                //Adding this here because if a teammate is to die we can still attack later on
-                p2_isAttacking = true;
-                p3_isAttacking = true;
-                p4_isAttacking = true;
 
+////////////////////////////////////////////////////////// ENEMY 1 (FIRST SPOT) //////////////////////////////////////////////
                     if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Grass)" && enemyIndex == i)
                     {
                         e1_turn = true;
@@ -519,15 +529,23 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (enemy1.HP > 0)
                         {
-                            EnemyState();
-                            if (randomrange == 0 && e1_turn == true)
-                            {
-                                if (isTargeting == true)
-                                {
-                                    e1_state.AITarget();
-                                    isTargeting = false;
-                                }
 
+                            if (e1_newState == true)
+                            {
+                            Debug.Log("ENEMY 1 DECIDING");
+                                EnemyState();
+                                e1_newState = false;
+                            }
+                            //If the player hasnt decided on a target yet then decide on a target at random
+                            if (isTargeting == true)
+                            {
+                                randomrangeacc = Random.Range(0, 100);
+                                e1_state.AITarget();
+                                isTargeting = false;
+                            }
+
+                            if (randomrange == 0 || randomrange == 2 || randomrange == 4 || randomrange == 8 && e1_turn == true)
+                            {
                                 if (e1_isAttacking == true)
                                 {
 
@@ -545,8 +563,6 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                         speed = 0f;
                                         e1_anim.SetBool("isWalking", false);
                                         e1_anim.Play("Attack");
-                                        Debug.Log("yolooooooooooooooooooo");
-
                                     }
                                 }
 
@@ -570,26 +586,30 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     e1_turn = false;
                                     e1_anim.Play("Idle");
                                     isTargeting = true;
-                                    EndPlayerTurn();
+                                    EndEnemyTurn();
                                 }
 
                                 uiOff = true;
                             }
-
-                            if (randomrange == 1)
+                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 || randomrange == 7 && e1_turn == true)
+                        {
+                            if (enemy1.HP > 0) 
                             {
-                                if (enemy1.HP > 0)
-                                {
-                                    e1_state.EnemyBlock();
-                                    e1_turn = false;
-                                    uiOff = true;
-                                }
-
+                                Debug.Log("Enemy 1 Block");
+                                e1_anim.SetBool("isBlocking", true);
+                                enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
+                                enemyTD = false;
+                                uiOff = true;
                             }
                         }
                     }
+                }
 
-                    if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Water)" && enemyIndex == i)
+///////////////////////////////////////// END OF ENEMY 1 AI /////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////// ENEMY 2 SPOT //////////////////////////////////////////////////////////////////////////
+                if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Water)" && enemyIndex == i)
                     {
                         e2_turn = true;
                         // Move our position a step closer to the target.
@@ -597,22 +617,29 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (enemy2.HP > 0)
                         {
-                            EnemyState();
-                            if (randomrange == 0 && e2_turn == true)
+                            if (e2_newState == true)
                             {
-                                if (isTargeting == true)
-                                {
-                                    e2_state.AITarget();
-                                    isTargeting = false;
-                                }
+                                Debug.Log("ENEMY 2 DECIDING");
+                                EnemyState();
+                                e2_newState = false;
+                            }
 
+                        //If the player hasnt decided on a target yet then decide on a target at random
+                        if (isTargeting == true)
+                        {
+                            randomrangeacc = Random.Range(0, 100);
+                            e2_state.AITarget();
+                            isTargeting = false;
+                        }
+
+                            if (randomrange == 0 || randomrange == 2 || randomrange == 4 || randomrange == 8 && e2_turn == true)
+                            {
                                 if (e2_isAttacking == true)
                                 {
-
                                     enemy2.gameObject.transform.position = Vector3.MoveTowards(enemy2.gameObject.transform.position, e2_state.target.gameObject.transform.position, step);
                                     if (Vector3.Distance(enemy2.gameObject.transform.position, e2_state.target.gameObject.transform.position) > 5f)
                                     {
-                                        speed = 6.0f;
+                                        speed = 7.0f;
                                         e2_anim.SetBool("isWalking", true);
                                         Debug.Log("ENEMY TARGETING.... " + e2_state.target);
                                     }
@@ -647,27 +674,31 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     e2_anim.SetBool("isWalking", false);
                                     e2_turn = false;
                                     e2_anim.Play("Idle");
+                                    enemyTD = false;
                                     isTargeting = true;
-                                    EndPlayerTurn();
+                                    EndEnemyTurn();
                                 }
 
                                 uiOff = true;
                             }
 
-                            if (randomrange == 1)
+                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 || randomrange == 7 && e2_turn == true)
+                        {
+                            if (enemy2.HP > 0)
                             {
-                                if (enemy2.HP > 0)
-                                {
-                                    e2_state.EnemyBlock();
-                                    e2_turn = false;
-                                    uiOff = true;
-                                }
-
+                                Debug.Log("Enemy 2 Block");
+                                e2_anim.SetBool("isBlocking", true);
+                                enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
+                                enemyTD = false;
+                                uiOff = true;
                             }
                         }
                     }
+                    }
+///////////////////////////////////////// END OF ENEMY 2 AI /////////////////////////////////////////////////////////////////////
 
-                    if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Fire)" && enemyIndex == i)
+///////////////////////////////////////// END OF ENEMY 3 AI /////////////////////////////////////////////////////////////////////
+                if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Fire)" && enemyIndex == i)
                     {
                         e3_turn = true;
                         // Move our position a step closer to the target.
@@ -675,22 +706,29 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (enemy3.HP > 0)
                         {
-                            EnemyState();
-                            if (randomrange == 0 && e3_turn == true)
+                            if (e3_newState == true)
                             {
-                                if (isTargeting == true)
-                                {
-                                    e3_state.AITarget();
-                                    isTargeting = false;
-                                }
+                                Debug.Log("ENEMY 3 DECIDING");
+                                EnemyState();
+                                e3_newState = false;
+                            }
+                        //If the player hasnt decided on a target yet then decide on a target at random
+                        if (isTargeting == true)
+                            {
+                                randomrangeacc = Random.Range(0, 100);
+                                e3_state.AITarget();
+                                isTargeting = false;
+                            }
 
+                            if (randomrange == 0 || randomrange == 2 || randomrange == 4 || randomrange == 8 && e3_turn == true)
+                            {
                                 if (e3_isAttacking == true)
                                 {
 
                                     enemy3.gameObject.transform.position = Vector3.MoveTowards(enemy3.gameObject.transform.position, e3_state.target.gameObject.transform.position, step);
                                     if (Vector3.Distance(enemy3.gameObject.transform.position, e3_state.target.gameObject.transform.position) > 5f)
                                     {
-                                        speed = 6.0f;
+                                        speed = 7.0f;
                                         e3_anim.SetBool("isWalking", true);
                                         Debug.Log("ENEMY TARGETING.... " + e3_state.target);
                                     }
@@ -726,25 +764,26 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     e3_turn = false;
                                     e3_anim.Play("Idle");
                                     isTargeting = true;
-                                    EndPlayerTurn();
+                                    EndEnemyTurn();
                                 }
 
                                 uiOff = true;
                             }
 
-                            if (randomrange == 1)
+                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 || randomrange == 7 && e3_turn == true)
+                        {
+                            if (enemy3.HP > 0)
                             {
-                                if (enemy3.HP > 0)
-                                {
-                                    e3_state.EnemyBlock();
-                                    e3_turn = false;
-                                    uiOff = true;
-                                }
-
+                                Debug.Log("Enemy 3 Block");
+                                e3_anim.SetBool("isBlocking", true);
+                                enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
+                                enemyTD = false;
+                                uiOff = true;
                             }
                         }
                     }
-
+                }
+                ///////////////////////////////////////// END OF ENEMY 3 AI /////////////////////////////////////////////////////////////////////
             }
         }
         
@@ -762,18 +801,30 @@ public class TurnBasedBattleSystem : MonoBehaviour
         {
             currentTurns = turns.enemies;
             playerIndex = 0;
+            e1_isAttacking = true;
+            e2_isAttacking = true;
+            e3_isAttacking = true;
+            e1_newState = true;
+            e2_newState = true;
+            e2_newState = true;
+            isTargeting = true;
+            enemyTD = false;
         }
     }
 
     public void EndEnemyTurn()
     {
-
         enemyIndex++;
 
         if (enemyIndex >= enemies.Count)
         {
             currentTurns = turns.players;
             enemyIndex = 0;
+            //Adding this here because if a teammate is to die we can still attack later on
+            p2_isAttacking = true;
+            p3_isAttacking = true;
+            p4_isAttacking = true;
+            dpMove.p1Turn();
         }
     }
 
@@ -829,19 +880,18 @@ public class TurnBasedBattleSystem : MonoBehaviour
     //The Enemies state is decided on a random range.
     public void EnemyState()
     {
-        bool randomdone = false;
 
-        if (randomdone == false)
+        if (enemyTD == false)
         {
-            randomrange = Random.Range(0, 2);
-            randomdone = true;
+            randomrange = Random.Range(0, 8);
+            enemyTD = true;
         }
 
-        if (randomrange == 0)
+        if (randomrange == 0 || randomrange == 2 || randomrange == 4 || randomrange == 8)
         {
             Debug.Log("Enemy Attacks");
         }
-        else if (randomrange == 1)
+        else if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 || randomrange == 7)
         {
             Debug.Log("Enemy Blocks");
         }
@@ -860,7 +910,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
         if (randomrange == 0)
         {
             Debug.Log(enemies[enemyIndex] + "Enemy Attacks");
-            enemies[enemyIndex].GetComponent<EnemyAI>().EnemyWeaponAttack2();
+            enemies[enemyIndex].GetComponent<EnemyAI>().EnemyWeaponAttack();
         }
         else if (randomrange == 1)
         {

@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 
 public class BattleUIVisuals : MonoBehaviour
 {
-
     public List<BaseEntities> enemies;
     [SerializeField] BaseEntities player;
     [SerializeField] PlaySpellAnim spellPlayer;
@@ -43,6 +42,8 @@ public class BattleUIVisuals : MonoBehaviour
     // Adjust the speed for the application.
     public float speed = 25.0f;
 
+    public int randomrange;
+
     public BaseEntities target;
 
     // Start is called before the first frame update
@@ -57,7 +58,7 @@ public class BattleUIVisuals : MonoBehaviour
     void Update()
     {
         //If the turn is equal to the player then make blocking true
-        if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players && tbbs.playerIndex != 0 && blocking == true)
+        if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players && tbbs.playerIndex != 0 && blocking == true || tbbs.currentTurns == TurnBasedBattleSystem.turns.enemies && blocking == true)
         {
             spellPlayer.anim.SetBool("isBlocking", true);
             Debug.Log("Blocking is true whilst not the players turn");
@@ -169,6 +170,8 @@ public class BattleUIVisuals : MonoBehaviour
         target.gameObject.SetActive(true);
         isAttacking = true;
         playerTurn = true;
+        randomrange = Random.Range(0, 100);
+        tbbs.dpMove.DisplayMove(player.entityName, "Attacks", target.entityName);
         // Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
     }
 
@@ -245,7 +248,8 @@ public class BattleUIVisuals : MonoBehaviour
         player.SP = player.SP + player.spellmoves[0].spUsed;
         Debug.Log("Damage Done: " + player.spellmoves[0].damage * player.manastrength / target.manadefence);
         Debug.Log("Enemy Has taken a " + player.spellmoves[0] + " It hurt!");
-        fireVFX = Instantiate(fireVFX, target.transform.position, target.transform.rotation);
+        GameObject cloneobject = Instantiate(fireVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 1.5f);
         spellPlayer.anim.SetBool("spellUsed", false);
     }
 
@@ -253,6 +257,7 @@ public class BattleUIVisuals : MonoBehaviour
     {
         player.WeaponSanity();
         //isAttacking = false;
+        tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
         target.TakeWeaponDamage(player.damage, player.weaponstrength);
         Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
     }

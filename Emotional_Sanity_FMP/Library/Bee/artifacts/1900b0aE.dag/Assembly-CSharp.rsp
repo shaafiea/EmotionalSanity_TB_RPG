@@ -365,6 +365,8 @@
 "Assets/Scripts/SceneScripts/TrackSwitcher.cs"
 "Assets/Scripts/SpellMoves/EntityMoves.cs"
 "Assets/Scripts/SpellMoves/PlaySpellAnim.cs"
+"Assets/Scripts/SpellVFXs/MusicalRotation.cs"
+"Assets/Scripts/SpellVFXs/RockRubble.cs"
 "Assets/Scripts/StatsManager.cs"
 "Assets/Scripts/TeamAIController.cs"
 "Assets/Scripts/TurnBasedBattleSystem.cs"

@@ -16,4 +16,14 @@ public class DisplayMoves : MonoBehaviour
     {
         displayText.text = player + " " + description + " " + target;
     }
+
+    public void DamageDisplay(string player, string description, string damage)
+    {
+        displayText.text = player + " " + description + " " + damage;
+    }
+
+    public void p1Turn()
+    {
+        displayText.text =  "Its Player 1s Turn";
+    }
 }

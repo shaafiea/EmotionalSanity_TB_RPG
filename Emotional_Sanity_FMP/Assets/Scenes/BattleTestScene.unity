@@ -372,6 +372,10 @@ MonoBehaviour:
   isP4_Alive: 1
   isTargeting: 0
   randomrange: 0
+  enemyTD: 0
+  e1_newState: 0
+  e2_newState: 0
+  e3_newState: 0
 --- !u!1 &25224414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,7 +1231,11 @@ PrefabInstance:
       objectReference: {fileID: 1503197949}
     - target: {fileID: 1302217026916709697, guid: 2df700a59efaee947a1a565ac2478797, type: 3}
       propertyPath: accuracy
-      value: 70
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302217026916709697, guid: 2df700a59efaee947a1a565ac2478797, type: 3}
+      propertyPath: enemyOrder
+      value: Enemy2
       objectReference: {fileID: 0}
     - target: {fileID: 1302217026916709697, guid: 2df700a59efaee947a1a565ac2478797, type: 3}
       propertyPath: manadefence
@@ -4131,6 +4139,7 @@ MonoBehaviour:
   MP: 0
   SP: 0
   entityName: BaseEnemyDummy
+  enemyOrder: 
   maxHP: 100
   maxMP: 100
   maxSP: 50
@@ -4860,8 +4869,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 832001992}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 504.8, y: 0.03, z: 500.39554}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 504.79, y: -0.000011920929, z: 500.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5280,13 +5289,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140834999}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 497.28, y: 0.26, z: 512.58}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 497.09, y: 0.000027656555, z: 512.6}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 23
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &1150046884
 GameObject:
   m_ObjectHideFlags: 0
@@ -5947,13 +5956,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272406842}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 499.92, y: 0.26, z: 512.624}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 499.95, y: 0.009, z: 512.6}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 22
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &1285292353
 GameObject:
   m_ObjectHideFlags: 0
@@ -6549,7 +6558,11 @@ PrefabInstance:
       objectReference: {fileID: 1572134265}
     - target: {fileID: 2890664206101894577, guid: 0679061aacd712a49bf4ae765130ab7d, type: 3}
       propertyPath: accuracy
-      value: 70
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890664206101894577, guid: 0679061aacd712a49bf4ae765130ab7d, type: 3}
+      propertyPath: enemyOrder
+      value: Enemy3
       objectReference: {fileID: 0}
     - target: {fileID: 2890664206101894577, guid: 0679061aacd712a49bf4ae765130ab7d, type: 3}
       propertyPath: manadefence
@@ -9346,13 +9359,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805216296}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 502.76, y: 0.26, z: 512.62}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 502.67, y: -0.0000019073486, z: 512.6}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 24
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &1814144718
 GameObject:
   m_ObjectHideFlags: 0
@@ -9665,8 +9678,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890363042}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 501.24, y: 0.03, z: 500.39554}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 501.23, y: 0, z: 500.6125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10501,7 +10514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687133241202012695, guid: 38a2ff33367b9ae40aecf43edad85c6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 494.41
+      value: 495.07
       objectReference: {fileID: 0}
     - target: {fileID: 4687133241202012695, guid: 38a2ff33367b9ae40aecf43edad85c6f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10590,7 +10603,11 @@ PrefabInstance:
       objectReference: {fileID: 479195343}
     - target: {fileID: 1302217026916709697, guid: 2df700a59efaee947a1a565ac2478797, type: 3}
       propertyPath: accuracy
-      value: 70
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302217026916709697, guid: 2df700a59efaee947a1a565ac2478797, type: 3}
+      propertyPath: enemyOrder
+      value: Enemy1
       objectReference: {fileID: 0}
     - target: {fileID: 1302217026916709697, guid: 2df700a59efaee947a1a565ac2478797, type: 3}
       propertyPath: entityName
