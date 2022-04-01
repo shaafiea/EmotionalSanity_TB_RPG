@@ -8,6 +8,7 @@ public class BaseEnemyBattleInfo : BaseEntities
 {
     [SerializeField] private Image hpImage = null;
     [SerializeField] private Image spImage = null;
+    [SerializeField] private Image mpImage = null;
 
     private void Start()
     {
@@ -35,5 +36,7 @@ public class BaseEnemyBattleInfo : BaseEntities
         {
             SP = maxSP;
         }
+
+        mpImage.fillAmount = (float)MP / maxMP;
     }
 }

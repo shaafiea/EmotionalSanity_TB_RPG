@@ -63,11 +63,15 @@ public class BaseEntities : MonoBehaviour
                 if (SP <= 25)
                 {
                     HP -= ((damage * (int)strength) / (int)weapondefence) * 1.5f;
-                    Debug.Log("Weapon Effective! + YOUR SANITY IS LOW THEREFORE YOU TOOK MORE DAMAGE THAN USUAL");
+                    if (SP < 0)
+                    {
+                        SP = 0;
+                    }
+                Debug.Log("Weapon Effective! + YOUR SANITY IS LOW THEREFORE YOU TOOK MORE DAMAGE THAN USUAL");
                     //Debug.Log(HP);
                 } else if (SP >= 75)
                 {
-                    HP -= ((damage * (int)strength) / (int)weapondefence) * 0.5f;
+                    HP -= ((damage * (int)strength) / (int)weapondefence) * 0.7f;
                     Debug.Log("Weapon Effective! + YOUR SANITY IS HIGH THEREFORE YOU TOOK LESS DAMAGE THAN USUAL");
                     //Debug.Log(HP);
                 } else
@@ -81,26 +85,30 @@ public class BaseEntities : MonoBehaviour
             {
                 if (SP <= 25)
                 {
-                    HP -= (((damage * (int)strength) / (int)weapondefence) * 25 / 100) * 1.5f;
-                    Debug.Log("Blocked!: Weapon Effective! + YOUR SANITY IS LOW THEREFORE YOU TOOK MORE DAMAGE THAN USUAL");
+                    HP -= (((damage * (int)strength) / (int)weapondefence) * 75 / 100) * 1.5f;
+                    if (SP < 0)
+                    {
+                        SP = 0;
+                    }
+                Debug.Log("Blocked!: Weapon Effective! + YOUR SANITY IS LOW THEREFORE YOU TOOK MORE DAMAGE THAN USUAL");
                     //Debug.Log(HP);
                 }
                 else if (SP >= 75)
                 {
-                    HP -= (((damage * (int)strength) / (int)weapondefence) * 25 / 100) * 0.5f;
+                    HP -= (((damage * (int)strength) / (int)weapondefence) * 75 / 100) * 0.7f;
                     Debug.Log("Blocked!: Weapon Effective! + YOUR SANITY IS HIGH THEREFORE YOU TOOK LESS DAMAGE THAN USUAL");
                     //Debug.Log(HP);
                 }
                 else
                 {
-                    HP -= ((damage * (int)strength) / (int)weapondefence) * 25 / 100;
+                    HP -= ((damage * (int)strength) / (int)weapondefence) * 75 / 100;
                     Debug.Log("Blocked!: Weapon Effective!");
                 }
             
         }
     }
 
-    public void TakeSpecialDamage(PlayerType ptype, int damage, float strength = 1)
+    public void TakeSpecialDamage(PlayerType ptype, int damage, int sanitytaken, float strength = 1)
     {
         //Weaknesses from special moves if a player or enemy has a weakness. Give a damage multiplier to the spell attack
         for (int i = 0; i < entityWeakness.Count; i++)
@@ -110,16 +118,23 @@ public class BaseEntities : MonoBehaviour
                     if (SP <= 25)
                     {
                         HP -= (int)((((damage * (int)strength) / (int)manadefence * 1.5)) * 1.5f);
-                        Debug.Log("Super Effective! + YOUR SANITY IS LOW SO YOU TOOK MORE DAMAGE THAN USUAL");
+                        SP -= sanitytaken;
+                        if (SP < 0)
+                        {
+                            SP = 0;
+                        }
+                    Debug.Log("Super Effective! + YOUR SANITY IS LOW SO YOU TOOK MORE DAMAGE THAN USUAL");
                        
                     } else if (SP >= 75)
                     {
-                        HP -= (int)((((damage * (int)strength) / (int)manadefence * 1.5)) * 0.5f);
-                         Debug.Log("Super Effective! + YOUR SANITY IS HIGH SO YOU TOOK LESS DAMAGE THAN USUAL");
+                        HP -= (int)((((damage * (int)strength) / (int)manadefence * 1.5)) * 0.8f);
+                        SP -= sanitytaken;
+                        Debug.Log("Super Effective! + YOUR SANITY IS HIGH SO YOU TOOK LESS DAMAGE THAN USUAL");
 
                     } else
                     {
                         HP -= (int)((damage * (int)strength) / (int)manadefence * 1.5);
+                        SP -= sanitytaken;
                         Debug.Log("Super Effective!");
                     }
                     break;
@@ -129,15 +144,22 @@ public class BaseEntities : MonoBehaviour
                 {
                     if (SP <= 25)
                     {
-                        HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 25 / 100) * 1.5f;
+                        HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 75 / 100) * 1.5f;
+                        SP -= sanitytaken;
+                        if (SP < 0)
+                        {
+                            SP = 0;
+                        }
                         Debug.Log("Blocked Damage Reduction But still Super Effective! + SANITY IS LOW SO YOU TOOK MORE DAMAGE THAN USUAL");
                     } else if (SP >= 75)
                     {
-                        HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 25 / 100) * 0.5f;
+                        HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 75 / 100) * 0.7f;
+                        SP -= sanitytaken;
                         Debug.Log("Blocked Damage Reduction But still Super Effective! + SANIITY IS HIGH SO YOU DROPPED TOOK LESS DAMAGE THAN USUAL");
                     } else
                     {
-                        HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 25 / 100);
+                        HP -= (int)(((damage * (int)strength) / (int)manadefence * 1.5) * 75 / 100);
+                        SP -= sanitytaken;
                         Debug.Log("Blocked Damage Reduction But still Super Effective!");
                     }
                     break;
@@ -147,13 +169,34 @@ public class BaseEntities : MonoBehaviour
 
         if (isBlocking == false)
         {
-            HP -= (damage * (int)strength) / (int)manadefence;
-            Debug.Log("Spell Attack: Effective!");
+            if (SP <= 25)
+            {
+                HP -= (int)(((damage * (int)strength) / (int)manadefence) * 1.5f);
+                SP -= sanitytaken;
+                if (SP < 0)
+                {
+                    SP = 0;
+                }
+                Debug.Log("Spell Attack: Effective! + YOUR SANITY IS LOW SO YOU TOOK MORE DAMAGE THAN USUAL");
+            }
+            else if (SP >= 75)
+            {
+                HP -= (int)(((damage * (int)strength) / (int)manadefence) * 0.8f);
+                SP -= sanitytaken;
+                Debug.Log("Spell Attack: Effective! + YOUR SANITY IS HIGH SO YOU TOOK LESS DAMAGE THAN USUAL");
+            }
+            else
+            {
+                HP -= (damage * (int)strength) / (int)manadefence;
+                SP -= sanitytaken;
+                Debug.Log("Spell Attack: Effective!");
+            }
         }
 
         if (isBlocking == true)
         {
-            HP -= ((damage * (int)strength) / (int)manadefence) * 25/100;
+            HP -= ((damage * (int)strength) / (int)manadefence) * 75/100;
+            SP -= sanitytaken;
             Debug.Log("Blocked! Spell Attack: Effective!");
         }
     }

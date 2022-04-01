@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: GrassWhistle
   m_EditorClassIdentifier: 
   entityName: GrassWhistle
-  entityDescription: Shoot small pebbles at your opponent
+  entityDescription: This move gathers musical notes around the enemy and hurts them
   damage: 40
   mpUsed: 25
   spUsed: -7
+  spTaken: 10
   spellType: 4

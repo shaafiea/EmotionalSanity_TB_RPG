@@ -17,4 +17,5 @@ MonoBehaviour:
   damage: -30
   mpUsed: 15
   spUsed: -5
+  spTaken: 0
   spellType: 0

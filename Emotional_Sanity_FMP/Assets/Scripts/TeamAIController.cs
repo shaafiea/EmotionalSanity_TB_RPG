@@ -27,6 +27,9 @@ public class TeamAIController : MonoBehaviour
         Attack,
         Block,
         Spell,
+        Heal,
+        BigHeal,
+        SanityRegen,
         Random
     }
 

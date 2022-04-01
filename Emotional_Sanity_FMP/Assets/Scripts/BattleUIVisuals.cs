@@ -14,6 +14,17 @@ public class BattleUIVisuals : MonoBehaviour
 
     public TurnBasedBattleSystem tbbs;
 
+    //Enemy Target Buttons
+    public GameObject e1_Button;
+    public GameObject e2_Button;
+    public GameObject e3_Button;
+    public Text e1_wp_text;
+    public Text e2_wp_text;
+    public Text e3_wp_text;
+    public Text e1_sp_text;
+    public Text e2_sp_text;
+    public Text e3_sp_text;
+
     public DisplayMoveDescription display;
 
     //UI    
@@ -52,6 +63,71 @@ public class BattleUIVisuals : MonoBehaviour
         tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
         player = GameObject.Find("NinjaWarrior").GetComponent<BaseEntities>();
         spellPlayer = GameObject.Find("NinjaWarrior").GetComponentInChildren<PlaySpellAnim>();
+
+        //Setting up the target buttons to know how many target there are on the field
+        for (int i = 0; i < tbbs.enemies.Count; i++)
+        {
+            if (tbbs.enemies.Count == 1)
+            {
+                enemies.Insert(0, tbbs.enemy1);
+                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
+                e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
+                e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();
+                e1_wp_text = GameObject.FindGameObjectWithTag("e1Text").GetComponent<Text>();
+                e2_Button.SetActive(false);
+                e3_Button.SetActive(false);
+                e1_wp_text.text = tbbs.enemy1.entityName;
+
+                e1_sp_text = GameObject.FindGameObjectWithTag("e1sptext").GetComponent<Text>();
+                e1_sp_text.text = tbbs.enemy1.entityName;
+            }
+            else if (enemies.Count == 2)
+            {
+                enemies.Insert(0, tbbs.enemy1);
+                enemies.Insert(1, tbbs.enemy2);
+                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
+                e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
+                e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();
+                e1_wp_text = GameObject.FindGameObjectWithTag("e1Text").GetComponent<Text>();
+                e2_wp_text = GameObject.FindGameObjectWithTag("e2Text").GetComponent<Text>();
+                e3_Button.SetActive(false);
+                e1_wp_text.text = tbbs.enemy1.entityName;
+                e2_wp_text.text = tbbs.enemy2.entityName;
+
+                e1_sp_text = GameObject.FindGameObjectWithTag("e1sptext").GetComponent<Text>();
+                e2_sp_text = GameObject.FindGameObjectWithTag("e2sptext").GetComponent<Text>();
+                e1_sp_text.text = tbbs.enemy1.entityName;
+                e2_sp_text.text = tbbs.enemy2.entityName;
+            }
+            else if (enemies.Count == 3)
+            {
+/*                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
+                e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
+                e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();*/
+                e1_wp_text = GameObject.FindGameObjectWithTag("e1Text").GetComponent<Text>();
+                e2_wp_text = GameObject.FindGameObjectWithTag("e2Text").GetComponent<Text>();
+                e3_wp_text = GameObject.FindGameObjectWithTag("e3Text").GetComponent<Text>();
+                e1_wp_text.text = tbbs.enemy1.entityName;
+                e2_wp_text.text = tbbs.enemy2.entityName;
+                e3_wp_text.text = tbbs.enemy3.entityName;
+                e1_sp_text = GameObject.FindGameObjectWithTag("e1sptext").GetComponent<Text>();
+                e2_sp_text = GameObject.FindGameObjectWithTag("e2sptext").GetComponent<Text>();
+                e3_sp_text = GameObject.FindGameObjectWithTag("e3sptext").GetComponent<Text>();
+                e1_sp_text.text = tbbs.enemy1.entityName;
+                e2_sp_text.text = tbbs.enemy2.entityName;
+                e3_sp_text.text = tbbs.enemy3.entityName;
+            }
+        }
+
+        if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players)
+        {
+            tbbs.dpMove.p1Turn();
+            playerUI.SetActive(true);
+            spellsUI.SetActive(false);
+            commandsUI.SetActive(false);
+            targetUI.SetActive(false);
+            spellTargetUI.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -242,7 +318,7 @@ public class BattleUIVisuals : MonoBehaviour
     {
         Debug.Log("Player MP Before Spell: " + player.MP);
         Debug.Log("Spell MP: " + player.spellmoves[0].mpUsed);
-        target.TakeSpecialDamage(target.entityWeakness[0], (player.spellmoves[0].damage), player.manastrength);
+        target.TakeSpecialDamage(target.entityWeakness[0], (player.spellmoves[0].damage), (player.spellmoves[0].spTaken),player.manastrength);
         player.MP = player.MP - player.spellmoves[0].mpUsed;
         Debug.Log("PlayerMP After Spell: " + player.MP);
         player.SP = player.SP + player.spellmoves[0].spUsed;

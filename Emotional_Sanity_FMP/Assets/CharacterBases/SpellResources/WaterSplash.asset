@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: WaterSplash
   m_EditorClassIdentifier: 
   entityName: WaterSplash
-  entityDescription: This move dumps water from above
-  damage: 10
+  entityDescription: This move created a water tornado directly below the opponent
+  damage: 30
+  mpUsed: 10
+  spUsed: 10
+  spTaken: 10
   spellType: 3

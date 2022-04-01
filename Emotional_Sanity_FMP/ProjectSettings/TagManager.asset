@@ -13,6 +13,18 @@ TagManager:
   - Enemy1
   - Enemy2
   - Enemy3
+  - e1Button
+  - e2Button
+  - e3Button
+  - e1Text
+  - e2Text
+  - e3Text
+  - e1sptext
+  - e2sptext
+  - e3sptext
+  - e1spbutton
+  - e2spbutton
+  - e3spbutton
   layers:
   - Default
   - TransparentFX

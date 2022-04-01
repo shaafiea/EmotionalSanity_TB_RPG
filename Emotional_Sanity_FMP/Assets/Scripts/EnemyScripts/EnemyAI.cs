@@ -10,6 +10,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] BattleUIVisuals BUIV;
     public TurnBasedBattleSystem tbbs;
 
+    public GameObject grassVFX;
+    public GameObject iceVFX;
+    public GameObject fireVFX;
+    public GameObject waterVFX;
+    public GameObject rockVFX;
+
     //Team Target
     public BaseEntities target;
 
@@ -36,7 +42,6 @@ public class EnemyAI : MonoBehaviour
         BUIV = GameObject.Find("BattleUIManager").GetComponent<BattleUIVisuals>();
         BUIV.enemies.Add(this.gameObject.GetComponent<BaseEntities>());
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -77,6 +82,7 @@ public class EnemyAI : MonoBehaviour
     //Basic Attacking Scripts to test damage
     public void EnemyWeaponAttack()
     {
+        enemyStats.WeaponSanity();
         target.TakeWeaponDamage(enemyStats.damage, enemyStats.weaponstrength);
         //ttbs.EndEnemyTurn();
     }
@@ -92,10 +98,38 @@ public class EnemyAI : MonoBehaviour
 
     public void EnemySpell()
     {
-        target.TakeSpecialDamage(target.entityWeakness[0], (enemyStats.spellmoves[0].damage), enemyStats.manastrength);
+        target.TakeSpecialDamage(target.entityWeakness[0], (enemyStats.spellmoves[0].damage), (enemyStats.spellmoves[0].spTaken), enemyStats.manastrength);
         Debug.Log("Enemy Used Their Attack!");
         Debug.Log("Enemy Spell Hurt");
-        tbbs.EndEnemyTurn();
+    }
+
+    public void GrassWhistleAnim()
+    {
+        enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[0].mpUsed;
+        enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[0].spUsed;
+        GameObject cloneobject = Instantiate(grassVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+    public void FireBurnAnim()
+    {
+        enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[0].mpUsed;
+        enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[0].spUsed;
+        GameObject cloneobject = Instantiate(fireVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+    public void WaterSplashAnim()
+    {
+        enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[0].mpUsed;
+        enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[0].spUsed;
+        GameObject cloneobject = Instantiate(waterVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+    public void E1SpellUsed()
+    {
+        tbbs.e1_anim.SetBool("spellUsed", false);
     }
 
     public void EWalkBack()
@@ -121,5 +155,14 @@ public class EnemyAI : MonoBehaviour
                 Debug.Log("Enemy 3 Has Attacked is Retreating");
             }
         }
+    }
+
+    public void EndTurnAfterAnim()
+    {
+        tbbs.e1_anim.SetBool("isSpelling", false);
+        tbbs.e2_anim.SetBool("isSpelling", false);
+        tbbs.e3_anim.SetBool("isSpelling", false);
+        tbbs.isTargeting = true;
+        tbbs.EndEnemyTurn();
     }
 }

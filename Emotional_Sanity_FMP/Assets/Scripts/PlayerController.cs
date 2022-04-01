@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public CharacterController controller;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 6f;
     [SerializeField] private Animator anim;
 
 

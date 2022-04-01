@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FireBurn
   m_EditorClassIdentifier: 
   entityName: FireBurn
-  entityDescription: This move shoots a fire blast at the opponent
+  entityDescription: This move spawns a fireblast below the opponent
   damage: 35
   mpUsed: 25
   spUsed: -5
+  spTaken: 10
   spellType: 2
