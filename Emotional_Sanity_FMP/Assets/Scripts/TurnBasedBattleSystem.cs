@@ -17,6 +17,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
         [SerializeField] BaseEntities player3stats;
         [SerializeField] BaseEntities player4stats;*/
 
+    public TrackSwitcher trackswitch;
     public enum turns 
     {
         players,
@@ -125,7 +126,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
     public bool enemyTD = false;
 
     public int t_randomrange;
-    public bool teamTD = false;
+    public bool teamTD = true;
 
     public int randomrangeacc;
 
@@ -229,7 +230,13 @@ public class TurnBasedBattleSystem : MonoBehaviour
         dpMove = GameObject.Find("Battle Info Text (TMP)").GetComponent<DisplayMoves>();
         bui = GameObject.Find("BattleUIManager").GetComponent<BattleUIVisuals>();
         uiOff = true;
-
+        isTargeting = true;
+        p2_isAttacking = true;
+        p3_isAttacking = true;
+        p4_isAttacking = true;
+        e1_isAttacking = true;
+        e2_isAttacking = true;
+        e3_isAttacking = true;
     }
 
     // Update is called once per frame
@@ -256,6 +263,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             //Activate the UI
                             bui.playerUI.SetActive(true);
+                            teamTD = true;
                             uiOff = false;
                         }
                     }
@@ -279,7 +287,9 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         if (t2_newState == true)
                         {
                             Debug.Log("Teammate 2 is attacking");
+                            teamTD = true;
                             RandomTeamState();
+                            Debug.Log(player2.gameObject + " " + t_randomrange);
                             t2_newState = false;
                         }
                         // Move our position a step closer to the target.
@@ -339,6 +349,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 p2_turn = false;
                                 k_anim.Play("Idle");
                                 isTargeting = true;
+                                teamTD = true;
                                 p3_isAttacking = true;
                                 EndPlayerTurn();
                             }
@@ -354,7 +365,38 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 players[playerIndex].GetComponent<TeamAIController>().AIBlock();
                                 isTargeting = true;
                                 p3_isAttacking = true;
+                                teamTD = true;
                                 uiOff = true;
+                            }
+                        }
+
+                        if (p2_State.state == TeamAIController.AIState.Spell || (p2_State.state == TeamAIController.AIState.Random && t_randomrange == 2) && p2_turn == true)
+                        {
+                            if (player2.HP > 0 && player2.MP >= player2.spellmoves[0].mpUsed)
+                            {
+                                k_anim.SetBool("isSpelling", true);
+                                p3_isAttacking = true;
+                                uiOff = true;
+                            } else
+                            {
+                                p2_State.state = TeamAIController.AIState.Random;
+                                p2_Text_State.text = "Random";
+                                t2_newState = true;
+                            }
+                        }
+
+                        if (p2_State.state == TeamAIController.AIState.SanityRegen || (p2_State.state == TeamAIController.AIState.Random && t_randomrange == 3) && p2_turn == true)
+                        {
+                            if (player2.HP > 0 && player2.MP >= player2.spellmoves[1].mpUsed)
+                            {
+                                k_anim.SetBool("isSanityRegen", true);
+                                p3_isAttacking = true;
+                                uiOff = true;
+                            } else
+                            {
+                                p2_State.state = TeamAIController.AIState.Random;
+                                p2_Text_State.text = "Random";
+                                t2_newState = true;
                             }
                         }
                     }
@@ -373,9 +415,16 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         // Move our position a step closer to the target.
                         float step = speed * Time.deltaTime; // calculate distance to move
                         //Debug.Log("Player 2 Turn");
-
+                        if (t3_newState == true)
+                        {
+                            teamTD = true;
+                            Debug.Log("Teammate 3 is attacking");
+                            RandomTeamState();
+                            Debug.Log(player3.gameObject + " " + t_randomrange);
+                            t3_newState = false;
+                        }
                         //Depending on what state the AI is in do that specific command
-                        if (p3_State.state == TeamAIController.AIState.Attack && p3_turn == true)
+                        if (p3_State.state == TeamAIController.AIState.Attack || (p3_State.state == TeamAIController.AIState.Random && t_randomrange == 0) && p3_turn == true)
                         {
                             //If the player hasnt decided on a target yet then decide on a target at random
                             if (isTargeting == true)
@@ -426,6 +475,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 p3_turn = false;
                                 s_anim.Play("Idle");
                                 isTargeting = true;
+                                teamTD = true;
                                 p4_isAttacking = true;
                                 EndPlayerTurn();
                             }
@@ -433,7 +483,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             uiOff = true;
                         }
 
-                        if (p3_State.state == TeamAIController.AIState.Block && p3_turn == true)
+                        if (p3_State.state == TeamAIController.AIState.Block || (p3_State.state == TeamAIController.AIState.Random && t_randomrange == 1) && p3_turn == true)
                         {
                             if (player3.HP > 0)
                             {
@@ -441,7 +491,69 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 players[playerIndex].GetComponent<TeamAIController>().AIBlock();
                                 isTargeting = true;
                                 p4_isAttacking = true;
+                                teamTD = true;
                                 uiOff = true;
+                            }
+                        }
+
+                        if (p3_State.state == TeamAIController.AIState.Spell || (p3_State.state == TeamAIController.AIState.Random && t_randomrange == 2) && p3_turn == true)
+                        {
+                            if (player3.HP > 0 && player3.MP >= player3.spellmoves[0].mpUsed)
+                            {
+                                s_anim.SetBool("isSpelling", true);
+                                p4_isAttacking = true;
+                                uiOff = true;
+                            } else
+                            {
+                                p3_State.state = TeamAIController.AIState.Random;
+                                p3_Text_State.text = "Random";
+                                t2_newState = true;
+                            }
+                        }
+
+                        if (p3_State.state == TeamAIController.AIState.Heal && p3_turn == true)
+                        {
+                            if (player3.HP > 0 && player3.MP >= player3.spellmoves[1].mpUsed)
+                            {
+                                s_anim.SetBool("isHealing", true);
+                                isTargeting = true;
+                                uiOff = true;
+                            } else
+                            {
+                                p3_State.state = TeamAIController.AIState.Random;
+                                p3_Text_State.text = "Random";
+                                t2_newState = true; ;
+                            }
+                        }
+
+                        if (p3_State.state == TeamAIController.AIState.BigHeal && p3_turn == true)
+                        {
+                            if (player3.HP > 0 && player3.MP >= player3.spellmoves[2].mpUsed)
+                            {
+                                s_anim.SetBool("isBigHealing", true);
+                                isTargeting = true;
+                                uiOff = true;
+                            } else
+                            {
+                                p3_State.state = TeamAIController.AIState.Random;
+                                p3_Text_State.text = "Random";
+                                t2_newState = true;
+                            }
+                        }
+
+                        if (p3_State.state == TeamAIController.AIState.SanityRegen || (p3_State.state == TeamAIController.AIState.Random && t_randomrange == 3) && p3_turn == true)
+                        {
+                            if (player3.HP > 0 && player3.MP >= player3.spellmoves[3].mpUsed)
+                            {
+                                s_anim.SetBool("isSanityRegen", true);
+                                p4_isAttacking = true;
+                                uiOff = true;
+                            }
+                            else
+                            {
+                                p3_State.state = TeamAIController.AIState.Random;
+                                p3_Text_State.text = "Random";
+                                t2_newState = true;
                             }
                         }
                     }
@@ -459,10 +571,17 @@ public class TurnBasedBattleSystem : MonoBehaviour
                     {
                         // Move our position a step closer to the target.
                         float step = speed * Time.deltaTime; // calculate distance to move
-                        //Debug.Log("Player 2 Turn");
-
+                                                             //Debug.Log("Player 2 Turn");
+                        if (t4_newState == true)
+                        {
+                            teamTD = true;
+                            Debug.Log("Teammate 4 is attacking");
+                            RandomTeamState();
+                            Debug.Log(player4.gameObject + " " + t_randomrange);
+                            t4_newState = false;
+                        }
                         //Depending on what state the AI is in do that specific command
-                        if (p4_State.state == TeamAIController.AIState.Attack && p4_turn == true)
+                        if (p4_State.state == TeamAIController.AIState.Attack || (p4_State.state == TeamAIController.AIState.Random && t_randomrange == 0) && p4_turn == true)
                         {
                             //If the player hasnt decided on a target yet then decide on a target at random
                             if (isTargeting == true)
@@ -513,21 +632,52 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 p4_turn = false;
                                 b_anim.Play("Idle");
                                 isTargeting = true;
+                                teamTD = true;
                                 EndPlayerTurn();
                             }
 
                             uiOff = true;
                         }
 
-                        if (p4_State.state == TeamAIController.AIState.Block && p4_turn == true)
+                        if (p4_State.state == TeamAIController.AIState.Block || (p4_State.state == TeamAIController.AIState.Random && t_randomrange == 1) && p4_turn == true)
                         {
                             if (player4.HP > 0)
                             {
                                 b_anim.SetBool("isBlocking", true);
                                 players[playerIndex].GetComponent<TeamAIController>().AIBlock();
+                                teamTD = true;
                                 uiOff = true;
                             }
                         }
+
+                        if (p4_State.state == TeamAIController.AIState.Spell || (p4_State.state == TeamAIController.AIState.Random && t_randomrange == 2) && p4_turn == true)
+                        {
+                            if (player4.HP > 0 && player4.MP >= player4.spellmoves[0].mpUsed)
+                            {
+                                b_anim.SetBool("isSpelling", true);
+                                uiOff = true;
+                            } else
+                            {
+                                p4_State.state = TeamAIController.AIState.Random;
+                                p4_Text_State.text = "Random";
+                                t4_newState = true;
+                            }
+                        }
+
+                        if (p4_State.state == TeamAIController.AIState.SanityRegen || (p4_State.state == TeamAIController.AIState.Random && t_randomrange == 3) && p4_turn == true)
+                        {
+                            if (player4.HP > 0 && player4.MP >= player4.spellmoves[1].mpUsed)
+                            {
+                                b_anim.SetBool("isSanityRegen", true);
+                                uiOff = true;
+                            } else
+                            {
+                                p4_State.state = TeamAIController.AIState.Random;
+                                p4_Text_State.text = "Random";
+                                t4_newState = true;
+                            }
+                        }
+
                     }
                     else if (player4.HP <= 0)
                     {
@@ -540,20 +690,38 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
             if (player2.HP <= 0 && isP2_Alive)
             {
+                if (players[i].GetComponent<BaseEntities>().entityName == "P2")
+                {
+                    Debug.Log("P2 HAS DIED");
+                    players.Remove(players[i]);
+                }
                 isP2_Alive = false;
+                k_anim.SetBool("isBlocking", false);
                 k_anim.SetBool("isP2Alive", false);
                 k_anim.Play("Death");
             }
 
             if (player3.HP <= 0 && isP3_Alive)
             {
+                if (players[i].GetComponent<BaseEntities>().entityName == "P3")
+                {
+                    Debug.Log("P3 HAS DIED");
+                    players.Remove(players[i]);
+                }
                 isP3_Alive = false;
+                s_anim.SetBool("isBlocking", false);
                 s_anim.SetBool("isP3Alive", false);
                 s_anim.Play("Death");
             }
 
             if (player4.HP <= 0 && isP4_Alive)
             {
+                if (players[i].GetComponent<BaseEntities>().entityName == "P4")
+                {
+                    Debug.Log("P4 HAS DIED");
+                    players.Remove(players[i]);
+                }
+                b_anim.SetBool("isBlocking", false);
                 isP4_Alive = false;
                 b_anim.SetBool("isP4Alive", false);
                 b_anim.Play("Death");
@@ -880,7 +1048,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                 e1_anim.SetBool("isE1Alive", false);
                 e1_anim.Play("Death");
                 bui.e1_Button.SetActive(false);
-                if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Grass)" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy1" && enemyIndex == i)
+                if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy1")
                 {
                     enemies.Remove(enemies[i]);
                     enemiesdead++;
@@ -888,33 +1056,80 @@ public class TurnBasedBattleSystem : MonoBehaviour
            
             } 
 
-            if (enemy2.HP <= 0 && isE2_Alive)
+            if (enemy2.HP <= 0 && isE2_Alive == true)
             {
                 isE2_Alive = false;
+                e2_anim.SetBool("isBlocking", false);
                 e2_anim.SetBool("isE2Alive", false);
                 e2_anim.Play("Death");
                 bui.e2_Button.SetActive(false);
-                if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Water)" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy2" && enemyIndex == i)
+                if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy2")
                 {
                     enemies.Remove(enemies[i]);
                     enemiesdead++;
                 }
             }
 
-            if (enemy3.HP <= 0 && isE3_Alive)
+            if (enemy3.HP <= 0 && isE3_Alive == true)
             {
                 isE3_Alive = false;
+                e3_anim.SetBool("isBlocking", false);
                 e3_anim.SetBool("isE3Alive", false);
                 e3_anim.Play("Death");
                 bui.e3_Button.SetActive(false);
-                if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Fire)" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy3" && enemyIndex == i)
+                if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy3")
                 {
                     enemies.Remove(enemies[i]);
-                     enemiesdead++;
+                    enemiesdead++;
                 }
             }
 
         }
+
+       /* if (enemiesdead == enemiesfighting)
+        {
+           //P1
+           PlayerPrefs.SetFloat("Player1HP", player1.HP);
+           PlayerPrefs.SetFloat("Player1MP", player1.MP);
+           PlayerPrefs.SetFloat("Player1SP", player1.SP);
+            //P2
+            if (player2.HP > 0)
+            {
+                PlayerPrefs.SetFloat("Player2HP", player2.HP);
+                PlayerPrefs.SetFloat("Player2MP", player2.MP);
+                PlayerPrefs.SetFloat("Player2SP", player2.SP);
+            } else if (player2.HP <=0)
+            {
+                PlayerPrefs.SetFloat("Player2HP", 1);
+                PlayerPrefs.SetFloat("Player2MP", player2.MP);
+                PlayerPrefs.SetFloat("Player2SP", player2.SP);
+            }
+            //P3
+            if (player3.HP > 0)
+            {
+                PlayerPrefs.SetFloat("Player3HP", player3.HP);
+                PlayerPrefs.SetFloat("Player3MP", player3.MP);
+                PlayerPrefs.SetFloat("Player3SP", player3.SP);
+            } else if (player3.HP <= 0)
+            {
+                PlayerPrefs.SetFloat("Player3HP", 1);
+                PlayerPrefs.SetFloat("Player3MP", player3.MP);
+                PlayerPrefs.SetFloat("Player3SP", player3.SP);
+            }
+            //P4
+            if (player4.HP > 0)
+            {
+                PlayerPrefs.SetFloat("Player4HP", player4.HP);
+                PlayerPrefs.SetFloat("Player4MP", player4.MP);
+                PlayerPrefs.SetFloat("Player4SP", player4.SP);
+            } else if (player4.HP <= 0)
+            {
+                PlayerPrefs.SetFloat("Player4HP", 1);
+                PlayerPrefs.SetFloat("Player4MP", player4.MP);
+                PlayerPrefs.SetFloat("Player4SP", player4.SP);
+            }
+        }*/
+
     }
         
 
@@ -1034,11 +1249,11 @@ public class TurnBasedBattleSystem : MonoBehaviour
             Debug.Log("P3 Sanity Regen State");
             p3_Text_State.text = "Sanity Regen";
             p3_State.state = TeamAIController.AIState.SanityRegen;
-        } else if (p2_State.state == TeamAIController.AIState.SanityRegen)
+        } else if (p3_State.state == TeamAIController.AIState.SanityRegen)
         {
             Debug.Log("P2 Random State");
-            p2_Text_State.text = "Random";
-            p2_State.state = TeamAIController.AIState.Random;
+            p3_Text_State.text = "Random";
+            p3_State.state = TeamAIController.AIState.Random;
         }
         else if (p3_State.state == TeamAIController.AIState.Random)
         {
@@ -1066,11 +1281,11 @@ public class TurnBasedBattleSystem : MonoBehaviour
             p4_Text_State.text = "Sanity Regen";
             p4_State.state = TeamAIController.AIState.SanityRegen;
 
-        } else if (p2_State.state == TeamAIController.AIState.SanityRegen)
+        } else if (p4_State.state == TeamAIController.AIState.SanityRegen)
         {
             Debug.Log("P4 Random State");
-            p2_Text_State.text = "Random";
-            p2_State.state = TeamAIController.AIState.Random;
+            p4_Text_State.text = "Random";
+            p4_State.state = TeamAIController.AIState.Random;
         } else if (p4_State.state == TeamAIController.AIState.Random)
         {
             Debug.Log("P4 Attack State");
@@ -1102,25 +1317,65 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
     }
 
+    public void MediumEnemyState()
+    {
+        if (enemyTD == false)
+        {
+            randomrange = Random.Range(0, 8);
+            enemyTD = true;
+        }
+    }
+
+    public void HardEnemyState()
+    {
+        if (enemyTD == false)
+        {
+            randomrange = Random.Range(0, 8);
+            enemyTD = true;
+        }
+    }
+
+    public void AssistEnemyState()
+    {
+        if (enemyTD == false)
+        {
+            randomrange = Random.Range(0, 8);
+            enemyTD = true;
+        }
+    }
+
+    public void FinalBossEnemyState()
+    {
+         if (enemyTD == false)
+        {
+            randomrange = Random.Range(0, 8);
+            enemyTD = true;
+        }
+    }
+
     public void RandomTeamState()
     {
 
-        if (teamTD == false)
+        if (teamTD == true)
         {
-            t_randomrange = Random.Range(0, 1);
-            teamTD = true;
+            print("spin the wheel");
+            t_randomrange = Random.Range(0, 3);
+            teamTD = false;
         }
 
         if (t_randomrange == 0)
         {
-            Debug.Log("Enemy Attacks");
+            Debug.Log("Teammate Attacks");
         }
         else if (t_randomrange == 1)
         {
-            Debug.Log("Enemy Blocks");
+            Debug.Log("Teammate Blocks");
         } else if (t_randomrange == 2)
         {
-            Debug.Log("Enemy Spell");
+            Debug.Log("Teammate Spell");
+        } else if (t_randomrange == 3)
+        {
+            Debug.Log("Team Sanity Regen");
         }
 
     }

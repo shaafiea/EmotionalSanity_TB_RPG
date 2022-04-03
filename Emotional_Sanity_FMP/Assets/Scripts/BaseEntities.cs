@@ -201,6 +201,12 @@ public class BaseEntities : MonoBehaviour
         }
     }
 
+    public void TakeHeal(int damage)
+    {
+        //Although we are using damage here we are actually healing since the healing spell is minus damage
+        HP -= damage;
+    }
+
     //Take away sanity if the player attacks with a weapon
     public void WeaponSanity()
     {
@@ -211,5 +217,12 @@ public class BaseEntities : MonoBehaviour
     public void BlockSanity()
     {
         SP += blocksanity;
+    }
+
+    //Regens alot of Sanity
+    public void SanityRegen()
+    {
+        SP = SP + 15;
+        MP = MP - 10;
     }
 }

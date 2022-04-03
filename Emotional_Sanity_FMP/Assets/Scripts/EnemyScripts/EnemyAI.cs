@@ -9,12 +9,17 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private List<BaseEntities> playersOnScreen;
     [SerializeField] BattleUIVisuals BUIV;
     public TurnBasedBattleSystem tbbs;
+    public int n_randomrange;
 
     public GameObject grassVFX;
     public GameObject iceVFX;
     public GameObject fireVFX;
     public GameObject waterVFX;
     public GameObject rockVFX;
+    public GameObject s_healVFX;
+    public GameObject b_healVFX;
+    public GameObject sanityVFX;
+    public GameObject bigHealspot;
 
     //Team Target
     public BaseEntities target;
@@ -103,6 +108,52 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("Enemy Spell Hurt");
     }
 
+    public void SmallHeal()
+    {
+        enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[1].mpUsed;
+        enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[1].spUsed;
+        if (tbbs.enemy1.HP > 0 && n_randomrange == 0)
+        {
+            tbbs.enemy1.TakeHeal(enemyStats.spellmoves[1].damage);
+        }
+
+        if (tbbs.enemy2.HP > 0 && n_randomrange == 1)
+        {
+            tbbs.enemy2.TakeHeal(enemyStats.spellmoves[1].damage);
+        }
+
+        if (tbbs.enemy3.HP > 0 && n_randomrange == 2)
+        {
+            tbbs.enemy3.TakeHeal(enemyStats.spellmoves[1].damage);
+        }
+    }
+
+    public void BigHeal()
+    {
+        enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[2].mpUsed;
+        enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[2].spUsed;
+        if (tbbs.enemy1.HP > 0)
+        {
+            tbbs.enemy1.TakeHeal(enemyStats.spellmoves[2].damage);
+        }
+
+        if (tbbs.enemy2.HP > 0)
+        {
+            tbbs.enemy2.TakeHeal(enemyStats.spellmoves[2].damage);
+        }
+
+        if (tbbs.enemy3.HP > 0)
+        {
+            tbbs.enemy3.TakeHeal(enemyStats.spellmoves[2].damage);
+        }
+    }
+
+    public void SanityRegen()
+    {
+        enemyStats.SanityRegen();
+        Debug.Log(enemyStats.entityName + "Regened their Sanity!");
+    }
+
     public void GrassWhistleAnim()
     {
         enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[0].mpUsed;
@@ -124,6 +175,44 @@ public class EnemyAI : MonoBehaviour
         enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[0].mpUsed;
         enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[0].spUsed;
         GameObject cloneobject = Instantiate(waterVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+    public void IceSpikeAnim()
+    {
+        enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[0].mpUsed;
+        enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[0].spUsed;
+        GameObject cloneobject = Instantiate(iceVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+    public void SmallHealAnim()
+    {
+        n_randomrange = Random.Range(0, 2);
+        if (n_randomrange == 0)
+        {
+            target = tbbs.enemy1;
+        }
+        if (n_randomrange == 1)
+        {
+            target = tbbs.enemy2;
+        }
+        if (n_randomrange == 2)
+        {
+            target = tbbs.enemy3;
+        }
+        GameObject cloneobject = Instantiate(s_healVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+    public void BigHealAnim()
+    {
+        GameObject cloneobject = Instantiate(b_healVFX, bigHealspot.transform.position, bigHealspot.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+    public void SanityRegenAnim()
+    {
+        GameObject cloneobject = Instantiate(sanityVFX, enemyStats.transform.position, enemyStats.transform.rotation);
         Destroy(cloneobject, 2.5f);
     }
 
@@ -160,8 +249,19 @@ public class EnemyAI : MonoBehaviour
     public void EndTurnAfterAnim()
     {
         tbbs.e1_anim.SetBool("isSpelling", false);
+        tbbs.e1_anim.SetBool("isSanityRegen", false);
+        tbbs.e1_anim.SetBool("isHealing", false);
+        tbbs.e1_anim.SetBool("isBigHealing", false);
+
         tbbs.e2_anim.SetBool("isSpelling", false);
+        tbbs.e2_anim.SetBool("isSanityRegen", false);
+        tbbs.e2_anim.SetBool("isHealing", false);
+        tbbs.e2_anim.SetBool("isBigHealing", false);
+
         tbbs.e3_anim.SetBool("isSpelling", false);
+        tbbs.e3_anim.SetBool("isSanityRegen", false);
+        tbbs.e3_anim.SetBool("isHealing", false);
+        tbbs.e3_anim.SetBool("isBigHealing", false);
         tbbs.isTargeting = true;
         tbbs.EndEnemyTurn();
     }

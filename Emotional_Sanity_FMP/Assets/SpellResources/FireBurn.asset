@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0492910e3b7eaec45af3d42a14e0831b, type: 3}
+  m_Name: FireBurn
+  m_EditorClassIdentifier: 
+  entityName: FireBurn
+  entityDescription: This move spawns a fireblast below the opponent
+  damage: 35
+  mpUsed: 20
+  spUsed: -5
+  spTaken: 10
+  spellType: 2
