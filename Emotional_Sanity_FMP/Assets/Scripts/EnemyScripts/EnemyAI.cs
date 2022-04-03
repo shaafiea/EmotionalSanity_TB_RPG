@@ -94,13 +94,23 @@ public class EnemyAI : MonoBehaviour
 
     public void EnemyBlock()
     {
-        enemyStats.BlockSanity();
         blocking = true;
+        enemyStats.turnblock = true;
         enemyStats.isBlocking = true;
-        tbbs.EndEnemyTurn();
-        Debug.Log(this.gameObject + "Has Blocked " + enemyStats.isBlocking);
+        StartCoroutine(EnemyBlockWaitTime());
+        //Debug.Log(this.gameObject + "Has Blocked " + enemyStats.isBlocking);
     }
 
+    public IEnumerator EnemyBlockWaitTime()
+    {
+        yield return new WaitForSeconds(2);
+        if (enemyStats.turnblock == true)
+        {
+            enemyStats.BlockSanity();
+            enemyStats.turnblock = false;
+            tbbs.EndEnemyTurn();
+        }
+    }
     public void EnemySpell()
     {
         target.TakeSpecialDamage(target.entityWeakness[0], (enemyStats.spellmoves[0].damage), (enemyStats.spellmoves[0].spTaken), enemyStats.manastrength);

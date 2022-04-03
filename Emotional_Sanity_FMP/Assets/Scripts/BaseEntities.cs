@@ -25,6 +25,7 @@ public class BaseEntities : MonoBehaviour
     public int damage = 10;
     public int speed = 0;
     public bool isBlocking;
+    public bool turnblock;
     public bool isDead;
     public enum PlayerType
     {

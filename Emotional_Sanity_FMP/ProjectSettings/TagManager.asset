@@ -25,6 +25,14 @@ TagManager:
   - e1spbutton
   - e2spbutton
   - e3spbutton
+  - p2Button
+  - p3Button
+  - p4Button
+  - p2Text
+  - p3Text
+  - p4Text
+  - p1Text
+  - p1Button
   layers:
   - Default
   - TransparentFX

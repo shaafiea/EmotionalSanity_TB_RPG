@@ -7,12 +7,23 @@ using UnityEngine.EventSystems;
 
 public class BattleUIVisuals : MonoBehaviour
 {
+    public List<BaseEntities> teamMembers;
     public List<BaseEntities> enemies;
-    [SerializeField] BaseEntities player;
-    [SerializeField] PlaySpellAnim spellPlayer;
+    public BaseEntities player;
+    public PlaySpellAnim spellPlayer;
     [SerializeField] private PlayerTargetPicker targetPicker = null;
 
     public TurnBasedBattleSystem tbbs;
+
+    //Team Target Buttons
+    public GameObject p1_Button;
+    public GameObject p2_Button;
+    public GameObject p3_Button;
+    public GameObject p4_Button;
+    public Text p1_text;
+    public Text p2_text;
+    public Text p3_text;
+    public Text p4_text;
 
     //Enemy Target Buttons
     public GameObject e1_Button;
@@ -30,10 +41,24 @@ public class BattleUIVisuals : MonoBehaviour
     //UI    
     public GameObject commandsUI;
     public GameObject spellsUI;
-    public GameObject fireVFX;
     public GameObject playerUI;
     public GameObject targetUI;
     public GameObject spellTargetUI;
+    public GameObject teamTargetUI;
+
+    public GameObject grassVFX;
+    public GameObject iceVFX;
+    public GameObject fireVFX;
+    public GameObject waterVFX;
+    public GameObject rockVFX;
+    public GameObject s_healVFX;
+    public GameObject b_healVFX;
+    public GameObject sanityVFX;
+
+    //Spell Decider
+    public int spelldecider;
+    public int teamdecider;
+    public GameObject bigHealspot;
 
     //Show Target Button and Back Button
     public List<GameObject> targetAttackButtons = null;
@@ -48,7 +73,11 @@ public class BattleUIVisuals : MonoBehaviour
     public bool isSpellUsed = false;
     bool isAttacking = false;
     bool playerTurn = false;
-    bool blocking = false;
+    public bool blocking = false;
+    public bool isFireUsed = false;
+    public bool isHealOneUsed = false;
+    public bool isHealAllUsed = false;
+    public bool isRockUsed = false;
 
     // Adjust the speed for the application.
     public float speed = 25.0f;
@@ -63,6 +92,22 @@ public class BattleUIVisuals : MonoBehaviour
         tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
         player = GameObject.Find("NinjaWarrior").GetComponent<BaseEntities>();
         spellPlayer = GameObject.Find("NinjaWarrior").GetComponentInChildren<PlaySpellAnim>();
+        teamMembers.Insert(0, tbbs.player1);
+        teamMembers.Insert(1, tbbs.player2);
+        teamMembers.Insert(2, tbbs.player3);
+        teamMembers.Insert(3, tbbs.player4);
+        p1_Button = GameObject.FindGameObjectWithTag("p1Button").GetComponent<GameObject>();
+        p2_Button = GameObject.FindGameObjectWithTag("p2Button").GetComponent<GameObject>();
+        p3_Button = GameObject.FindGameObjectWithTag("p3Button").GetComponent<GameObject>();
+        p4_Button = GameObject.FindGameObjectWithTag("p4Button").GetComponent<GameObject>();
+        p1_text = GameObject.FindGameObjectWithTag("p1Text").GetComponent<Text>();
+        p2_text = GameObject.FindGameObjectWithTag("p2Text").GetComponent<Text>();
+        p3_text = GameObject.FindGameObjectWithTag("p3Text").GetComponent<Text>();
+        p4_text = GameObject.FindGameObjectWithTag("p4Text").GetComponent<Text>();
+        p1_text.text = tbbs.player1.entityName;
+        p2_text.text = tbbs.player2.entityName;
+        p3_text.text = tbbs.player3.entityName;
+        p4_text.text = tbbs.player4.entityName;
 
         //Setting up the target buttons to know how many target there are on the field
         for (int i = 0; i < tbbs.enemies.Count; i++)
@@ -127,6 +172,7 @@ public class BattleUIVisuals : MonoBehaviour
             commandsUI.SetActive(false);
             targetUI.SetActive(false);
             spellTargetUI.SetActive(false);
+            teamTargetUI.SetActive(false);
         }
     }
 
@@ -138,15 +184,6 @@ public class BattleUIVisuals : MonoBehaviour
         {
             spellPlayer.anim.SetBool("isBlocking", true);
             Debug.Log("Blocking is true whilst not the players turn");
-        }
-        if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players && tbbs.playerIndex == 0 && blocking == true)
-        {
-            //If the turn returns back to 0 and the player is blocking turn off the blocking state
-            spellPlayer.anim.SetBool("isBlocking", false);
-            spellPlayer.anim.Play("Idle");
-            blocking = false;
-            player.isBlocking = false;
-            Debug.Log("Players Turn Now player block is now: " + player.isBlocking);
         }
 
         // Move our position a step closer to the target.
@@ -205,15 +242,43 @@ public class BattleUIVisuals : MonoBehaviour
         spellTargetUI.SetActive(false);
     }
 
-    public void OpenSpellTargetMenu()
+    public void OpenSpellTargetMenu(int index)
     {
+        spelldecider = index;
         playerUI.SetActive(false);
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
         targetUI.SetActive(false);
         spellTargetUI.SetActive(true);
+        teamTargetUI.SetActive(false);
         display.OnClickVanish();
     }
+
+    public void OpenHealTargetMenu()
+    {
+        playerUI.SetActive(false);
+        spellsUI.SetActive(false);
+        commandsUI.SetActive(false);
+        targetUI.SetActive(false);
+        spellTargetUI.SetActive(false);
+        teamTargetUI.SetActive(true);
+        display.OnClickVanish();
+    }
+
+    //Targeting Teammates
+    public void GetHealTarget(int index)
+    {
+        target = teamMembers[index];
+        teamdecider = index;
+        playerUI.SetActive(false);
+        spellsUI.SetActive(false);
+        commandsUI.SetActive(false);
+        targetUI.SetActive(true);
+        spellTargetUI.SetActive(false);
+        teamTargetUI.SetActive(false);
+        DealHealSpell();
+    }
+
     //Targeting Different Enemies
     public void GetTargetAttack(int index)
     {
@@ -223,6 +288,7 @@ public class BattleUIVisuals : MonoBehaviour
         commandsUI.SetActive(false);
         targetUI.SetActive(true);
         spellTargetUI.SetActive(false);
+        teamTargetUI.SetActive(false);
         DealAttack();
     }
     public void GetTargetSpellAttack(int index)
@@ -233,6 +299,7 @@ public class BattleUIVisuals : MonoBehaviour
         commandsUI.SetActive(false);
         targetUI.SetActive(false);
         spellTargetUI.SetActive(true);
+        teamTargetUI.SetActive(false);
         DealSpellAttack();
     }
 
@@ -258,13 +325,31 @@ public class BattleUIVisuals : MonoBehaviour
         commandsUI.SetActive(false);
         targetUI.SetActive(false);
         target.gameObject.SetActive(true);
-        isSpellUsed = true;
         playerTurn = true;
-        PlayFireSpellVFX();
-        // Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
+        if (spelldecider == 0)
+        {
+            isSpellUsed = true;
+            PlayFireSpellVFX();
+            // Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
+        }
+
+        if (spelldecider == 1)
+        {
+            isSpellUsed = true;
+            PlayRockSpellVFX();
+        }
+
     }
 
-
+    public void DealHealSpell()
+    {
+        playerUI.SetActive(false);
+        spellsUI.SetActive(false);
+        commandsUI.SetActive(false);
+        targetUI.SetActive(false);
+        target.gameObject.SetActive(true);
+        PlayHealOnceSpellVFX();
+    }
 
     //Block function (allows the player to take a blocking stance and ends their turn)
     public void Block()
@@ -275,13 +360,26 @@ public class BattleUIVisuals : MonoBehaviour
         targetUI.SetActive(false);
         spellTargetUI.SetActive(false);
         blocking = true;
+        player.turnblock = true;
         player.isBlocking = true;
         Debug.Log(player.isBlocking);
         player.BlockSanity();
         //tbbs.p2_turn = true;
         tbbs.p2_isAttacking = true;
         tbbs.isTargeting = true;
-        tbbs.EndPlayerTurn();
+        spellPlayer.anim.SetBool("isBlocking", true);
+        StartCoroutine(PlayerBlockWaitTime());
+
+    }
+
+    public IEnumerator PlayerBlockWaitTime()
+    {
+        yield return new WaitForSeconds(2);
+        if (player.turnblock == true)
+        {
+            player.turnblock = false;
+            tbbs.EndPlayerTurn();
+        }
     }
 
     //Allows the player to check their list of spell moves
@@ -314,6 +412,15 @@ public class BattleUIVisuals : MonoBehaviour
         spellUIMenu = false;
     }
 
+    public void TakeRockFallDamage()
+    {
+        Debug.Log("Player MP Before Spell: " + player.MP);
+        Debug.Log("Spell MP: " + player.spellmoves[4].mpUsed);
+        target.TakeSpecialDamage(target.entityWeakness[0], (player.spellmoves[4].damage), (player.spellmoves[4].spTaken), player.manastrength);
+        player.MP = player.MP - player.spellmoves[4].mpUsed;
+        player.SP = player.SP + player.spellmoves[4].spUsed;
+    }
+
     public void PlayFireSkillAnim()
     {
         Debug.Log("Player MP Before Spell: " + player.MP);
@@ -326,8 +433,88 @@ public class BattleUIVisuals : MonoBehaviour
         Debug.Log("Enemy Has taken a " + player.spellmoves[0] + " It hurt!");
         GameObject cloneobject = Instantiate(fireVFX, target.transform.position, target.transform.rotation);
         Destroy(cloneobject, 1.5f);
-        spellPlayer.anim.SetBool("spellUsed", false);
+        spellPlayer.anim.SetBool("isSpelling", false);
     }
+
+    public void SmallHeal()
+    {
+        player.MP = player.MP - player.spellmoves[1].mpUsed;
+        player.SP = player.SP - player.spellmoves[1].spUsed;
+        if (tbbs.player1.HP > 0 && teamdecider == 0)
+        {
+            tbbs.player1.TakeHeal(player.spellmoves[1].damage);
+        }
+
+        if (tbbs.player2.HP > 0 && teamdecider == 1)
+        {
+            tbbs.player2.TakeHeal(player.spellmoves[1].damage);
+        }
+
+        if (tbbs.player3.HP > 0 && teamdecider == 2)
+        {
+            tbbs.player3.TakeHeal(player.spellmoves[1].damage);
+        }
+
+        if (tbbs.player4.HP > 0 && teamdecider == 3)
+        {
+            tbbs.player4.TakeHeal(player.spellmoves[1].damage);
+        }
+    }
+
+    public void BigHeal()
+    {
+        player.MP = player.MP - player.spellmoves[2].mpUsed;
+        player.SP = player.SP - player.spellmoves[2].spUsed;
+        if (tbbs.player1.HP > 0)
+        {
+            tbbs.player1.TakeHeal(player.spellmoves[2].damage);
+        }
+
+        if (tbbs.player2.HP > 0)
+        {
+            tbbs.player2.TakeHeal(player.spellmoves[2].damage);
+        }
+
+        if (tbbs.player3.HP > 0)
+        {
+            tbbs.player3.TakeHeal(player.spellmoves[2].damage);
+        }
+
+        if (tbbs.player4.HP > 0)
+        {
+            tbbs.player4.TakeHeal(player.spellmoves[2].damage);
+        }
+    }
+
+    public void SanityRegen()
+    {
+        player.SanityRegen();
+    }
+
+    public void SmallHealAnim()
+    {
+        GameObject cloneobject = Instantiate(s_healVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+    public void BigHealAnim()
+    {
+        GameObject cloneobject = Instantiate(b_healVFX, bigHealspot.transform.position, bigHealspot.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+    public void SanityRegenAnim()
+    {
+        GameObject cloneobject = Instantiate(sanityVFX, player.transform.position, player.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+    public void RockFallAnim()
+    {
+        GameObject cloneobject = Instantiate(rockVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
 
     public void AttackDamageDealt()
     {
@@ -346,7 +533,7 @@ public class BattleUIVisuals : MonoBehaviour
             //playerUI.SetActive(false);
             //spellsUI.SetActive(false);
             //spellUIMenu = false;
-            spellPlayer.anim.SetBool("spellUsed", true);
+            spellPlayer.anim.SetBool("isSpelling", true);
             spellsUI.SetActive(false);
             spellTargetUI.SetActive(false);
             display.OnClickVanish();
@@ -360,8 +547,105 @@ public class BattleUIVisuals : MonoBehaviour
 
     }
 
+    public void PlayHealOnceSpellVFX()
+    {
+
+        if (player.MP >= player.spellmoves[1].mpUsed)
+        {
+            //playerUI.SetActive(false);
+            //spellsUI.SetActive(false);
+            //spellUIMenu = false;
+            spellPlayer.anim.SetBool("isHealing", true);
+            spellsUI.SetActive(false);
+            spellTargetUI.SetActive(false);
+            display.OnClickVanish();
+
+
+        }
+        else
+        {
+            GoBack();
+        }
+        //spellLifetime = 3;
+        //Destroy(fireVFX, 3);
+
+    }
+
+    public void PlayHealAllSpellVFX()
+    {
+
+        if (player.MP >= player.spellmoves[2].mpUsed)
+        {
+            //playerUI.SetActive(false);
+            //spellsUI.SetActive(false);
+            //spellUIMenu = false;
+            spellPlayer.anim.SetBool("isBigHealing", true);
+            spellsUI.SetActive(false);
+            spellTargetUI.SetActive(false);
+            display.OnClickVanish();
+
+        }
+        else
+        {
+            GoBack();
+        }
+        //spellLifetime = 3;
+        //Destroy(fireVFX, 3);
+
+    }
+
+    public void PlaySanityVFX()
+    {
+
+        if (player.MP >= player.spellmoves[0].mpUsed)
+        {
+            //playerUI.SetActive(false);
+            //spellsUI.SetActive(false);
+            //spellUIMenu = false;
+            spellPlayer.anim.SetBool("isSanityRegen", true);
+            spellsUI.SetActive(false);
+            spellTargetUI.SetActive(false);
+            display.OnClickVanish();
+
+        }
+        else
+        {
+            GoBack();
+        }
+        //spellLifetime = 3;
+        //Destroy(fireVFX, 3);
+
+    }
+
+    public void PlayRockSpellVFX()
+    {
+
+        if (player.MP >= player.spellmoves[3].mpUsed)
+        {
+            //playerUI.SetActive(false);
+            //spellsUI.SetActive(false);
+            //spellUIMenu = false;
+            spellPlayer.anim.SetBool("isRock", true);
+            spellsUI.SetActive(false);
+            spellTargetUI.SetActive(false);
+            display.OnClickVanish();
+        }
+        else
+        {
+            GoBack();
+        }
+        //spellLifetime = 3;
+        //Destroy(fireVFX, 3);
+
+    }
+
     public void EndTurnAfterAnim()
     {
+        spellPlayer.anim.SetBool("isSpelling", false);
+        spellPlayer.anim.SetBool("isSanityRegen", false);
+        spellPlayer.anim.SetBool("isHealing", false);
+        spellPlayer.anim.SetBool("isBigHealing", false);
+        spellPlayer.anim.SetBool("isRock", false);
         tbbs.EndPlayerTurn();
     }
 

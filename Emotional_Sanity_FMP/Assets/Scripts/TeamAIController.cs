@@ -58,10 +58,6 @@ public class TeamAIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (blockCountdown > 0)
-        {
-            blockCountdown -= Time.deltaTime;
-        }
 
         for (int i = 0; i < tbbs.players.Count; i++)
         {
@@ -182,12 +178,22 @@ public class TeamAIController : MonoBehaviour
     //Enable Blocking
     public void AIBlock()
     {
-        aiStats.BlockSanity();
-        blockCountdown = 2;
         blocking = true;
+        aiStats.turnblock = true;
         aiStats.isBlocking = true;
-        tbbs.EndPlayerTurn();
+        StartCoroutine(AIBlockWaitTime());
         Debug.Log(this.gameObject + "Has Blocked " + aiStats.isBlocking);
+    }
+
+    public IEnumerator AIBlockWaitTime()
+    {
+        yield return new WaitForSeconds(2);
+        if (aiStats.turnblock == true)
+        {
+            aiStats.turnblock = false;
+            aiStats.BlockSanity();
+            tbbs.EndPlayerTurn();
+        }
     }
 
     public void GrassWhistleAnim()

@@ -46,6 +46,45 @@ public class PlaySpellAnim : MonoBehaviour
         BUIV.isSpellUsed = false;
     }
 
+    void PlayerHealSingle()
+    {
+        BUIV.SmallHeal();
+    }
+    void PlayerSingleHeal()
+    {
+        BUIV.SmallHealAnim();
+    }
+
+    void PlayerHealAll()
+    {
+        BUIV.BigHealAnim();
+    }
+
+    void PlayerBigHeal()
+    {
+        BUIV.BigHeal();
+    }
+    
+    void PlayerSanity()
+    {
+        BUIV.SanityRegen();
+    }
+
+    void PlayerSanityRegen()
+    {
+        BUIV.SanityRegenAnim();
+    }
+
+    void PlayerRockHit()
+    {
+        BUIV.TakeRockFallDamage();
+    }
+    
+    void PlayerRockFall()
+    {
+        BUIV.RockFallAnim();
+    }
+
     void FootR()
     {
 

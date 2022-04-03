@@ -374,6 +374,24 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (player2.HP > 0 && player2.MP >= player2.spellmoves[0].mpUsed)
                             {
+                                for (int j = 0; j < player2.entityType.Count; j++)
+                                {
+                                    //Priotize hitting enemy with a weakness otherwise hit at random
+                                    if (player2.entityType[j] == enemy1.entityWeakness[0] && enemy1.HP > 0)
+                                    {
+                                        p2_State.target = enemy1;
+                                    }
+                                    else if (player2.entityType[j] == enemy2.entityWeakness[0] && enemy2.HP > 0)
+                                    {
+                                        p2_State.target = enemy2;
+                                    }
+                                    else if (player2.entityType[j] == enemy3.entityWeakness[0] && enemy3.HP > 0)
+                                    {
+                                        p2_State.target = enemy3;
+                                    }
+                                    break;
+                                }
+
                                 k_anim.SetBool("isSpelling", true);
                                 p3_isAttacking = true;
                                 uiOff = true;
@@ -500,6 +518,23 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (player3.HP > 0 && player3.MP >= player3.spellmoves[0].mpUsed)
                             {
+                                for (int j = 0; j < player3.entityType.Count; j++)
+                                {
+                                    //Priotize hitting enemy with a weakness otherwise hit at random
+                                    if (player3.entityType[j] == enemy1.entityWeakness[0] && enemy1.HP > 0)
+                                    {
+                                        p3_State.target = enemy1;
+                                    }
+                                    else if (player3.entityType[j] == enemy2.entityWeakness[0] && enemy2.HP > 0)
+                                    {
+                                        p3_State.target = enemy2;
+                                    }
+                                    else if (player3.entityType[j] == enemy3.entityWeakness[0] && enemy3.HP > 0)
+                                    {
+                                        p3_State.target = enemy3;
+                                    }
+                                    break;
+                                }
                                 s_anim.SetBool("isSpelling", true);
                                 p4_isAttacking = true;
                                 uiOff = true;
@@ -654,6 +689,40 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (player4.HP > 0 && player4.MP >= player4.spellmoves[0].mpUsed)
                             {
+                                for (int j = 0; j < player4.entityType.Count; j++)
+                                {
+                                    //Priotize hitting enemy with a weakness otherwise hit at random
+                                    if (player4.entityType[j] == enemy1.entityWeakness[0] && enemy1.HP > 0)
+                                    {
+                                        p4_State.target = enemy1;
+                                    }
+                                    else if (player4.entityType[j] == enemy2.entityWeakness[0] && enemy2.HP > 0)
+                                    {
+                                        p4_State.target = enemy2;
+                                    }
+                                    else if (player3.entityType[j] == enemy3.entityWeakness[0] && enemy3.HP > 0)
+                                    {
+                                        p4_State.target = enemy3;
+                                    }
+
+                                    for (int k = 0; k < player4.entityType.Count; k++)
+                                    {
+                                        //Priotize hitting enemy with a weakness otherwise hit at random
+                                        if (player4.entityType[k] == enemy1.entityWeakness[1] && enemy1.HP > 0)
+                                        {
+                                            p4_State.target = enemy1;
+                                        }
+                                        else if (player4.entityType[k] == enemy2.entityWeakness[1] && enemy2.HP > 0)
+                                        {
+                                            p4_State.target = enemy2;
+                                        }
+                                        else if (player3.entityType[k] == enemy3.entityWeakness[1] && enemy3.HP > 0)
+                                        {
+                                            p4_State.target = enemy3;
+                                        }
+                                    }
+                                    break;
+                                }
                                 b_anim.SetBool("isSpelling", true);
                                 uiOff = true;
                             } else
@@ -688,41 +757,31 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
             }
 
-            if (player2.HP <= 0 && isP2_Alive)
+            if (players[i].GetComponent<BaseEntities>().enemyOrder == "P2" && player2.HP <= 0 && isP2_Alive)
             {
-                if (players[i].GetComponent<BaseEntities>().entityName == "P2")
-                {
-                    Debug.Log("P2 HAS DIED");
-                    players.Remove(players[i]);
-                }
                 isP2_Alive = false;
+                players.Remove(players[i]);
                 k_anim.SetBool("isBlocking", false);
                 k_anim.SetBool("isP2Alive", false);
                 k_anim.Play("Death");
             }
 
-            if (player3.HP <= 0 && isP3_Alive)
+            if (players[i].GetComponent<BaseEntities>().enemyOrder == "P3" && player3.HP <= 0 && isP3_Alive)
             {
-                if (players[i].GetComponent<BaseEntities>().entityName == "P3")
-                {
-                    Debug.Log("P3 HAS DIED");
-                    players.Remove(players[i]);
-                }
                 isP3_Alive = false;
+                Debug.Log("P3 HAS DIED");
+                players.Remove(players[i]);
                 s_anim.SetBool("isBlocking", false);
                 s_anim.SetBool("isP3Alive", false);
                 s_anim.Play("Death");
             }
 
-            if (player4.HP <= 0 && isP4_Alive)
+            if (players[i].GetComponent<BaseEntities>().enemyOrder == "P4" && player4.HP <= 0 && isP4_Alive)
             {
-                if (players[i].GetComponent<BaseEntities>().entityName == "P4")
-                {
-                    Debug.Log("P4 HAS DIED");
-                    players.Remove(players[i]);
-                }
-                b_anim.SetBool("isBlocking", false);
                 isP4_Alive = false;
+                Debug.Log("P4 HAS DIED");
+                players.Remove(players[i]);
+                b_anim.SetBool("isBlocking", false);
                 b_anim.SetBool("isP4Alive", false);
                 b_anim.Play("Death");
             }
@@ -1046,6 +1105,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
             {
                 isE1_Alive = false;
                 e1_anim.SetBool("isE1Alive", false);
+                e1_anim.SetBool("isBlocking", false);
                 e1_anim.Play("Death");
                 bui.e1_Button.SetActive(false);
                 if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy1")
@@ -1183,6 +1243,10 @@ public class TurnBasedBattleSystem : MonoBehaviour
             e2_anim.SetBool("isSpelling", false);
             e3_anim.SetBool("isSpelling", false);
             dpMove.p1Turn();
+            bui.spellPlayer.anim.SetBool("isBlocking", false);
+            bui.spellPlayer.anim.Play("Idle");
+            bui.blocking = false;
+            bui.player.isBlocking = false;
         }
     }
 
