@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private int scene;
 
+    public GameObject Items;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +66,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("isWalking", false);
             }
 
-            //If the player presses left click mouse button and the cool down is finished play attack animation
+         /*   //If the player presses left click mouse button and the cool down is finished play attack animation
             if (Input.GetMouseButtonDown(0) && cooldown <= 0)
             {
                 anim.SetTrigger("Attack");
@@ -72,9 +74,9 @@ public class PlayerController : MonoBehaviour
 
                 //Once the player has triggered an attack set a cooldown before next use
                 cooldown = attackCooldown;
-            }
+            }*/
 
-
+/*
             //If the cooldown is greater than 0 minus the time period until it reaches less than 0
             if (cooldown > 0)
             {
@@ -84,7 +86,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButtonDown(1) && cooldown <= 0)
             {
                 SceneManager.LoadScene(1);
-            }
+            }*/
 
         }
 

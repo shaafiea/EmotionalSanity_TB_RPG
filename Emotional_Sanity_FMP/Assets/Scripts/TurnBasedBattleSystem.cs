@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -16,6 +17,8 @@ public class TurnBasedBattleSystem : MonoBehaviour
         [SerializeField] BaseEntities player2stats;
         [SerializeField] BaseEntities player3stats;
         [SerializeField] BaseEntities player4stats;*/
+
+    public GameManager gameManager;
 
     public TrackSwitcher trackswitch;
     public enum turns 
@@ -142,6 +145,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         player1 = GameObject.Find("NinjaWarrior").GetComponent<BaseEntities>();
         player2 = GameObject.Find("Karate").GetComponent<BaseEntities>();
         player3 = GameObject.Find("SorceressWarrior").GetComponent<BaseEntities>();
@@ -782,6 +786,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
             {
                 isP2_Alive = false;
                 players.Remove(players[i]);
+                bui.p2_Button.SetActive(false);
                 k_anim.SetBool("isBlocking", false);
                 k_anim.SetBool("isP2Alive", false);
                 k_anim.Play("Death");
@@ -790,6 +795,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
             if (players[i].GetComponent<BaseEntities>().enemyOrder == "P3" && player3.HP <= 0 && isP3_Alive)
             {
                 isP3_Alive = false;
+                bui.p3_Button.SetActive(false);
                 Debug.Log("P3 HAS DIED");
                 players.Remove(players[i]);
                 s_anim.SetBool("isBlocking", false);
@@ -800,6 +806,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
             if (players[i].GetComponent<BaseEntities>().enemyOrder == "P4" && player4.HP <= 0 && isP4_Alive)
             {
                 isP4_Alive = false;
+                bui.p4_Button.SetActive(false);
                 Debug.Log("P4 HAS DIED");
                 players.Remove(players[i]);
                 b_anim.SetBool("isBlocking", false);
@@ -1134,14 +1141,15 @@ public class TurnBasedBattleSystem : MonoBehaviour
             if (enemy1.HP <= 0 && isE1_Alive == true)
             {
                 isE1_Alive = false;
+                enemiesdead++;
                 e1_anim.SetBool("isE1Alive", false);
                 e1_anim.SetBool("isBlocking", false);
                 e1_anim.Play("Death");
                 bui.e1_Button.SetActive(false);
+                bui.e1_sp_Button.SetActive(false);
                 if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy1")
                 {
                     enemies.Remove(enemies[i]);
-                    enemiesdead++;
                 }
            
             } 
@@ -1149,35 +1157,45 @@ public class TurnBasedBattleSystem : MonoBehaviour
             if (enemy2.HP <= 0 && isE2_Alive == true)
             {
                 isE2_Alive = false;
+                enemiesdead++;
                 e2_anim.SetBool("isBlocking", false);
                 e2_anim.SetBool("isE2Alive", false);
                 e2_anim.Play("Death");
                 bui.e2_Button.SetActive(false);
+                bui.e2_sp_Button.SetActive(false);
                 if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy2")
                 {
                     enemies.Remove(enemies[i]);
-                    enemiesdead++;
                 }
             }
+
 
             if (enemy3.HP <= 0 && isE3_Alive == true)
             {
                 isE3_Alive = false;
+                enemiesdead++;
                 e3_anim.SetBool("isBlocking", false);
                 e3_anim.SetBool("isE3Alive", false);
                 e3_anim.Play("Death");
                 bui.e3_Button.SetActive(false);
+                bui.e3_sp_Button.SetActive(false);
                 if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy3")
                 {
                     enemies.Remove(enemies[i]);
-                    enemiesdead++;
                 }
             }
 
         }
 
-       /* if (enemiesdead == enemiesfighting)
+        if (enemiesdead == enemiesfighting)
         {
+            if (gameManager.currentlevel == gameManager.levelOne)
+            {
+                gameManager.LevelOneDone = true;
+                gameManager.currentlevel = gameManager.overWorld;
+                SceneManager.LoadScene(0);
+            }
+
            //P1
            PlayerPrefs.SetFloat("Player1HP", player1.HP);
            PlayerPrefs.SetFloat("Player1MP", player1.MP);
@@ -1218,7 +1236,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                 PlayerPrefs.SetFloat("Player4MP", player4.MP);
                 PlayerPrefs.SetFloat("Player4SP", player4.SP);
             }
-        }*/
+        }
 
     }
         

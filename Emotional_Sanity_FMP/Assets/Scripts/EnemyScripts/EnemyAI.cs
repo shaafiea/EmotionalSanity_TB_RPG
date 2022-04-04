@@ -90,6 +90,7 @@ public class EnemyAI : MonoBehaviour
         enemyStats.WeaponSanity();
         if (tbbs.randomrangeacc <= enemyStats.accuracy)
         {
+            tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
             target.TakeWeaponDamage(enemyStats.damage, enemyStats.weaponstrength);
         } else
         {
@@ -119,6 +120,7 @@ public class EnemyAI : MonoBehaviour
     }
     public void EnemySpell()
     {
+        tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
         target.TakeSpecialDamage(target.entityWeakness[0], (enemyStats.spellmoves[0].damage), (enemyStats.spellmoves[0].spTaken), enemyStats.manastrength);
         Debug.Log("Enemy Used Their Attack!");
         Debug.Log("Enemy Spell Hurt");

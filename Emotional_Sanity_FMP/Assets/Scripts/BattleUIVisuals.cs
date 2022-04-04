@@ -29,6 +29,9 @@ public class BattleUIVisuals : MonoBehaviour
     public GameObject e1_Button;
     public GameObject e2_Button;
     public GameObject e3_Button;
+    public GameObject e1_sp_Button;
+    public GameObject e2_sp_Button;
+    public GameObject e3_sp_Button;
     public Text e1_wp_text;
     public Text e2_wp_text;
     public Text e3_wp_text;
@@ -97,10 +100,10 @@ public class BattleUIVisuals : MonoBehaviour
         teamMembers.Insert(1, tbbs.player2);
         teamMembers.Insert(2, tbbs.player3);
         teamMembers.Insert(3, tbbs.player4);
-        p1_Button = GameObject.FindGameObjectWithTag("p1Button").GetComponent<GameObject>();
+/*        p1_Button = GameObject.FindGameObjectWithTag("p1Button").GetComponent<GameObject>();
         p2_Button = GameObject.FindGameObjectWithTag("p2Button").GetComponent<GameObject>();
         p3_Button = GameObject.FindGameObjectWithTag("p3Button").GetComponent<GameObject>();
-        p4_Button = GameObject.FindGameObjectWithTag("p4Button").GetComponent<GameObject>();
+        p4_Button = GameObject.FindGameObjectWithTag("p4Button").GetComponent<GameObject>();*/
         p1_text = GameObject.FindGameObjectWithTag("p1Text").GetComponent<Text>();
         p2_text = GameObject.FindGameObjectWithTag("p2Text").GetComponent<Text>();
         p3_text = GameObject.FindGameObjectWithTag("p3Text").GetComponent<Text>();
@@ -116,9 +119,9 @@ public class BattleUIVisuals : MonoBehaviour
             if (tbbs.enemies.Count == 1)
             {
                 enemies.Insert(0, tbbs.enemy1);
-                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
+/*                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
                 e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
-                e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();
+                e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();*/
                 e1_wp_text = GameObject.FindGameObjectWithTag("e1Text").GetComponent<Text>();
                 e2_Button.SetActive(false);
                 e3_Button.SetActive(false);
@@ -131,9 +134,9 @@ public class BattleUIVisuals : MonoBehaviour
             {
                 enemies.Insert(0, tbbs.enemy1);
                 enemies.Insert(1, tbbs.enemy2);
-                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
+/*                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
                 e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
-                e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();
+                e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();*/
                 e1_wp_text = GameObject.FindGameObjectWithTag("e1Text").GetComponent<Text>();
                 e2_wp_text = GameObject.FindGameObjectWithTag("e2Text").GetComponent<Text>();
                 e3_Button.SetActive(false);
@@ -414,6 +417,7 @@ public class BattleUIVisuals : MonoBehaviour
         spellsUI.SetActive(false);
         targetUI.SetActive(false);
         spellTargetUI.SetActive(false);
+        teamTargetUI.SetActive(false);
         tipsUI.SetActive(false);
         spellUIMenu = false;
     }
@@ -422,6 +426,7 @@ public class BattleUIVisuals : MonoBehaviour
     {
         Debug.Log("Player MP Before Spell: " + player.MP);
         Debug.Log("Spell MP: " + player.spellmoves[4].mpUsed);
+        tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
         target.TakeSpecialDamage(target.entityWeakness[0], (player.spellmoves[4].damage), (player.spellmoves[4].spTaken), player.manastrength);
         player.MP = player.MP - player.spellmoves[4].mpUsed;
         player.SP = player.SP + player.spellmoves[4].spUsed;
@@ -439,6 +444,7 @@ public class BattleUIVisuals : MonoBehaviour
         Debug.Log("Enemy Has taken a " + player.spellmoves[0] + " It hurt!");
         GameObject cloneobject = Instantiate(fireVFX, target.transform.position, target.transform.rotation);
         Destroy(cloneobject, 1.5f);
+        tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
         spellPlayer.anim.SetBool("isSpelling", false);
     }
 

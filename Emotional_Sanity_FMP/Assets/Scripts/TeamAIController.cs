@@ -99,6 +99,7 @@ public class TeamAIController : MonoBehaviour
         aiStats.WeaponSanity();
         if (tbbs.randomrangeacc <= aiStats.accuracy)
         {
+            tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
             target.TakeWeaponDamage(aiStats.damage, aiStats.weaponstrength);
         } else
         {
@@ -117,6 +118,7 @@ public class TeamAIController : MonoBehaviour
 
     public void AISpell()
     {
+        tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
         target.TakeSpecialDamage(target.entityWeakness[0], (aiStats.spellmoves[0].damage), (aiStats.spellmoves[0].spTaken), aiStats.manastrength);
         Debug.Log(aiStats.entityName + " Used Their Attack!");
     }
