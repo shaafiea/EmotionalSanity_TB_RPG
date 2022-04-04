@@ -97,7 +97,13 @@ public class TeamAIController : MonoBehaviour
     public void AIWeaponAttack()
     {
         aiStats.WeaponSanity();
-        target.TakeWeaponDamage(aiStats.damage, aiStats.weaponstrength);
+        if (tbbs.randomrangeacc <= aiStats.accuracy)
+        {
+            target.TakeWeaponDamage(aiStats.damage, aiStats.weaponstrength);
+        } else
+        {
+            tbbs.dpMove.MissDisplay(aiStats.entityName);
+        }
         Debug.Log(this.gameObject + " Has Attacked " + target);
         //tbbs.EndPlayerTurn();
     }
@@ -187,7 +193,7 @@ public class TeamAIController : MonoBehaviour
 
     public IEnumerator AIBlockWaitTime()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         if (aiStats.turnblock == true)
         {
             aiStats.turnblock = false;
@@ -228,9 +234,29 @@ public class TeamAIController : MonoBehaviour
         Destroy(cloneobject, 2.5f);
     }
 
-    public void SmallHealAnim()
+    public void smallhealrandom()
     {
         n_randomrange = Random.Range(0, 3);
+        if (n_randomrange == 0)
+        {
+            tbbs.dpMove.HealOneDisplay(aiStats.entityName, tbbs.player1.entityName);
+        }
+        else if (n_randomrange == 1)
+        {
+            tbbs.dpMove.HealOneDisplay(aiStats.entityName, tbbs.player2.entityName);
+        }
+        else if (n_randomrange == 2)
+        {
+            tbbs.dpMove.HealOneDisplay(aiStats.entityName, tbbs.player3.entityName);
+        }
+        else if (n_randomrange == 3)
+        {
+            tbbs.dpMove.HealOneDisplay(aiStats.entityName, tbbs.player4.entityName);
+        }
+
+    }
+    public void SmallHealAnim()
+    {
         if (n_randomrange == 0)
         {
             target = tbbs.player1;

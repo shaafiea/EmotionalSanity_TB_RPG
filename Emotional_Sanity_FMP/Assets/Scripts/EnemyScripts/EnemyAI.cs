@@ -88,7 +88,13 @@ public class EnemyAI : MonoBehaviour
     public void EnemyWeaponAttack()
     {
         enemyStats.WeaponSanity();
-        target.TakeWeaponDamage(enemyStats.damage, enemyStats.weaponstrength);
+        if (tbbs.randomrangeacc <= enemyStats.accuracy)
+        {
+            target.TakeWeaponDamage(enemyStats.damage, enemyStats.weaponstrength);
+        } else
+        {
+            tbbs.dpMove.MissDisplay(enemyStats.entityName);
+        }
         //ttbs.EndEnemyTurn();
     }
 
@@ -103,7 +109,7 @@ public class EnemyAI : MonoBehaviour
 
     public IEnumerator EnemyBlockWaitTime()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         if (enemyStats.turnblock == true)
         {
             enemyStats.BlockSanity();

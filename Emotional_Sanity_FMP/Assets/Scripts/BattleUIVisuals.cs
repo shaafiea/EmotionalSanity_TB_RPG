@@ -45,6 +45,7 @@ public class BattleUIVisuals : MonoBehaviour
     public GameObject targetUI;
     public GameObject spellTargetUI;
     public GameObject teamTargetUI;
+    public GameObject tipsUI;
 
     public GameObject grassVFX;
     public GameObject iceVFX;
@@ -146,7 +147,7 @@ public class BattleUIVisuals : MonoBehaviour
             }
             else if (enemies.Count == 3)
             {
-/*                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
+/*               e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
                 e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
                 e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();*/
                 e1_wp_text = GameObject.FindGameObjectWithTag("e1Text").GetComponent<Text>();
@@ -173,6 +174,7 @@ public class BattleUIVisuals : MonoBehaviour
             targetUI.SetActive(false);
             spellTargetUI.SetActive(false);
             teamTargetUI.SetActive(false);
+            tipsUI.SetActive(false);
         }
     }
 
@@ -330,6 +332,7 @@ public class BattleUIVisuals : MonoBehaviour
         {
             isSpellUsed = true;
             PlayFireSpellVFX();
+            
             // Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
         }
 
@@ -337,6 +340,7 @@ public class BattleUIVisuals : MonoBehaviour
         {
             isSpellUsed = true;
             PlayRockSpellVFX();
+            
         }
 
     }
@@ -368,13 +372,14 @@ public class BattleUIVisuals : MonoBehaviour
         tbbs.p2_isAttacking = true;
         tbbs.isTargeting = true;
         spellPlayer.anim.SetBool("isBlocking", true);
+        tbbs.dpMove.BlockDisplay(player.entityName);
         StartCoroutine(PlayerBlockWaitTime());
 
     }
 
     public IEnumerator PlayerBlockWaitTime()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         if (player.turnblock == true)
         {
             player.turnblock = false;
@@ -409,6 +414,7 @@ public class BattleUIVisuals : MonoBehaviour
         spellsUI.SetActive(false);
         targetUI.SetActive(false);
         spellTargetUI.SetActive(false);
+        tipsUI.SetActive(false);
         spellUIMenu = false;
     }
 
@@ -520,8 +526,14 @@ public class BattleUIVisuals : MonoBehaviour
     {
         player.WeaponSanity();
         //isAttacking = false;
-        tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
-        target.TakeWeaponDamage(player.damage, player.weaponstrength);
+        if (tbbs.randomrangeacc >= player.accuracy)
+        {
+            tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
+            target.TakeWeaponDamage(player.damage, player.weaponstrength);
+        } else
+        {
+            tbbs.dpMove.MissDisplay(player.entityName);
+        }
         Debug.Log("Enemy Weapon Damage Taken: " + (player.damage, player.weaponstrength));
     }
 
@@ -537,6 +549,7 @@ public class BattleUIVisuals : MonoBehaviour
             spellsUI.SetActive(false);
             spellTargetUI.SetActive(false);
             display.OnClickVanish();
+            tbbs.dpMove.DisplaySpellMove(player.entityName, "is using", player.spellmoves[0].name, target.entityName);
 
         } else
         {
@@ -559,6 +572,7 @@ public class BattleUIVisuals : MonoBehaviour
             spellsUI.SetActive(false);
             spellTargetUI.SetActive(false);
             display.OnClickVanish();
+            tbbs.dpMove.HealOneDisplay(player.entityName, target.entityName);
 
 
         }
@@ -583,7 +597,7 @@ public class BattleUIVisuals : MonoBehaviour
             spellsUI.SetActive(false);
             spellTargetUI.SetActive(false);
             display.OnClickVanish();
-
+            tbbs.dpMove.HeallAllDisplay(player.entityName);
         }
         else
         {
@@ -606,7 +620,7 @@ public class BattleUIVisuals : MonoBehaviour
             spellsUI.SetActive(false);
             spellTargetUI.SetActive(false);
             display.OnClickVanish();
-
+            tbbs.dpMove.SanityRegenDisplay(player.entityName);
         }
         else
         {
@@ -629,6 +643,7 @@ public class BattleUIVisuals : MonoBehaviour
             spellsUI.SetActive(false);
             spellTargetUI.SetActive(false);
             display.OnClickVanish();
+            tbbs.dpMove.DisplaySpellMove(player.entityName, "is using", player.spellmoves[4].name, target.entityName);
         }
         else
         {
@@ -637,6 +652,16 @@ public class BattleUIVisuals : MonoBehaviour
         //spellLifetime = 3;
         //Destroy(fireVFX, 3);
 
+    }
+
+    public void TipsUI()
+    {
+        playerUI.SetActive(false);
+        commandsUI.SetActive(false);
+        spellsUI.SetActive(false);
+        targetUI.SetActive(false);
+        spellTargetUI.SetActive(false);
+        tipsUI.SetActive(true);
     }
 
     public void EndTurnAfterAnim()

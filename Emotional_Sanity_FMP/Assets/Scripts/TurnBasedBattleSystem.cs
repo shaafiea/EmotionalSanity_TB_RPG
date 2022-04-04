@@ -130,6 +130,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
     public int randomrangeacc;
 
+    public bool t1_newState = false;
     public bool t2_newState = false;
     public bool t3_newState = false;
     public bool t4_newState = false;
@@ -259,6 +260,15 @@ public class TurnBasedBattleSystem : MonoBehaviour
                     //If the player isnt dead then allow them to fight in battle
                     if (player1.HP > 0)
                     {
+                        if (t1_newState == true)
+                        {
+                            Debug.Log("Teammate 1 is attacking");
+                            teamTD = true;
+                            RandomTeamState();
+                            Debug.Log(player2.gameObject + " " + t_randomrange);
+                            t1_newState = false;
+                        }
+
                         if (uiOff == true)
                         {
                             //Activate the UI
@@ -306,8 +316,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         //Depending on what state the AI is in do that specific command
                         if (p2_State.state == TeamAIController.AIState.Attack || (p2_State.state == TeamAIController.AIState.Random && t_randomrange == 0) && p2_turn == true)
-                        { 
-                            
+                        {
                             //If the player attacking state is true then play their attack
                             if (p2_isAttacking == true)
                             {
@@ -315,6 +324,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 player2.gameObject.transform.position = Vector3.MoveTowards(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position, step);
                                 if (Vector3.Distance(player2.gameObject.transform.position, p2_State.target.gameObject.transform.position) > 5f)
                                 {
+                                    dpMove.DisplayMove(player2.entityName, "Attacks", p2_State.target.entityName);
                                     k_anim.SetBool("isWalking", true);
                                 }
 
@@ -324,7 +334,6 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     speed = 0f;
                                     k_anim.SetBool("isWalking", false);
                                     k_anim.Play("Attack");
-                                    
                                 }
 
                             }
@@ -361,6 +370,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (player2.HP > 0)
                             {
+                                dpMove.BlockDisplay(player2.entityName);
                                 k_anim.SetBool("isBlocking", true);
                                 players[playerIndex].GetComponent<TeamAIController>().AIBlock();
                                 isTargeting = true;
@@ -391,7 +401,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     }
                                     break;
                                 }
-
+                                dpMove.DisplaySpellMove(player2.entityName, "is using", player2.spellmoves[0].name, p2_State.target.entityName);
                                 k_anim.SetBool("isSpelling", true);
                                 p3_isAttacking = true;
                                 uiOff = true;
@@ -407,6 +417,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (player2.HP > 0 && player2.MP >= player2.spellmoves[1].mpUsed)
                             {
+                                dpMove.SanityRegenDisplay(player2.entityName);
                                 k_anim.SetBool("isSanityRegen", true);
                                 p3_isAttacking = true;
                                 uiOff = true;
@@ -435,6 +446,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         //Debug.Log("Player 2 Turn");
                         if (t3_newState == true)
                         {
+                            p3_State.n_randomrange = Random.Range(0, 3);
                             teamTD = true;
                             Debug.Log("Teammate 3 is attacking");
                             RandomTeamState();
@@ -459,6 +471,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 player3.gameObject.transform.position = Vector3.MoveTowards(player3.gameObject.transform.position, p3_State.target.gameObject.transform.position, step);
                                 if (Vector3.Distance(player3.gameObject.transform.position, p3_State.target.gameObject.transform.position) > 5f)
                                 {
+                                    dpMove.DisplayMove(player3.entityName, "Attacks", p3_State.target.entityName);
                                     s_anim.SetBool("isWalking", true);
                                 }
 
@@ -505,6 +518,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (player3.HP > 0)
                             {
+                                dpMove.BlockDisplay(player3.entityName);
                                 s_anim.SetBool("isBlocking", true);
                                 players[playerIndex].GetComponent<TeamAIController>().AIBlock();
                                 isTargeting = true;
@@ -535,6 +549,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     }
                                     break;
                                 }
+                                dpMove.DisplaySpellMove(player3.entityName, "is using", player3.spellmoves[0].name, p3_State.target.entityName);
                                 s_anim.SetBool("isSpelling", true);
                                 p4_isAttacking = true;
                                 uiOff = true;
@@ -565,6 +580,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (player3.HP > 0 && player3.MP >= player3.spellmoves[2].mpUsed)
                             {
+                                dpMove.HeallAllDisplay(player3.entityName);
                                 s_anim.SetBool("isBigHealing", true);
                                 isTargeting = true;
                                 uiOff = true;
@@ -580,6 +596,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (player3.HP > 0 && player3.MP >= player3.spellmoves[3].mpUsed)
                             {
+                                dpMove.SanityRegenDisplay(player3.entityName);
                                 s_anim.SetBool("isSanityRegen", true);
                                 p4_isAttacking = true;
                                 uiOff = true;
@@ -633,6 +650,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 player4.gameObject.transform.position = Vector3.MoveTowards(player4.gameObject.transform.position, p4_State.target.gameObject.transform.position, step);
                                 if (Vector3.Distance(player4.gameObject.transform.position, p4_State.target.gameObject.transform.position) > 5f)
                                 {
+                                    dpMove.DisplayMove(player4.entityName, "Attacks", p4_State.target.entityName);
                                     b_anim.SetBool("isWalking", true);
                                 }
 
@@ -678,6 +696,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (player4.HP > 0)
                             {
+                                dpMove.BlockDisplay(player4.entityName);
                                 b_anim.SetBool("isBlocking", true);
                                 players[playerIndex].GetComponent<TeamAIController>().AIBlock();
                                 teamTD = true;
@@ -723,6 +742,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     }
                                     break;
                                 }
+                                dpMove.DisplaySpellMove(player4.entityName, "is using", player4.spellmoves[0].name, p4_State.target.entityName);
                                 b_anim.SetBool("isSpelling", true);
                                 uiOff = true;
                             } else
@@ -737,6 +757,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (player4.HP > 0 && player4.MP >= player4.spellmoves[1].mpUsed)
                             {
+                                dpMove.SanityRegenDisplay(player4.entityName);
                                 b_anim.SetBool("isSanityRegen", true);
                                 uiOff = true;
                             } else
@@ -827,6 +848,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     if (Vector3.Distance(enemy1.gameObject.transform.position, e1_state.target.gameObject.transform.position) > 5f)
                                     {
                                         speed = 7.0f;
+                                        dpMove.DisplayMove(enemy1.entityName, "Attacks", e1_state.target.entityName);
                                         e1_anim.SetBool("isWalking", true);
                                         Debug.Log("ENEMY TARGETING.... " + e1_state.target);
                                     }
@@ -870,6 +892,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (enemy1.HP > 0) 
                             {
+                                dpMove.BlockDisplay(enemy1.entityName);
                                 Debug.Log("Enemy 1 Block");
                                 e1_anim.SetBool("isBlocking", true);
                                 isTargeting = true;
@@ -882,6 +905,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         if (((randomrange == 2 && enemy1.MP >= 25) || (randomrange == 6 && enemy1.MP >= 25)) && e1_turn == true)
                         {
                             Debug.Log("HELLO");
+                            dpMove.DisplaySpellMove(enemy1.entityName, "is using", enemy1.spellmoves[0].name, e1_state.target.entityName);
                             e1_anim.SetBool("isSpelling", true);
                             uiOff = true;
                         }
@@ -930,6 +954,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     if (Vector3.Distance(enemy2.gameObject.transform.position, e2_state.target.gameObject.transform.position) > 5f)
                                     {
                                         speed = 7.0f;
+                                        dpMove.DisplayMove(enemy2.entityName, "Attacks", e2_state.target.entityName);
                                         e2_anim.SetBool("isWalking", true);
                                         Debug.Log("ENEMY TARGETING.... " + e2_state.target);
                                     }
@@ -977,6 +1002,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             if (enemy2.HP > 0)
                             {
                                 Debug.Log("Enemy 2 Block");
+                                dpMove.BlockDisplay(enemy2.entityName);
                                 e2_anim.SetBool("isBlocking", true);
                                 isTargeting = true;
                                 enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
@@ -987,6 +1013,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (randomrange == 2 && enemy2.MP >= 25 || randomrange == 6 && enemy2.MP >= 25)
                         {
+                            dpMove.DisplaySpellMove(enemy2.entityName, "is using", enemy2.spellmoves[0].name, e2_state.target.entityName);
                             e2_anim.SetBool("isSpelling", true);
                             uiOff = true;
                         }
@@ -1032,6 +1059,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     if (Vector3.Distance(enemy3.gameObject.transform.position, e3_state.target.gameObject.transform.position) > 5f)
                                     {
                                         speed = 7.0f;
+                                        dpMove.DisplayMove(enemy3.entityName, "Attacks", e3_state.target.entityName);
                                         e3_anim.SetBool("isWalking", true);
                                         Debug.Log("ENEMY TARGETING.... " + e3_state.target);
                                     }
@@ -1078,6 +1106,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             if (enemy3.HP > 0)
                             {
                                 Debug.Log("Enemy 3 Block");
+                                dpMove.BlockDisplay(enemy3.entityName);
                                 e3_anim.SetBool("isBlocking", true);
                                 isTargeting = true;
                                 enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
@@ -1088,6 +1117,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (randomrange == 2 && enemy3.MP >= 25 || randomrange == 6 && enemy3.MP >= 25)
                         {
+                            dpMove.DisplaySpellMove(enemy3.entityName, "is using", enemy3.spellmoves[0].name, e3_state.target.entityName);
                             e3_anim.SetBool("isSpelling", true);
                             uiOff = true;
                         }
