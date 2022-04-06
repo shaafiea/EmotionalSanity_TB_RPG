@@ -55,4 +55,9 @@ public class DisplayMoves : MonoBehaviour
     {
         displayText.text =  "Its Player 1s Turn";
     }
+
+    public void MenuDisplay(string description)
+    {
+        displayText.text = description;
+    }
 }

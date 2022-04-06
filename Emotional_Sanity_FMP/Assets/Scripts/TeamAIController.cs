@@ -101,6 +101,7 @@ public class TeamAIController : MonoBehaviour
         {
             tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
             target.TakeWeaponDamage(aiStats.damage, aiStats.weaponstrength);
+            target.gameObject.GetComponent<Animator>().Play("Damage");
         } else
         {
             tbbs.dpMove.MissDisplay(aiStats.entityName);
@@ -120,6 +121,7 @@ public class TeamAIController : MonoBehaviour
     {
         tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
         target.TakeSpecialDamage(target.entityWeakness[0], (aiStats.spellmoves[0].damage), (aiStats.spellmoves[0].spTaken), aiStats.manastrength);
+        target.gameObject.GetComponent<Animator>().Play("Damage");
         Debug.Log(aiStats.entityName + " Used Their Attack!");
     }
 

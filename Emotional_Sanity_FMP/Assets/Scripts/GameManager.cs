@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public int mediumHealItem;
     public int mediumManaItem;
     public int mediumSanityItem;
+    public int mediumHealAll;
+    public int mediumManaAll;
+    public int mediumSanityAll;
 
     public bool LevelOneDone;
     public bool LevelTwoDone;

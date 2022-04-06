@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
 
     private int scene;
 
-    public GameObject Items;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +40,7 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         //Disable Movement if the player is in the battle scene otherwise move around and attack!
-        if (scene != 1)
+        if (scene == 0)
         {
             if (direction.magnitude >= 0.1f)
             {
@@ -101,5 +99,4 @@ public class PlayerController : MonoBehaviour
     {
 
     }
-
 }

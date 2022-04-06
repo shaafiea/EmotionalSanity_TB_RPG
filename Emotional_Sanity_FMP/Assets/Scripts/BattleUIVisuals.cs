@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class BattleUIVisuals : MonoBehaviour
 {
+    public GameManager gameManager;
     public List<BaseEntities> teamMembers;
     public List<BaseEntities> enemies;
     public BaseEntities player;
@@ -24,6 +25,15 @@ public class BattleUIVisuals : MonoBehaviour
     public Text p2_text;
     public Text p3_text;
     public Text p4_text;
+
+    public GameObject p1_Button_item;
+    public GameObject p2_Button_item;
+    public GameObject p3_Button_item;
+    public GameObject p4_Button_item;
+    public Text p1_item_text;
+    public Text p2_item_text;
+    public Text p3_item_text;
+    public Text p4_item_text;
 
     //Enemy Target Buttons
     public GameObject e1_Button;
@@ -49,6 +59,8 @@ public class BattleUIVisuals : MonoBehaviour
     public GameObject spellTargetUI;
     public GameObject teamTargetUI;
     public GameObject tipsUI;
+    public GameObject itemPickerUI;
+    public GameObject teamtarget2UI;
 
     public GameObject grassVFX;
     public GameObject iceVFX;
@@ -90,9 +102,34 @@ public class BattleUIVisuals : MonoBehaviour
 
     public BaseEntities target;
 
+    //Items
+    public GameObject smallHealItemUI;
+    public GameObject smallManaItemUI;
+    public GameObject smallSanityItemUI;
+    public GameObject mediumHealItemUI;
+    public GameObject mediumManaItemUI;
+    public GameObject mediumSanityItemUI;
+    public GameObject mediumHealAllUI;
+    public GameObject mediumMPAllUI;
+    public GameObject mediumSPAllUI;
+
+    //ItemText
+    public Text smallHealText;
+    public Text smallManaText;
+    public Text smallSanityText;
+    public Text mediumHealText;
+    public Text mediumManaText;
+    public Text mediumSanityText;
+    public Text mediumHealAllText;
+    public Text mediumMPAllText;
+    public Text mediumSPAllText;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
         player = GameObject.Find("NinjaWarrior").GetComponent<BaseEntities>();
         spellPlayer = GameObject.Find("NinjaWarrior").GetComponentInChildren<PlaySpellAnim>();
@@ -112,6 +149,15 @@ public class BattleUIVisuals : MonoBehaviour
         p2_text.text = tbbs.player2.entityName;
         p3_text.text = tbbs.player3.entityName;
         p4_text.text = tbbs.player4.entityName;
+
+        p1_item_text = GameObject.FindGameObjectWithTag("p1ItemText").GetComponent<Text>();
+        p2_item_text = GameObject.FindGameObjectWithTag("p2ItemText").GetComponent<Text>();
+        p3_item_text = GameObject.FindGameObjectWithTag("p3ItemText").GetComponent<Text>();
+        p4_item_text = GameObject.FindGameObjectWithTag("p4ItemText").GetComponent<Text>();
+        p1_item_text.text = tbbs.player1.entityName;
+        p2_item_text.text = tbbs.player2.entityName;
+        p3_item_text.text = tbbs.player3.entityName;
+        p4_item_text.text = tbbs.player4.entityName;
 
         //Setting up the target buttons to know how many target there are on the field
         for (int i = 0; i < tbbs.enemies.Count; i++)
@@ -178,6 +224,8 @@ public class BattleUIVisuals : MonoBehaviour
             spellTargetUI.SetActive(false);
             teamTargetUI.SetActive(false);
             tipsUI.SetActive(false);
+            itemPickerUI.SetActive(false);
+            teamtarget2UI.SetActive(false);
         }
     }
 
@@ -235,6 +283,99 @@ public class BattleUIVisuals : MonoBehaviour
             }
             
         }
+
+        //Items Text and Buttons
+        //ITEM BUTTONS MANAGEMENT
+        if (gameManager.smallHealItem == 0)
+        {
+            smallHealItemUI.SetActive(false);
+        }
+        else
+        {
+            smallHealItemUI.SetActive(true);
+        }
+
+        if (gameManager.smallManaItem == 0)
+        {
+            smallManaItemUI.SetActive(false);
+        }
+        else
+        {
+            smallManaItemUI.SetActive(true);
+        }
+
+        if (gameManager.smallSanityItem == 0)
+        {
+            smallSanityItemUI.SetActive(false);
+        }
+        else
+        {
+            smallSanityItemUI.SetActive(true);
+        }
+
+        if (gameManager.mediumHealItem == 0)
+        {
+            mediumHealItemUI.SetActive(false);
+        }
+        else
+        {
+            mediumHealItemUI.SetActive(true);
+        }
+
+        if (gameManager.mediumManaItem == 0)
+        {
+            mediumManaItemUI.SetActive(false);
+        }
+        else
+        {
+            mediumManaItemUI.SetActive(true);
+        }
+
+        if (gameManager.mediumSanityItem == 0)
+        {
+            mediumSanityItemUI.SetActive(false);
+        }
+        else
+        {
+            mediumSanityItemUI.SetActive(true);
+        }
+
+        if (gameManager.mediumHealAll == 0)
+        {
+            mediumHealAllUI.SetActive(false);
+        }
+        else
+        {
+            mediumHealAllUI.SetActive(true);
+        }
+
+        if (gameManager.mediumManaAll == 0)
+        {
+            mediumMPAllUI.SetActive(false);
+        }
+        else
+        {
+            mediumMPAllUI.SetActive(true);
+        }
+
+        if (gameManager.mediumSanityAll == 0)
+        {
+            mediumSPAllUI.SetActive(false);
+        }
+        else
+        {
+            mediumSPAllUI.SetActive(true);
+        }
+
+        smallHealText.text = "Small Heal x" + gameManager.smallHealItem;
+        smallManaText.text = "Small Mana x" + gameManager.smallManaItem;
+        smallSanityText.text = "Small Sanity x" + gameManager.smallSanityItem;
+        mediumHealText.text = "Medium Heal x" + gameManager.mediumHealItem;
+        mediumManaText.text = "Medium Mana x" + gameManager.mediumManaItem;
+        mediumSanityText.text = "Medium Sanity x" + gameManager.mediumSanityItem;
+        mediumHealAllText.text = "Medium Heal All x" + gameManager.mediumHealAll;
+        mediumMPAllText.text = "Medium Mana All x" + gameManager.mediumManaAll;
+        mediumSPAllText.text = "Medium Sanity All x" + gameManager.mediumSanityAll;
     }
 
     //Target Menu
@@ -245,6 +386,8 @@ public class BattleUIVisuals : MonoBehaviour
         commandsUI.SetActive(false);
         targetUI.SetActive(true);
         spellTargetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
     }
 
     public void OpenSpellTargetMenu(int index)
@@ -256,6 +399,8 @@ public class BattleUIVisuals : MonoBehaviour
         targetUI.SetActive(false);
         spellTargetUI.SetActive(true);
         teamTargetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         display.OnClickVanish();
     }
 
@@ -267,7 +412,15 @@ public class BattleUIVisuals : MonoBehaviour
         targetUI.SetActive(false);
         spellTargetUI.SetActive(false);
         teamTargetUI.SetActive(true);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         display.OnClickVanish();
+    }
+
+    public void ItemOpen()
+    {
+        playerUI.SetActive(false);
+        teamtarget2UI.SetActive(true);
     }
 
     //Targeting Teammates
@@ -281,6 +434,8 @@ public class BattleUIVisuals : MonoBehaviour
         targetUI.SetActive(true);
         spellTargetUI.SetActive(false);
         teamTargetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         DealHealSpell();
     }
 
@@ -294,6 +449,8 @@ public class BattleUIVisuals : MonoBehaviour
         targetUI.SetActive(true);
         spellTargetUI.SetActive(false);
         teamTargetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         DealAttack();
     }
     public void GetTargetSpellAttack(int index)
@@ -305,7 +462,17 @@ public class BattleUIVisuals : MonoBehaviour
         targetUI.SetActive(false);
         spellTargetUI.SetActive(true);
         teamTargetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         DealSpellAttack();
+    }
+
+    public void GetItemTarget(int index)
+    {
+        teamdecider = index;
+        playerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
+        itemPickerUI.SetActive(true);
     }
 
     //Basic Attacking Scripts to test damage
@@ -315,6 +482,8 @@ public class BattleUIVisuals : MonoBehaviour
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
         targetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         target.gameObject.SetActive(true);
         isAttacking = true;
         playerTurn = true;
@@ -329,6 +498,8 @@ public class BattleUIVisuals : MonoBehaviour
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
         targetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         target.gameObject.SetActive(true);
         playerTurn = true;
         if (spelldecider == 0)
@@ -354,6 +525,8 @@ public class BattleUIVisuals : MonoBehaviour
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
         targetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         target.gameObject.SetActive(true);
         PlayHealOnceSpellVFX();
     }
@@ -366,6 +539,8 @@ public class BattleUIVisuals : MonoBehaviour
         commandsUI.SetActive(false);
         targetUI.SetActive(false);
         spellTargetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         blocking = true;
         player.turnblock = true;
         player.isBlocking = true;
@@ -396,7 +571,9 @@ public class BattleUIVisuals : MonoBehaviour
         playerUI.SetActive(false);
         spellsUI.SetActive(true);
         commandsUI.SetActive(false);
-        spellUIMenu = true;
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
+    spellUIMenu = true;
     }
 
 
@@ -407,6 +584,8 @@ public class BattleUIVisuals : MonoBehaviour
         playerUI.SetActive(false);
         spellsUI.SetActive(false);
         targetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
     }
 
     //Allows the player to go back in a menu
@@ -419,6 +598,8 @@ public class BattleUIVisuals : MonoBehaviour
         spellTargetUI.SetActive(false);
         teamTargetUI.SetActive(false);
         tipsUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         spellUIMenu = false;
     }
 
@@ -428,6 +609,7 @@ public class BattleUIVisuals : MonoBehaviour
         Debug.Log("Spell MP: " + player.spellmoves[4].mpUsed);
         tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
         target.TakeSpecialDamage(target.entityWeakness[0], (player.spellmoves[4].damage), (player.spellmoves[4].spTaken), player.manastrength);
+        target.gameObject.GetComponent<Animator>().Play("Damage");
         player.MP = player.MP - player.spellmoves[4].mpUsed;
         player.SP = player.SP + player.spellmoves[4].spUsed;
     }
@@ -446,6 +628,7 @@ public class BattleUIVisuals : MonoBehaviour
         Destroy(cloneobject, 1.5f);
         tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
         spellPlayer.anim.SetBool("isSpelling", false);
+        target.gameObject.GetComponent<Animator>().Play("Damage");
     }
 
     public void SmallHeal()
@@ -532,10 +715,11 @@ public class BattleUIVisuals : MonoBehaviour
     {
         player.WeaponSanity();
         //isAttacking = false;
-        if (tbbs.randomrangeacc >= player.accuracy)
+        if (tbbs.randomrangeacc <= player.accuracy)
         {
             tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
             target.TakeWeaponDamage(player.damage, player.weaponstrength);
+            target.gameObject.GetComponent<Animator>().Play("Damage");
         } else
         {
             tbbs.dpMove.MissDisplay(player.entityName);
@@ -667,6 +851,8 @@ public class BattleUIVisuals : MonoBehaviour
         spellsUI.SetActive(false);
         targetUI.SetActive(false);
         spellTargetUI.SetActive(false);
+        itemPickerUI.SetActive(false);
+        teamtarget2UI.SetActive(false);
         tipsUI.SetActive(true);
     }
 
@@ -692,6 +878,161 @@ public class BattleUIVisuals : MonoBehaviour
         Debug.Log("You Tried To Escape");
         SceneManager.LoadScene(0);
         
+    }
+
+
+    //ITEMS
+    public void smallHealItem()
+    {
+        gameManager.smallHealItem -= 1;
+        if (teamdecider == 0)
+        {
+            tbbs.player1.HP += 15;
+        }
+        else if (teamdecider == 1)
+        {
+            tbbs.player2.HP += 15;
+        }
+        else if (teamdecider == 2)
+        {
+            tbbs.player3.HP += 15;
+        }
+        else if (teamdecider == 3)
+        {
+            tbbs.player4.HP += 15;
+        }
+    }
+
+    public void smallManaItem()
+    {
+        gameManager.smallManaItem -= 1;
+        if (teamdecider == 0)
+        {
+            tbbs.player1.MP += 15;
+        }
+        else if (teamdecider == 1)
+        {
+            tbbs.player2.MP += 15;
+        }
+        else if (teamdecider == 2)
+        {
+            tbbs.player3.MP += 15;
+        }
+        else if (teamdecider == 3)
+        {
+            tbbs.player4.MP += 15;
+        }
+    }
+
+    public void smallSanityItem()
+    {
+        gameManager.smallSanityItem -= 1;
+        if (teamdecider == 0)
+        {
+            tbbs.player1.SP += 15;
+        }
+        else if (teamdecider == 1)
+        {
+            tbbs.player2.SP += 15;
+        }
+        else if (teamdecider == 2)
+        {
+            tbbs.player3.SP += 15;
+        }
+        else if (teamdecider == 3)
+        {
+            tbbs.player4.SP += 15;
+        }
+    }
+
+    public void mediumHealItem()
+    {
+        gameManager.mediumHealItem -= 1;
+        if (teamdecider == 0)
+        {
+            tbbs.player1.HP += 30;
+        }
+        else if (teamdecider == 1)
+        {
+            tbbs.player2.HP += 30;
+        }
+        else if (teamdecider == 2)
+        {
+            tbbs.player3.HP += 30;
+        }
+        else if (teamdecider == 3)
+        {
+            tbbs.player4.HP += 30;
+        }
+    }
+
+    public void mediumManaItem()
+    {
+        gameManager.mediumManaItem -= 1;
+        if (teamdecider == 0)
+        {
+            tbbs.player1.MP += 30;
+        }
+        else if (teamdecider == 1)
+        {
+            tbbs.player2.MP += 30;
+        }
+        else if (teamdecider == 2)
+        {
+            tbbs.player3.MP += 30;
+        }
+        else if (teamdecider == 3)
+        {
+            tbbs.player4.MP += 30;
+        }
+    }
+
+    public void mediumSanityItem()
+    {
+        gameManager.mediumSanityItem -= 1;
+        if (teamdecider == 0)
+        {
+            tbbs.player1.SP += 30;
+        }
+        else if (teamdecider == 1)
+        {
+            tbbs.player2.SP += 30;
+        }
+        else if (teamdecider == 2)
+        {
+            tbbs.player3.SP += 30;
+        }
+        else if (teamdecider == 3)
+        {
+            tbbs.player4.SP += 30;
+        }
+    }
+
+    public void mediumHealAllItem()
+    {
+        gameManager.mediumHealAll -= 1;
+        tbbs.player1.HP += 30;
+        tbbs.player2.HP += 30;
+        tbbs.player3.HP += 30;
+        tbbs.player4.HP += 30;
+    }
+
+    public void mediumManaAllItem()
+    {
+        gameManager.mediumManaAll -= 1;
+        tbbs.player1.MP += 30;
+        tbbs.player2.MP += 30;
+        tbbs.player3.MP += 30;
+        tbbs.player4.MP += 30;
+    }
+
+    public void mediumSanityAllItem()
+    {
+        gameManager.mediumSanityAll -= 1;
+        tbbs.player1.SP += 30;
+        tbbs.player2.SP += 30;
+        tbbs.player3.SP += 30;
+        tbbs.player4.SP += 30;
     }
 
     void FootL()

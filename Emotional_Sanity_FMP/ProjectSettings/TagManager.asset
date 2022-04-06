@@ -33,6 +33,10 @@ TagManager:
   - p4Text
   - p1Text
   - p1Button
+  - p1ItemText
+  - p2ItemText
+  - p3ItemText
+  - p4ItemText
   layers:
   - Default
   - TransparentFX

@@ -29,7 +29,6 @@ public class BaseEnemyBattleInfo : BaseEntities
 
         }
 
-
         spImage.fillAmount = (float)SP / maxSP;
 
         if (SP >= maxSP)
@@ -38,5 +37,12 @@ public class BaseEnemyBattleInfo : BaseEntities
         }
 
         mpImage.fillAmount = (float)MP / maxMP;
+        {
+            if (MP >= maxMP)
+            {
+                MP = maxMP;
+            }
+
+        }
     }
 }

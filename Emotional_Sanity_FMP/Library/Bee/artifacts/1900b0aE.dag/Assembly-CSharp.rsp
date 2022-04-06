@@ -361,6 +361,7 @@
 "Assets/Scripts/Other/DrawGizmo.cs"
 "Assets/Scripts/Other/PlayerBase.cs"
 "Assets/Scripts/Other/PlayerBattler.cs"
+"Assets/Scripts/OverworldSystem.cs"
 "Assets/Scripts/PartyFollow.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/PlayerController.cs"
