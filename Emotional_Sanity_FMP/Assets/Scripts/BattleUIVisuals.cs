@@ -129,7 +129,7 @@ public class BattleUIVisuals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
         player = GameObject.Find("NinjaWarrior").GetComponent<BaseEntities>();
         spellPlayer = GameObject.Find("NinjaWarrior").GetComponentInChildren<PlaySpellAnim>();

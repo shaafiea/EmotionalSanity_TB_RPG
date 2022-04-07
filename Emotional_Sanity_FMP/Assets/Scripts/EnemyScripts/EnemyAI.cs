@@ -92,7 +92,15 @@ public class EnemyAI : MonoBehaviour
         {
             tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
             target.TakeWeaponDamage(enemyStats.damage, enemyStats.weaponstrength);
-            target.gameObject.GetComponent<Animator>().Play("Damage");
+            if (target == tbbs.player1)
+            {
+                target.gameObject.GetComponentInChildren<Animator>().Play("Damage");
+            }
+            else
+            {
+                target.gameObject.GetComponent<Animator>().Play("Damage");
+            }
+           
         } else
         {
             tbbs.dpMove.MissDisplay(enemyStats.entityName);
@@ -122,7 +130,14 @@ public class EnemyAI : MonoBehaviour
     public void EnemySpell()
     {
         tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
-        target.gameObject.GetComponent<Animator>().Play("Damage");
+        if (target == tbbs.player1)
+        {
+            target.gameObject.GetComponentInChildren<Animator>().Play("Damage");
+        }
+        else
+        {
+            target.gameObject.GetComponent<Animator>().Play("Damage");
+        }
         target.TakeSpecialDamage(target.entityWeakness[0], (enemyStats.spellmoves[0].damage), (enemyStats.spellmoves[0].spTaken), enemyStats.manastrength);
         Debug.Log("Enemy Used Their Attack!");
         Debug.Log("Enemy Spell Hurt");

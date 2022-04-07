@@ -145,7 +145,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         player1 = GameObject.Find("NinjaWarrior").GetComponent<BaseEntities>();
         player2 = GameObject.Find("Karate").GetComponent<BaseEntities>();
         player3 = GameObject.Find("SorceressWarrior").GetComponent<BaseEntities>();
@@ -824,7 +824,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
             if (currentTurns == turns.enemies) //Once all players have done their moves make it so it is the enemies turn.
             {
 
-////////////////////////////////////////////////////////// ENEMY 1 (FIRST SPOT) //////////////////////////////////////////////
+////////////////////////////////////////////////////////// ENEMY 1 (FIRST SPOT) Level 1 Boss //////////////////////////////////////////////
                     if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Grass)" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy1" && enemyIndex == i)
                     {
                         e1_turn = true;
@@ -927,7 +927,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         enemies.Remove(enemies[i]);
                     }
                 }
-
+                /////////////////////////////////////////Level 2 Boss/////////////////////////////////////////////////////////////
                 if (enemies[i].GetComponent<BaseEntities>().entityName == "Golem(Boss)" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy1" && enemyIndex == i)
                 {
                     e1_turn = true;
@@ -1029,12 +1029,119 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         EndEnemyTurn();
                         enemies.Remove(enemies[i]);
                     }
+
+                   
+                    
+                }
+                /////////////////////////////////////////Level 3 Boss/////////////////////////////////////////////////////////////
+                if (enemies[i].GetComponent<BaseEntities>().entityName == "Outlaw(Spiky)" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy1" && enemyIndex == i)
+                {
+                    e1_turn = true;
+                    // Move our position a step closer to the target.
+                    float step = speed * Time.deltaTime; // calculate distance to move
+
+                    if (enemy1.HP > 0)
+                    {
+
+                        if (e1_newState == true)
+                        {
+                            Debug.Log("ENEMY 1 DECIDING");
+                            EnemyState();
+                            e1_newState = false;
+                        }
+                        //If the player hasnt decided on a target yet then decide on a target at random
+                        if (isTargeting == true)
+                        {
+                            randomrangeacc = Random.Range(0, 100);
+                            Debug.Log("Enemy 1 " + randomrange);
+                            e1_state.AITarget();
+                            isTargeting = false;
+                        }
+
+                        if ((randomrange == 0 || (randomrange == 2 && enemy1.MP < 25) || randomrange == 4 || randomrange == 8) && e1_turn == true)
+                        {
+                            if (e1_isAttacking == true)
+                            {
+
+                                enemy1.gameObject.transform.position = Vector3.MoveTowards(enemy1.gameObject.transform.position, e1_state.target.gameObject.transform.position, step);
+                                if (Vector3.Distance(enemy1.gameObject.transform.position, e1_state.target.gameObject.transform.position) > 5f)
+                                {
+                                    speed = 7.0f;
+                                    dpMove.DisplayMove(enemy1.entityName, "Attacks", e1_state.target.entityName);
+                                    e1_anim.SetBool("isWalking", true);
+                                    Debug.Log("ENEMY TARGETING.... " + e1_state.target);
+                                }
+
+                                // If the player has reached the enemy position, then play the attack animation
+                                if (Vector3.Distance(enemy1.gameObject.transform.position, e1_state.target.gameObject.transform.position) <= 1f)
+                                {
+                                    speed = 0f;
+                                    e1_anim.SetBool("isWalking", false);
+                                    e1_anim.Play("Attack");
+                                }
+                            }
+
+                        }
+
+                        if (e1_isAttacking == false && e1_turn == true)
+                        {
+                            speed = 7.0f;
+                            Debug.Log("WalkBack");
+                            enemy1.gameObject.transform.position = Vector3.MoveTowards(enemy1.gameObject.transform.position, enemy1Target.gameObject.transform.position, step);
+                            if (Vector3.Distance(enemy1.gameObject.transform.position, enemy1Target.gameObject.transform.position) > 6f)
+                            {
+                                e1_anim.SetBool("isWalking", true);
+                            }
+
+                            //Once the player has reached his original position end their turn
+                            if (enemy1.gameObject.transform.position == enemy1Target.gameObject.transform.position)
+                            {
+                                Debug.Log("Im back to my positon!");
+                                e1_anim.SetBool("isWalking", false);
+                                e1_turn = false;
+                                e1_anim.Play("Idle");
+                                isTargeting = true;
+                                EndEnemyTurn();
+                            }
+
+                            uiOff = true;
+
+                        }
+                        if ((randomrange == 1 || randomrange == 3 || randomrange == 5 || (randomrange == 6 && enemy1.MP < 25) || randomrange == 7) && e1_turn == true)
+                        {
+                            if (enemy1.HP > 0)
+                            {
+                                dpMove.BlockDisplay(enemy1.entityName);
+                                Debug.Log("Enemy 1 Block");
+                                e1_anim.SetBool("isBlocking", true);
+                                isTargeting = true;
+                                enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
+                                enemyTD = false;
+                                uiOff = true;
+                            }
+                        }
+
+                        if (((randomrange == 2 && enemy1.MP >= 25) || (randomrange == 6 && enemy1.MP >= 25)) && e1_turn == true)
+                        {
+                            Debug.Log("HELLO");
+                            dpMove.DisplaySpellMove(enemy1.entityName, "is using", enemy1.spellmoves[0].name, e1_state.target.entityName);
+                            e1_anim.SetBool("isSpelling", true);
+                            uiOff = true;
+                        }
+
+                    }
+                    else if (enemy1.HP <= 0)
+                    {
+                        EndEnemyTurn();
+                        enemies.Remove(enemies[i]);
+                    }
+
                 }
 
                 ///////////////////////////////////////// END OF ENEMY 1 AI /////////////////////////////////////////////////////////////////////
 
 
-                //////////////////////////////////////// ENEMY 2 SPOT //////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////// ENEMY 2 SPOT Level 1 Side Enemy //////////////////////////////////////////////////////////////////////////
                 if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Fire)" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy2" && enemyIndex == i)
                     {
                         e2_turn = true;
@@ -1137,7 +1244,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         enemies.Remove(enemies[i]);
                     }
                 }
-
+                ////////////////////////////////////////////LEVEL 2 SIDE ENEMY 2/////////////////////////////////////////////////////////////////
                 if (enemies[i].GetComponent<BaseEntities>().entityName == "Golem(Side1)" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy2" && enemyIndex == i)
                 {
                     e2_turn = true;
@@ -1240,9 +1347,114 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         enemies.Remove(enemies[i]);
                     }
                 }
+
+                ////////////////////////////////////////////LEVEL 3 SIDE ENEMY 2/////////////////////////////////////////////////////////////////
+                if (enemies[i].GetComponent<BaseEntities>().entityName == "SideLaw" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy2" && enemyIndex == i)
+                {
+                    e2_turn = true;
+                    // Move our position a step closer to the target.
+                    float step = speed * Time.deltaTime; // calculate distance to move
+
+                    if (enemy2.HP > 0)
+                    {
+                        if (e2_newState == true)
+                        {
+                            Debug.Log("ENEMY 2 DECIDING");
+                            EnemyState();
+                            e2_newState = false;
+                        }
+
+                        //If the player hasnt decided on a target yet then decide on a target at random
+                        if (isTargeting == true)
+                        {
+                            randomrangeacc = Random.Range(0, 100);
+                            Debug.Log("Enemy 2 " + randomrange);
+                            e2_state.AITarget();
+                            isTargeting = false;
+                        }
+
+                        if (randomrange == 0 || randomrange == 2 && enemy2.MP < 25 || randomrange == 4 || randomrange == 8 && e2_turn == true)
+                        {
+                            if (e2_isAttacking == true)
+                            {
+                                enemy2.gameObject.transform.position = Vector3.MoveTowards(enemy2.gameObject.transform.position, e2_state.target.gameObject.transform.position, step);
+                                if (Vector3.Distance(enemy2.gameObject.transform.position, e2_state.target.gameObject.transform.position) > 5f)
+                                {
+                                    speed = 7.0f;
+                                    dpMove.DisplayMove(enemy2.entityName, "Attacks", e2_state.target.entityName);
+                                    e2_anim.SetBool("isWalking", true);
+                                    Debug.Log("ENEMY TARGETING.... " + e2_state.target);
+                                }
+
+                                // If the player has reached the enemy position, then play the attack animation
+                                if (Vector3.Distance(enemy2.gameObject.transform.position, e2_state.target.gameObject.transform.position) <= 1f)
+                                {
+                                    speed = 0f;
+                                    e2_anim.SetBool("isWalking", false);
+                                    e2_anim.Play("Attack");
+                                    Debug.Log("yolooooooooooooooooooo");
+
+                                }
+                            }
+
+                        }
+
+                        if (e2_isAttacking == false && e2_turn == true)
+                        {
+                            speed = 6.0f;
+                            Debug.Log("WalkBack");
+                            enemy2.gameObject.transform.position = Vector3.MoveTowards(enemy2.gameObject.transform.position, enemy2Target.gameObject.transform.position, step);
+                            if (Vector3.Distance(enemy2.gameObject.transform.position, enemy2Target.gameObject.transform.position) > 6f)
+                            {
+                                e2_anim.SetBool("isWalking", true);
+                            }
+
+                            //Once the player has reached his original position end their turn
+                            if (enemy2.gameObject.transform.position == enemy2Target.gameObject.transform.position)
+                            {
+                                Debug.Log("Im back to my positon!");
+                                e2_anim.SetBool("isWalking", false);
+                                e2_turn = false;
+                                e2_anim.Play("Idle");
+                                enemyTD = false;
+                                isTargeting = true;
+                                EndEnemyTurn();
+                            }
+
+                            uiOff = true;
+                        }
+
+                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy2.MP < 25 || randomrange == 7 && e2_turn == true)
+                        {
+                            if (enemy2.HP > 0)
+                            {
+                                Debug.Log("Enemy 2 Block");
+                                dpMove.BlockDisplay(enemy2.entityName);
+                                e2_anim.SetBool("isBlocking", true);
+                                isTargeting = true;
+                                enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
+                                enemyTD = false;
+                                uiOff = true;
+                            }
+                        }
+
+                        if (randomrange == 2 && enemy2.MP >= 25 || randomrange == 6 && enemy2.MP >= 25)
+                        {
+                            dpMove.DisplaySpellMove(enemy2.entityName, "is using", enemy2.spellmoves[0].name, e2_state.target.entityName);
+                            e2_anim.SetBool("isSpelling", true);
+                            uiOff = true;
+                        }
+                    }
+                    else if (enemy2.HP <= 0)
+                    {
+                        EndEnemyTurn();
+                        enemies.Remove(enemies[i]);
+                    }
+                }
+
                 ///////////////////////////////////////// END OF ENEMY 2 AI /////////////////////////////////////////////////////////////////////
 
-                ///////////////////////////////////////// END OF ENEMY 3 AI /////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////ENEMY 3 AI Level 1 Side Enemy /////////////////////////////////////////////////////////////////////
                 if (enemies[i].GetComponent<BaseEntities>().entityName == "Skully(Water)" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy3" && enemyIndex == i)
                     {
                         e3_turn = true;
@@ -1344,7 +1556,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         enemies.Remove(enemies[i]);
                     }
                 }
-
+                /////////////////////////////////////////Level 2 Side Enemy 3 /////////////////////////////////////////////////////////////////////
                 if (enemies[i].GetComponent<BaseEntities>().entityName == "Golem(Side2)" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy3" && enemyIndex == i)
                 {
                     e3_turn = true;
@@ -1446,54 +1658,161 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         enemies.Remove(enemies[i]);
                     }
                 }
+                /////////////////////////////////////////Level 3 Side Enemy 3 /////////////////////////////////////////////////////////////////////
+                if (enemies[i].GetComponent<BaseEntities>().entityName == "SideLaw2" && enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy3" && enemyIndex == i)
+                {
+                    e3_turn = true;
+                    // Move our position a step closer to the target.
+                    float step = speed * Time.deltaTime; // calculate distance to move
+
+                    if (enemy3.HP > 0)
+                    {
+                        if (e3_newState == true)
+                        {
+                            Debug.Log("ENEMY 3 DECIDING");
+                            EnemyState();
+                            e3_newState = false;
+                        }
+                        //If the player hasnt decided on a target yet then decide on a target at random
+                        if (isTargeting == true)
+                        {
+                            randomrangeacc = Random.Range(0, 100);
+                            Debug.Log("Enemy 3 " + randomrange);
+                            e3_state.AITarget();
+                            isTargeting = false;
+                        }
+
+                        if (randomrange == 0 || randomrange == 2 && enemy3.MP < 25 || randomrange == 4 || randomrange == 8 && e3_turn == true)
+                        {
+                            if (e3_isAttacking == true)
+                            {
+
+                                enemy3.gameObject.transform.position = Vector3.MoveTowards(enemy3.gameObject.transform.position, e3_state.target.gameObject.transform.position, step);
+                                if (Vector3.Distance(enemy3.gameObject.transform.position, e3_state.target.gameObject.transform.position) > 5f)
+                                {
+                                    speed = 7.0f;
+                                    dpMove.DisplayMove(enemy3.entityName, "Attacks", e3_state.target.entityName);
+                                    e3_anim.SetBool("isWalking", true);
+                                    Debug.Log("ENEMY TARGETING.... " + e3_state.target);
+                                }
+
+                                // If the player has reached the enemy position, then play the attack animation
+                                if (Vector3.Distance(enemy3.gameObject.transform.position, e3_state.target.gameObject.transform.position) <= 1f)
+                                {
+                                    speed = 0f;
+                                    e3_anim.SetBool("isWalking", false);
+                                    e3_anim.Play("Attack");
+                                    Debug.Log("yolooooooooooooooooooo");
+
+                                }
+                            }
+
+                        }
+
+                        if (e3_isAttacking == false && e3_turn == true)
+                        {
+                            speed = 6.0f;
+                            Debug.Log("WalkBack");
+                            enemy3.gameObject.transform.position = Vector3.MoveTowards(enemy3.gameObject.transform.position, enemy3Target.gameObject.transform.position, step);
+                            if (Vector3.Distance(enemy3.gameObject.transform.position, enemy3Target.gameObject.transform.position) > 6f)
+                            {
+                                e3_anim.SetBool("isWalking", true);
+                            }
+
+                            //Once the player has reached his original position end their turn
+                            if (enemy3.gameObject.transform.position == enemy3Target.gameObject.transform.position)
+                            {
+                                Debug.Log("Im back to my positon!");
+                                e3_anim.SetBool("isWalking", false);
+                                e3_turn = false;
+                                e3_anim.Play("Idle");
+                                isTargeting = true;
+                                EndEnemyTurn();
+                            }
+
+                            uiOff = true;
+                        }
+
+                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy3.MP < 25 || randomrange == 7 && e3_turn == true)
+                        {
+                            if (enemy3.HP > 0)
+                            {
+                                Debug.Log("Enemy 3 Block");
+                                dpMove.BlockDisplay(enemy3.entityName);
+                                e3_anim.SetBool("isBlocking", true);
+                                isTargeting = true;
+                                enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
+                                enemyTD = false;
+                                uiOff = true;
+                            }
+                        }
+
+                        if (randomrange == 2 && enemy3.MP >= 25 || randomrange == 6 && enemy3.MP >= 25)
+                        {
+                            dpMove.DisplaySpellMove(enemy3.entityName, "is using", enemy3.spellmoves[0].name, e3_state.target.entityName);
+                            e3_anim.SetBool("isSpelling", true);
+                            uiOff = true;
+                        }
+                    }
+                    else if (enemy3.HP <= 0)
+                    {
+                        EndEnemyTurn();
+                        enemies.Remove(enemies[i]);
+                    }
+                }
+
                 ///////////////////////////////////////// END OF ENEMY 3 AI /////////////////////////////////////////////////////////////////////
             }
 
-            if (enemy1.HP <= 0 && isE1_Alive == true)
+
+            if (enemy1.HP <= 0)
             {
-                isE1_Alive = false;
+                if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy1")
+                {
+                    enemies.Remove(enemies[i]);
+                }
+            }
+
+            if (enemy1.HP <= 0 && isE1_Alive == true)
+            { 
                 enemiesdead++;
                 e1_anim.SetBool("isE1Alive", false);
                 e1_anim.SetBool("isBlocking", false);
                 e1_anim.Play("Death");
                 bui.e1_Button.SetActive(false);
                 bui.e1_sp_Button.SetActive(false);
-                if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy1")
-                {
-                    enemies.Remove(enemies[i]);
-                }
-           
-            } 
+                isE1_Alive = false;
+
+            }
 
             if (enemy2.HP <= 0 && isE2_Alive == true)
             {
-                isE2_Alive = false;
                 enemiesdead++;
                 e2_anim.SetBool("isBlocking", false);
                 e2_anim.SetBool("isE2Alive", false);
                 e2_anim.Play("Death");
                 bui.e2_Button.SetActive(false);
                 bui.e2_sp_Button.SetActive(false);
-                if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy2")
+                isE2_Alive = false;
+            }
+
+            if (enemy3.HP <= 0)
+            {
+                if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy3")
                 {
                     enemies.Remove(enemies[i]);
                 }
             }
 
-
             if (enemy3.HP <= 0 && isE3_Alive == true)
             {
-                isE3_Alive = false;
                 enemiesdead++;
                 e3_anim.SetBool("isBlocking", false);
                 e3_anim.SetBool("isE3Alive", false);
                 e3_anim.Play("Death");
                 bui.e3_Button.SetActive(false);
                 bui.e3_sp_Button.SetActive(false);
-                if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy3")
-                {
-                    enemies.Remove(enemies[i]);
-                }
+                isE3_Alive = false;
             }
 
         }
@@ -1510,8 +1829,50 @@ public class TurnBasedBattleSystem : MonoBehaviour
                 SceneManager.LoadScene(0);
             }
 
-           //P1
-           PlayerPrefs.SetFloat("Player1HP", player1.HP);
+            if (gameManager.currentlevel == gameManager.levelTwo)
+            {
+                gameManager.LevelTwoDone = true;
+                gameManager.currentlevel = gameManager.overWorld;
+                gameManager.smallHealItem += 1;
+                gameManager.smallManaItem += 1;
+                gameManager.smallSanityItem += 1;
+                gameManager.mediumHealItem += 2;
+                gameManager.mediumManaItem += 2;
+                gameManager.mediumSanityItem += 2;
+                SceneManager.LoadScene(0);
+            }
+
+            if (gameManager.currentlevel == gameManager.levelThree)
+            {
+                gameManager.LevelThreeDone = true;
+                gameManager.currentlevel = gameManager.overWorld;
+                gameManager.smallHealItem += 1;
+                gameManager.smallManaItem += 1;
+                gameManager.smallSanityItem += 1;
+                gameManager.mediumHealItem += 2;
+                gameManager.mediumManaItem += 2;
+                gameManager.mediumSanityItem += 2;
+                SceneManager.LoadScene(0);
+            }
+
+            if (gameManager.currentlevel == gameManager.levelFour)
+            {
+                gameManager.LevelFourDone = true;
+                gameManager.currentlevel = gameManager.overWorld;
+                gameManager.smallHealItem += 1;
+                gameManager.smallManaItem += 1;
+                gameManager.smallSanityItem += 1;
+                gameManager.mediumHealItem += 1;
+                gameManager.mediumManaItem += 1;
+                gameManager.mediumSanityItem += 1;
+                gameManager.mediumHealAll += 2;
+                gameManager.mediumManaAll += 2;
+                gameManager.mediumSanityAll += 2;
+                SceneManager.LoadScene(0);
+            }
+
+            //P1
+            PlayerPrefs.SetFloat("Player1HP", player1.HP);
            PlayerPrefs.SetFloat("Player1MP", player1.MP);
            PlayerPrefs.SetFloat("Player1SP", player1.SP);
             //P2
