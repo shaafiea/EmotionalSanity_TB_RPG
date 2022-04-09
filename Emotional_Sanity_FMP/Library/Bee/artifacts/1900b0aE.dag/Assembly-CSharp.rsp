@@ -349,6 +349,7 @@
 "Assets/Scripts/BaseEntities.cs"
 "Assets/Scripts/BasePlayerBattleInfo.cs"
 "Assets/Scripts/BattleUIVisuals.cs"
+"Assets/Scripts/ClassDiagram/NewBehaviourScript.cs"
 "Assets/Scripts/DamageTest.cs"
 "Assets/Scripts/DisplayInfo.cs"
 "Assets/Scripts/DisplayMoveDescription.cs"

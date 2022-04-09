@@ -604,6 +604,12 @@ MonoBehaviour:
   e1_newState: 0
   e2_newState: 0
   e3_newState: 0
+  p2_spell: 0
+  p3_spell: 0
+  p4_spell: 0
+  e1_spell: 0
+  e2_spell: 0
+  e3_spell: 0
 --- !u!1 &25224414
 GameObject:
   m_ObjectHideFlags: 0
@@ -7665,6 +7671,7 @@ MonoBehaviour:
   b_healVFX: {fileID: 0}
   sanityVFX: {fileID: 0}
   bigHealspot: {fileID: 0}
+  enemySpot: {fileID: 0}
   target: {fileID: 0}
   state: 0
 --- !u!1 &770837332
@@ -8839,7 +8846,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 3
+  m_Text: 'SorceressWarrior
 
 '
 --- !u!222 &866996276
@@ -9630,7 +9637,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 2
+  m_Text: 'Karate
 
 '
 --- !u!222 &1002852748
@@ -9849,7 +9856,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 1
+  m_Text: 'Ninja Warrior
 
 
 '
@@ -10435,7 +10442,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 1
+  m_Text: 'NinjaWarrior
 
 
 '
@@ -16780,7 +16787,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 2
+  m_Text: 'Karate
 
 '
 --- !u!222 &1733605640
@@ -17693,7 +17700,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 4
+  m_Text: 'Brute
 
 '
 --- !u!222 &1887805289
@@ -18528,7 +18535,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 4
+  m_Text: 'Brute
 
 '
 --- !u!222 &1942506813
@@ -19390,7 +19397,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 3
+  m_Text: 'SorceressWarrior
 
 '
 --- !u!222 &2047690928
@@ -20077,6 +20084,10 @@ PrefabInstance:
       propertyPath: entityType.Array.data[0]
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1302217026916709697, guid: 2df700a59efaee947a1a565ac2478797, type: 3}
+      propertyPath: spellmoves.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: df99434cb2f5ff746ab981a971a0233d, type: 2}
     - target: {fileID: 1302217026916709697, guid: 2df700a59efaee947a1a565ac2478797, type: 3}
       propertyPath: spellmoves.Array.data[1]
       value: 

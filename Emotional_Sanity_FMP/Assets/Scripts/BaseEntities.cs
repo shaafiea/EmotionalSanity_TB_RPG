@@ -72,12 +72,12 @@ public class BaseEntities : MonoBehaviour
                     //Debug.Log(HP);
                 } else if (SP >= 75)
                 {
-                    HP -= ((damage * (int)strength) / (int)weapondefence) * 0.7f;
+                    HP -= (int)((damage * (int)strength) / (int)weapondefence) * 0.7f;
                     Debug.Log("Weapon Effective! + YOUR SANITY IS HIGH THEREFORE YOU TOOK LESS DAMAGE THAN USUAL");
                     //Debug.Log(HP);
                 } else
                 {
-                    HP -= (damage * (int)strength) / (int)weapondefence;
+                    HP -= (int)(damage * (int)strength) / (int)weapondefence;
                     Debug.Log("Weapon Effective!");
                 }
             }
@@ -86,7 +86,7 @@ public class BaseEntities : MonoBehaviour
             {
                 if (SP <= 25)
                 {
-                    HP -= (((damage * (int)strength) / (int)weapondefence) * 75 / 100) * 1.5f;
+                    HP -= (int)(((damage * (int)strength) / (int)weapondefence) * 75 / 100) * 1.5f;
                     if (SP < 0)
                     {
                         SP = 0;
@@ -96,13 +96,13 @@ public class BaseEntities : MonoBehaviour
                 }
                 else if (SP >= 75)
                 {
-                    HP -= (((damage * (int)strength) / (int)weapondefence) * 75 / 100) * 0.7f;
+                    HP -= (int)(((damage * (int)strength) / (int)weapondefence) * 75 / 100) * 0.7f;
                     Debug.Log("Blocked!: Weapon Effective! + YOUR SANITY IS HIGH THEREFORE YOU TOOK LESS DAMAGE THAN USUAL");
                     //Debug.Log(HP);
                 }
                 else
                 {
-                    HP -= ((damage * (int)strength) / (int)weapondefence) * 75 / 100;
+                    HP -= (int)((damage * (int)strength) / (int)weapondefence) * 75 / 100;
                     Debug.Log("Blocked!: Weapon Effective!");
                 }
             

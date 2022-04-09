@@ -604,6 +604,9 @@ MonoBehaviour:
   e1_newState: 0
   e2_newState: 0
   e3_newState: 0
+  p2_spell: 0
+  p3_spell: 0
+  p4_spell: 0
 --- !u!1 &25224414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3748,7 +3751,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5333,7 +5336,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6076,11 +6079,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 279639123068422674, guid: 873b5865188a3634989f93aea4bd8993, type: 3}
       propertyPath: entityWeakness.Array.data[0]
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 279639123068422674, guid: 873b5865188a3634989f93aea4bd8993, type: 3}
       propertyPath: entityWeakness.Array.data[1]
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1931454056068377707, guid: 873b5865188a3634989f93aea4bd8993, type: 3}
       propertyPath: m_Name
@@ -7118,6 +7121,7 @@ MonoBehaviour:
   b_healVFX: {fileID: 0}
   sanityVFX: {fileID: 0}
   bigHealspot: {fileID: 0}
+  enemySpot: {fileID: 0}
   target: {fileID: 0}
   state: 0
 --- !u!1 &770837332
@@ -9374,6 +9378,110 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bc3c2dc3b0efff749ad302c2ed5fc779, type: 2}
+    - target: {fileID: 2300002, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5cab2e7eb0a200c449982a50adff2022, type: 2}
+    - target: {fileID: 2300004, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5cab2e7eb0a200c449982a50adff2022, type: 2}
+    - target: {fileID: 2300006, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5cab2e7eb0a200c449982a50adff2022, type: 2}
+    - target: {fileID: 2300008, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5cab2e7eb0a200c449982a50adff2022, type: 2}
+    - target: {fileID: 2300010, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5cab2e7eb0a200c449982a50adff2022, type: 2}
+    - target: {fileID: 2300012, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9174de065a796924fac3545a23554541, type: 2}
+    - target: {fileID: 2300014, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9174de065a796924fac3545a23554541, type: 2}
+    - target: {fileID: 2300016, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9174de065a796924fac3545a23554541, type: 2}
+    - target: {fileID: 2300018, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9174de065a796924fac3545a23554541, type: 2}
+    - target: {fileID: 2300020, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a28090895004f2f4e9246db965449cc7, type: 2}
+    - target: {fileID: 2300022, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a28090895004f2f4e9246db965449cc7, type: 2}
+    - target: {fileID: 2300024, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a28090895004f2f4e9246db965449cc7, type: 2}
+    - target: {fileID: 2300026, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a28090895004f2f4e9246db965449cc7, type: 2}
+    - target: {fileID: 2300028, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a28090895004f2f4e9246db965449cc7, type: 2}
+    - target: {fileID: 2300030, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a28090895004f2f4e9246db965449cc7, type: 2}
+    - target: {fileID: 2300032, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dae8fc661ca2ad54aa66f02298cb658e, type: 2}
+    - target: {fileID: 2300034, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dae8fc661ca2ad54aa66f02298cb658e, type: 2}
+    - target: {fileID: 2300036, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dae8fc661ca2ad54aa66f02298cb658e, type: 2}
+    - target: {fileID: 2300038, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dae8fc661ca2ad54aa66f02298cb658e, type: 2}
+    - target: {fileID: 2300040, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c8f427c2815f03e4b99d5b0ead765e95, type: 2}
+    - target: {fileID: 2300044, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0bc269265f788949a2e5373c1a6bebf, type: 2}
+    - target: {fileID: 2300046, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0bc269265f788949a2e5373c1a6bebf, type: 2}
+    - target: {fileID: 2300048, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0bc269265f788949a2e5373c1a6bebf, type: 2}
+    - target: {fileID: 2300050, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0bc269265f788949a2e5373c1a6bebf, type: 2}
+    - target: {fileID: 2300052, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0bc269265f788949a2e5373c1a6bebf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c685db5bd3a0f9b4d8ddb667b78d772f, type: 3}
 --- !u!1 &1002852745
@@ -9767,7 +9875,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -17405,7 +17513,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

@@ -21,7 +21,7 @@ public class MMButtons : MonoBehaviour
     //Set Stats To their Default State
     public void StartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         PlayerPrefs.DeleteAll();
         //P1
         PlayerPrefs.SetFloat("Player1HP", 100);

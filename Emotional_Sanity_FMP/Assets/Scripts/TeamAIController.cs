@@ -209,7 +209,7 @@ public class TeamAIController : MonoBehaviour
     public void GrassWhistleAnim()
     {
         aiStats.MP = aiStats.MP - aiStats.spellmoves[0].mpUsed;
-        aiStats.SP = aiStats.SP - aiStats.spellmoves[0].spUsed;
+        aiStats.SP = aiStats.SP + aiStats.spellmoves[0].spUsed;
         GameObject cloneobject = Instantiate(grassVFX, target.transform.position, target.transform.rotation);
         Destroy(cloneobject, 2.5f);
     }
@@ -217,7 +217,7 @@ public class TeamAIController : MonoBehaviour
     public void FireBurnAnim()
     {
         aiStats.MP = aiStats.MP - aiStats.spellmoves[0].mpUsed;
-        aiStats.SP = aiStats.SP - aiStats.spellmoves[0].spUsed;
+        aiStats.SP = aiStats.SP + aiStats.spellmoves[0].spUsed;
         GameObject cloneobject = Instantiate(fireVFX, target.transform.position, target.transform.rotation);
         Destroy(cloneobject, 2.5f);
     }
@@ -225,7 +225,7 @@ public class TeamAIController : MonoBehaviour
     public void WaterSplashAnim()
     {
         aiStats.MP = aiStats.MP - aiStats.spellmoves[0].mpUsed;
-        aiStats.SP = aiStats.SP - aiStats.spellmoves[0].spUsed;
+        aiStats.SP = aiStats.SP + aiStats.spellmoves[0].spUsed;
         GameObject cloneobject = Instantiate(waterVFX, target.transform.position, target.transform.rotation);
         Destroy(cloneobject, 2.5f);
     }
@@ -233,7 +233,7 @@ public class TeamAIController : MonoBehaviour
     public void IceSpikeAnim()
     {
         aiStats.MP = aiStats.MP - aiStats.spellmoves[0].mpUsed;
-        aiStats.SP = aiStats.SP - aiStats.spellmoves[0].spUsed;
+        aiStats.SP = aiStats.SP + aiStats.spellmoves[0].spUsed;
         GameObject cloneobject = Instantiate(iceVFX, target.transform.position, target.transform.rotation);
         Destroy(cloneobject, 2.5f);
     }

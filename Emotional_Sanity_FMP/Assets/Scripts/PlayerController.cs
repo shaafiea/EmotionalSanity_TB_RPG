@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         //Disable Movement if the player is in the battle scene otherwise move around and attack!
-        if (scene == 0)
+        if (scene == 1)
         {
             if (direction.magnitude >= 0.1f)
             {

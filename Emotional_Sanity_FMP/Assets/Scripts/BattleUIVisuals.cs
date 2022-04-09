@@ -164,13 +164,11 @@ public class BattleUIVisuals : MonoBehaviour
         {
             if (tbbs.enemies.Count == 1)
             {
-                enemies.Insert(0, tbbs.enemy1);
+                //enemies.Insert(0, tbbs.enemy1);
 /*                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
                 e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
                 e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();*/
                 e1_wp_text = GameObject.FindGameObjectWithTag("e1Text").GetComponent<Text>();
-                e2_Button.SetActive(false);
-                e3_Button.SetActive(false);
                 e1_wp_text.text = tbbs.enemy1.entityName;
 
                 e1_sp_text = GameObject.FindGameObjectWithTag("e1sptext").GetComponent<Text>();
@@ -185,7 +183,6 @@ public class BattleUIVisuals : MonoBehaviour
                 e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();*/
                 e1_wp_text = GameObject.FindGameObjectWithTag("e1Text").GetComponent<Text>();
                 e2_wp_text = GameObject.FindGameObjectWithTag("e2Text").GetComponent<Text>();
-                e3_Button.SetActive(false);
                 e1_wp_text.text = tbbs.enemy1.entityName;
                 e2_wp_text.text = tbbs.enemy2.entityName;
 
@@ -436,7 +433,14 @@ public class BattleUIVisuals : MonoBehaviour
         teamTargetUI.SetActive(false);
         itemPickerUI.SetActive(false);
         teamtarget2UI.SetActive(false);
-        DealHealSpell();
+        if (tbbs.player1.MP >= tbbs.player1.spellmoves[1].mpUsed)
+        {
+            DealHealSpell();
+        }
+        else
+        {
+            GoBack();
+        }
     }
 
     //Targeting Different Enemies
@@ -464,7 +468,13 @@ public class BattleUIVisuals : MonoBehaviour
         teamTargetUI.SetActive(false);
         itemPickerUI.SetActive(false);
         teamtarget2UI.SetActive(false);
-        DealSpellAttack();
+        if (tbbs.player1.MP >= tbbs.player1.spellmoves[0].mpUsed)
+        {
+            DealSpellAttack();
+        } else
+        {
+            GoBack();
+        }
     }
 
     public void GetItemTarget(int index)

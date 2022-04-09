@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     public GameObject b_healVFX;
     public GameObject sanityVFX;
     public GameObject bigHealspot;
+    public GameObject enemySpot;
 
     //Team Target
     public BaseEntities target;
@@ -59,22 +60,47 @@ public class EnemyAI : MonoBehaviour
                 blocking = false;
                 enemyStats.isBlocking = false;
                 tbbs.e1_anim.SetBool("isBlocking", false);
-                tbbs.e2_anim.SetBool("isBlocking", false);
-                tbbs.e3_anim.SetBool("isBlocking", false);
+                if (tbbs.enemiesfighting >= 2)
+                { 
+                    tbbs.e2_anim.SetBool("isBlocking", false);
+                }
+                if (tbbs.enemiesfighting >= 3)
+                {
+                    tbbs.e3_anim.SetBool("isBlocking", false);
+                }
                 Debug.Log("Enemy Turn Enemy team block is now: " + this.gameObject + enemyStats.isBlocking);
-                if (tbbs.e1_state.enemyStats.HP > 0)
+
+                if (tbbs.enemiesfighting == 1)
                 {
-                    tbbs.e1_anim.Play("Idle");
-                }
-                if (tbbs.e2_state.enemyStats.HP > 0)
-                {
-                    tbbs.e2_anim.Play("Idle");
-                }
-                if (tbbs.e3_state.enemyStats.HP > 0)
-                {
-                    tbbs.e3_anim.Play("Idle");
+                    if (tbbs.e1_state.enemyStats.HP > 0)
+                    {
+                        tbbs.e1_anim.Play("Idle");
+                    }
                 }
 
+                if (tbbs.enemiesfighting == 2)
+                {
+                    if (tbbs.e1_state.enemyStats.HP > 0)
+                    {
+                        tbbs.e1_anim.Play("Idle");
+                    }
+                    if (tbbs.e2_state.enemyStats.HP > 0)
+                    {
+                        tbbs.e2_anim.Play("Idle");
+                    }
+                }
+
+                if (tbbs.enemiesfighting == 3)
+                {
+                    if (tbbs.e1_state.enemyStats.HP > 0)
+                    {
+                        tbbs.e1_anim.Play("Idle");
+                    }
+                    if (tbbs.e2_state.enemyStats.HP > 0)
+                    {
+                        tbbs.e2_anim.Play("Idle");
+                    }
+                }
             }
         }
     }
@@ -143,6 +169,33 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("Enemy Spell Hurt");
     }
 
+    public void EnemySpellAll()
+    {
+        tbbs.dpMove.DamageDisplay("Everyone on the team", "Took", "Damage!");
+        if (tbbs.player1.HP > 0)
+        {
+            tbbs.player1.gameObject.GetComponentInChildren<Animator>().Play("Damage");
+            tbbs.player1.TakeSpecialDamage(target.entityWeakness[0], (enemyStats.spellmoves[0].damage), (enemyStats.spellmoves[0].spTaken), enemyStats.manastrength);
+        }
+        if (tbbs.player2.HP > 0)
+        {
+            tbbs.player2.gameObject.GetComponentInChildren<Animator>().Play("Damage");
+            tbbs.player2.TakeSpecialDamage(target.entityWeakness[0], (enemyStats.spellmoves[0].damage), (enemyStats.spellmoves[0].spTaken), enemyStats.manastrength);
+        }
+        if (tbbs.player3.HP > 0)
+        {
+            tbbs.player3.gameObject.GetComponentInChildren<Animator>().Play("Damage");
+            tbbs.player3.TakeSpecialDamage(target.entityWeakness[0], (enemyStats.spellmoves[0].damage), (enemyStats.spellmoves[0].spTaken), enemyStats.manastrength);
+        }
+        if (tbbs.player4.HP > 0)
+        {
+            tbbs.player4.gameObject.GetComponentInChildren<Animator>().Play("Damage");
+            tbbs.player4.TakeSpecialDamage(target.entityWeakness[0], (enemyStats.spellmoves[0].damage), (enemyStats.spellmoves[0].spTaken), enemyStats.manastrength);
+        }
+        Debug.Log("Enemy Used Their Attack!");
+        Debug.Log("Enemy Spell Hurt");
+    }
+
     public void SmallHeal()
     {
         enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[1].mpUsed;
@@ -205,6 +258,15 @@ public class EnemyAI : MonoBehaviour
         Destroy(cloneobject, 2.5f);
     }
 
+    public void FireBurnAnimAll()
+    {
+        enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[0].mpUsed;
+        enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[0].spUsed;
+        GameObject cloneobject = Instantiate(fireVFX, enemySpot.transform.position, enemySpot.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+
     public void WaterSplashAnim()
     {
         enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[0].mpUsed;
@@ -220,6 +282,15 @@ public class EnemyAI : MonoBehaviour
         GameObject cloneobject = Instantiate(iceVFX, target.transform.position, target.transform.rotation);
         Destroy(cloneobject, 2.5f);
     }
+
+    public void RockFallAnim()
+    {
+        enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[0].mpUsed;
+        enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[0].spUsed;
+        GameObject cloneobject = Instantiate(rockVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
     public void SmallHealAnim()
     {
         n_randomrange = Random.Range(0, 2);
@@ -283,20 +354,44 @@ public class EnemyAI : MonoBehaviour
 
     public void EndTurnAfterAnim()
     {
-        tbbs.e1_anim.SetBool("isSpelling", false);
-        tbbs.e1_anim.SetBool("isSanityRegen", false);
-        tbbs.e1_anim.SetBool("isHealing", false);
-        tbbs.e1_anim.SetBool("isBigHealing", false);
+        if (tbbs.enemiesfighting == 1)
+        {
+            tbbs.e1_anim.SetBool("isSpelling", false);
+            tbbs.e1_anim.SetBool("isSanityRegen", false);
+            tbbs.e1_anim.SetBool("isHealing", false);
+            tbbs.e1_anim.SetBool("isBigHealing", false);
+        }
 
-        tbbs.e2_anim.SetBool("isSpelling", false);
-        tbbs.e2_anim.SetBool("isSanityRegen", false);
-        tbbs.e2_anim.SetBool("isHealing", false);
-        tbbs.e2_anim.SetBool("isBigHealing", false);
+        if (tbbs.enemiesfighting == 2)
+        {
+            tbbs.e1_anim.SetBool("isSpelling", false);
+            tbbs.e1_anim.SetBool("isSanityRegen", false);
+            tbbs.e1_anim.SetBool("isHealing", false);
+            tbbs.e1_anim.SetBool("isBigHealing", false);
 
-        tbbs.e3_anim.SetBool("isSpelling", false);
-        tbbs.e3_anim.SetBool("isSanityRegen", false);
-        tbbs.e3_anim.SetBool("isHealing", false);
-        tbbs.e3_anim.SetBool("isBigHealing", false);
+            tbbs.e2_anim.SetBool("isSpelling", false);
+            tbbs.e2_anim.SetBool("isSanityRegen", false);
+            tbbs.e2_anim.SetBool("isHealing", false);
+            tbbs.e2_anim.SetBool("isBigHealing", false);
+        }
+
+        if (tbbs.enemiesfighting == 3)
+        {
+            tbbs.e1_anim.SetBool("isSpelling", false);
+            tbbs.e1_anim.SetBool("isSanityRegen", false);
+            tbbs.e1_anim.SetBool("isHealing", false);
+            tbbs.e1_anim.SetBool("isBigHealing", false);
+
+            tbbs.e2_anim.SetBool("isSpelling", false);
+            tbbs.e2_anim.SetBool("isSanityRegen", false);
+            tbbs.e2_anim.SetBool("isHealing", false);
+            tbbs.e2_anim.SetBool("isBigHealing", false);
+
+            tbbs.e3_anim.SetBool("isSpelling", false);
+            tbbs.e3_anim.SetBool("isSanityRegen", false);
+            tbbs.e3_anim.SetBool("isHealing", false);
+            tbbs.e3_anim.SetBool("isBigHealing", false);
+        }
         tbbs.isTargeting = true;
         tbbs.EndEnemyTurn();
     }

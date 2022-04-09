@@ -15,11 +15,11 @@ D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/Emotional_Sanity_F
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-63904
+53783
 Successfully changed project path to: D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/Emotional_Sanity_FMP
 D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/Emotional_Sanity_FMP
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 90.55 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 92.22 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.1.10f1 (b15f561b2cef)
 [Subsystems] Discovering subsystems at path D:/Unity Hub/2021.1.10f1/Editor/Data/Resources/UnitySubsystems
@@ -36,74 +36,74 @@ Initialize mono
 Mono path[0] = 'D:/Unity Hub/2021.1.10f1/Editor/Data/Managed'
 Mono path[1] = 'D:/Unity Hub/2021.1.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'D:/Unity Hub/2021.1.10f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56816
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56428
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Unity Hub/2021.1.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.000930 seconds.
+Registered in 0.000896 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 91.32 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 91.96 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.787 seconds
+- Completed reload, in  1.759 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1787ms)
-		BeginReloadAssembly (52ms)
+	ReloadAssembly (1759ms)
+		BeginReloadAssembly (53ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (366ms)
+		EndReloadAssembly (358ms)
 			LoadAssemblies (52ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (119ms)
+			SetupTypeCache (113ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (20ms)
+			RebuildScriptCaches (19ms)
 			SetupLoadedEditorAssemblies (194ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (5ms)
+				InitializePlatformSupportModulesInManaged (4ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (91ms)
+				RefreshPlugins (92ms)
 				BeforeProcessingInitializeOnLoad (1ms)
 				ProcessInitializeOnLoadAttributes (75ms)
-				ProcessInitializeOnLoadMethodAttributes (22ms)
+				ProcessInitializeOnLoadMethodAttributes (21ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.005713 seconds.
+Registered in 0.005362 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 91.75 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 116.92 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.031 seconds
+- Completed reload, in  1.161 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1032ms)
-		BeginReloadAssembly (114ms)
+	ReloadAssembly (1162ms)
+		BeginReloadAssembly (142ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (16ms)
-		EndReloadAssembly (879ms)
-			LoadAssemblies (93ms)
+			CreateAndSetChildDomain (23ms)
+		EndReloadAssembly (967ms)
+			LoadAssemblies (94ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (273ms)
+			SetupTypeCache (304ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (57ms)
-			SetupLoadedEditorAssemblies (405ms)
+			RebuildScriptCaches (73ms)
+			SetupLoadedEditorAssemblies (429ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (92ms)
-				BeforeProcessingInitializeOnLoad (72ms)
-				ProcessInitializeOnLoadAttributes (231ms)
+				RefreshPlugins (117ms)
+				BeforeProcessingInitializeOnLoad (108ms)
+				ProcessInitializeOnLoadAttributes (193ms)
 				ProcessInitializeOnLoadMethodAttributes (5ms)
 				AfterProcessingInitializeOnLoad (2ms)
 				EditorAssembliesLoaded (0ms)
@@ -113,15 +113,15 @@ Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.27 seconds
-Refreshing native plugins compatible for Editor in 1.16 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 1.14 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5064 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 213.2 MB.
-System memory in use after: 213.6 MB.
+Unloading 5065 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 216.6 MB.
+System memory in use after: 217.0 MB.
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 5537.
-Total: 2.831300 ms (FindLiveObjects: 0.394000 ms CreateObjectMapping: 0.224700 ms MarkObjects: 2.065700 ms  DeleteObjects: 0.146100 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 5539.
+Total: 3.256700 ms (FindLiveObjects: 0.449300 ms CreateObjectMapping: 0.281800 ms MarkObjects: 2.413000 ms  DeleteObjects: 0.111800 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -136,575 +136,529 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller
-  artifactKey: Guid(353db946b1419364c8dc6324453afb95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller using Guid(353db946b1419364c8dc6324453afb95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e51c3e809500d0c271c8681232fdfc8') in 0.044835 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 754.795124 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/Skully/SkullyWater.controller
-  artifactKey: Guid(121f411efc27e3f49a793dc1008b1132) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/Skully/SkullyWater.controller using Guid(121f411efc27e3f49a793dc1008b1132) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34300447e90ec73029d1a81ba14bf6e6') in 0.123180 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.457980 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/Skully/SkullyWater 1.controller
-  artifactKey: Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/Skully/SkullyWater 1.controller using Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b0c0d97844c843cf27bb18404e1b4bc') in 0.122714 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2.005374 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/SkullyWater 1.controller
-  artifactKey: Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/SkullyWater 1.controller using Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47aa0e37a08372d2f489e611d8c9d29a') in 0.119892 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.137741 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller
-  artifactKey: Guid(353db946b1419364c8dc6324453afb95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller using Guid(353db946b1419364c8dc6324453afb95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17d51dbae07b7085b40e4f03ec141895') in 0.023337 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 19.975642 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller
-  artifactKey: Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller using Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c054201b50f3b3267833ad3f38bbeede') in 0.118957 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 59.628036 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Dual Weapon Combo.fbx
-  artifactKey: Guid(6ab1141aa53074541ae6d335e35ec383) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Dual Weapon Combo.fbx using Guid(6ab1141aa53074541ae6d335e35ec383) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fcbdd8ded44339910376382f382f135') in 0.342429 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 3.017889 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Dual Weapon Combo.fbx
-  artifactKey: Guid(6ab1141aa53074541ae6d335e35ec383) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Dual Weapon Combo.fbx using Guid(6ab1141aa53074541ae6d335e35ec383) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3eac642a7201b7774b1e6fa3a376fa27') in 0.059620 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.828874 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Standing Block Idle.fbx
-  artifactKey: Guid(1a74a697ee8d30c42a4380ebaa93d28a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Standing Block Idle.fbx using Guid(1a74a697ee8d30c42a4380ebaa93d28a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '262784bcb434327f5bf5b6c29c5d69d9') in 0.059403 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2.656657 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Standing Block Idle.fbx
-  artifactKey: Guid(1a74a697ee8d30c42a4380ebaa93d28a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Standing Block Idle.fbx using Guid(1a74a697ee8d30c42a4380ebaa93d28a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b9002fcc37a6b6699540e5bc8c24ab2') in 0.059420 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.052755 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Standing Block Idle.anim
-  artifactKey: Guid(81af40d76f067484792df439cf8829d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Standing Block Idle.anim using Guid(81af40d76f067484792df439cf8829d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'abef1e33f6a819cae460f56dcd988158') in 0.028616 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 4.175260 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Dual Weapon Combo.anim
-  artifactKey: Guid(8a76350b6462a3e4cbe45cc20662481d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Dual Weapon Combo.anim using Guid(8a76350b6462a3e4cbe45cc20662481d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d3d34abfcaaa77c9433df5638317720') in 0.019517 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 15.299566 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Block.anim
-  artifactKey: Guid(81af40d76f067484792df439cf8829d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Block.anim using Guid(81af40d76f067484792df439cf8829d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f4510deb7cba7f23ddf6dff1f7fc847') in 0.013506 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1430.904493 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Sword And Shield Power Up.fbx
-  artifactKey: Guid(76d59af3c56a0d649a229615cee02fe2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Sword And Shield Power Up.fbx using Guid(76d59af3c56a0d649a229615cee02fe2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f5a262149080ad5325ad721ceb31d52') in 0.150641 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 15.194778 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@House Dancing.fbx
-  artifactKey: Guid(851d43d6744cea646a585405be07e783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@House Dancing.fbx using Guid(851d43d6744cea646a585405be07e783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0557a38b523c5bf6caf4e05d6c9225c2') in 0.085409 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.444111 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Magic Heal.fbx
-  artifactKey: Guid(50317a4c2e70dc747973394c436362f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Magic Heal.fbx using Guid(50317a4c2e70dc747973394c436362f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8bbfdb69480c545f02b2584f30772a47') in 0.061992 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 5.992015 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Sword And Shield Power Up.anim
-  artifactKey: Guid(807e14870a58b7844886dceec0ea1517) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Sword And Shield Power Up.anim using Guid(807e14870a58b7844886dceec0ea1517) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '06b72fbab3095c6ff110e224c385530d') in 0.010188 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 8.889269 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Magic Heal.anim
-  artifactKey: Guid(7dac8c3072e281e4daba7f6e9e979757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Magic Heal.anim using Guid(7dac8c3072e281e4daba7f6e9e979757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de7730cd46220e3fb0cfb3401bcbe0d5') in 0.040003 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 14.122214 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Standing 2H Cast Spell 01.anim
-  artifactKey: Guid(fbb498de482b8ef48beffe51c3c63f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Standing 2H Cast Spell 01.anim using Guid(fbb498de482b8ef48beffe51c3c63f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0171e5cee283b441400393faeb6e5cf') in 0.012559 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.271699 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Sword And Shield Casting.anim
-  artifactKey: Guid(789807bcbd892bc439ec67d3d12a0c4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Sword And Shield Casting.anim using Guid(789807bcbd892bc439ec67d3d12a0c4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5ae019993a76645652c61c4bdbd8d7a') in 0.175277 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 7.063706 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Sword And Shield Power Up.fbx
-  artifactKey: Guid(76d59af3c56a0d649a229615cee02fe2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Sword And Shield Power Up.fbx using Guid(76d59af3c56a0d649a229615cee02fe2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a5266606036f21791bdea7368cd1af0') in 0.250456 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.547106 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Sword And Shield Casting.fbx
-  artifactKey: Guid(fdf4497ea0a9bc24bb6529937eaa9783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Sword And Shield Casting.fbx using Guid(fdf4497ea0a9bc24bb6529937eaa9783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c409985ed97baded3808f94479e5cffd') in 0.061517 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.911058 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Sword And Shield Casting.fbx
-  artifactKey: Guid(fdf4497ea0a9bc24bb6529937eaa9783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Sword And Shield Casting.fbx using Guid(fdf4497ea0a9bc24bb6529937eaa9783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fc5d2537aa658d50e013ce89b445fac') in 0.060430 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.754406 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Standing 2H Cast Spell 01.fbx
-  artifactKey: Guid(d701273c784328e4890ad12ce9ad0676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Standing 2H Cast Spell 01.fbx using Guid(d701273c784328e4890ad12ce9ad0676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0f4e83bb368e42ff84ae9ff965fc940') in 0.061937 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.787558 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Standing 2H Cast Spell 01.fbx
-  artifactKey: Guid(d701273c784328e4890ad12ce9ad0676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Standing 2H Cast Spell 01.fbx using Guid(d701273c784328e4890ad12ce9ad0676) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3f9a63b61aec0f0931c803ddb85484d') in 0.059184 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 3.375652 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Magic Heal.fbx
-  artifactKey: Guid(50317a4c2e70dc747973394c436362f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@Magic Heal.fbx using Guid(50317a4c2e70dc747973394c436362f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c8ec44a5673854b4688be3f7eccc0aa') in 0.058362 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2.985458 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@House Dancing.fbx
-  artifactKey: Guid(851d43d6744cea646a585405be07e783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/SkeletonOutlaw - LOD0@House Dancing.fbx using Guid(851d43d6744cea646a585405be07e783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d27ba4f007553c559429dfadd10a341') in 0.065056 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 11.264502 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Sword And Shield Power Up.anim
-  artifactKey: Guid(807e14870a58b7844886dceec0ea1517) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Sword And Shield Power Up.anim using Guid(807e14870a58b7844886dceec0ea1517) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1e89be457b36ce6907071403fb10cee') in 0.009992 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 10.671435 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Sanity.anim
-  artifactKey: Guid(807e14870a58b7844886dceec0ea1517) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Sanity.anim using Guid(807e14870a58b7844886dceec0ea1517) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1d434d1606a61630c3aa2178b72ce4d') in 0.033283 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 5.068990 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Magic Heal.anim
-  artifactKey: Guid(7dac8c3072e281e4daba7f6e9e979757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Magic Heal.anim using Guid(7dac8c3072e281e4daba7f6e9e979757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '720663031d8e93c7e09c5c30a83aedb8') in 0.011001 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 9.883857 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Heal.anim
-  artifactKey: Guid(7dac8c3072e281e4daba7f6e9e979757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Heal.anim using Guid(7dac8c3072e281e4daba7f6e9e979757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b7b8ab6c504f3f53b82e346269a4e1e') in 0.014016 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.352254 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/House Dancing.anim
-  artifactKey: Guid(1178f32b08a106c41b88f329d8e0c10f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/House Dancing.anim using Guid(1178f32b08a106c41b88f329d8e0c10f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f201a1a03d9c47054fd0eed578f640f') in 0.115891 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2.852779 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Idle2.anim
-  artifactKey: Guid(1178f32b08a106c41b88f329d8e0c10f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Idle2.anim using Guid(1178f32b08a106c41b88f329d8e0c10f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '797d312a89efb310db55b07b4257aad8') in 0.194621 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 42.133507 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Standing 2H Cast Spell 01.anim
-  artifactKey: Guid(fbb498de482b8ef48beffe51c3c63f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Standing 2H Cast Spell 01.anim using Guid(fbb498de482b8ef48beffe51c3c63f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa3f772b52c513f0c7ac3c1c8f1b613b') in 0.014695 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 7.760116 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/BigHeal.anim
-  artifactKey: Guid(fbb498de482b8ef48beffe51c3c63f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/BigHeal.anim using Guid(fbb498de482b8ef48beffe51c3c63f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10524b7542eaaa4dd6c23fa33dcd3f98') in 0.018066 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 8.956648 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Sword And Shield Casting.anim
-  artifactKey: Guid(789807bcbd892bc439ec67d3d12a0c4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/Sword And Shield Casting.anim using Guid(789807bcbd892bc439ec67d3d12a0c4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd721b0e057fa06c89362e5204010d01c') in 0.012511 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 116.104706 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/FireBurn.anim
-  artifactKey: Guid(789807bcbd892bc439ec67d3d12a0c4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/FireBurn.anim using Guid(789807bcbd892bc439ec67d3d12a0c4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c399cc8ceb2d96c2f946e3ac6ce9fdf') in 0.022752 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.637182 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/FireBurn 1.anim
-  artifactKey: Guid(a3bd66e33e722d746b7d0f99e816e1f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/FireBurn 1.anim using Guid(a3bd66e33e722d746b7d0f99e816e1f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '609926619079b1b1832dceb32370d3f0') in 0.015248 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.643691 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/FireBurn 2.anim
-  artifactKey: Guid(2cbed9f53cf32ce4691a30938f1b22fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/FireBurn 2.anim using Guid(2cbed9f53cf32ce4691a30938f1b22fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a70ed54f607bbb4b9a7f379df91c85a') in 0.016178 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.565919 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/FireBurn 3.anim
-  artifactKey: Guid(8a77d69c8628bc645911c4eae4660c7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/FireBurn 3.anim using Guid(8a77d69c8628bc645911c4eae4660c7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1a928a61b8b2574373b81ed6bad9654') in 0.015668 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 6.850233 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/FireBurn 1.anim
-  artifactKey: Guid(a3bd66e33e722d746b7d0f99e816e1f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Fbxs/FireBurn 1.anim using Guid(a3bd66e33e722d746b7d0f99e816e1f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97657d167847c08c188c5e896af4dec3') in 0.012617 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 113.165847 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller
-  artifactKey: Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller using Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c96d8e3d8f2809e1a72760740d8e0be0') in 1.076414 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 147.007925 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Dual Weapon Combo.anim
-  artifactKey: Guid(8a76350b6462a3e4cbe45cc20662481d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Dual Weapon Combo.anim using Guid(8a76350b6462a3e4cbe45cc20662481d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '252c6a11e4def3f620d4f77f0db9c0a2') in 0.017001 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.601805 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Block.anim
-  artifactKey: Guid(81af40d76f067484792df439cf8829d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Block.anim using Guid(81af40d76f067484792df439cf8829d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51737474d0621594ace02713e05b20b5') in 0.010357 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.250945 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/BigHeal.anim
-  artifactKey: Guid(fbb498de482b8ef48beffe51c3c63f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/BigHeal.anim using Guid(fbb498de482b8ef48beffe51c3c63f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd0785781fc2581eb6eea469e643c8b1') in 0.016136 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 14.522108 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Idle1.anim
-  artifactKey: Guid(bfaacdde9939f5a44ae472604c263e55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Idle1.anim using Guid(bfaacdde9939f5a44ae472604c263e55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a039ff3f4fcdfa0033aba98a22332733') in 0.032702 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.308051 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Idle2.anim
-  artifactKey: Guid(1178f32b08a106c41b88f329d8e0c10f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Idle2.anim using Guid(1178f32b08a106c41b88f329d8e0c10f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '872bc30345e589d5988c63179140c0be') in 0.112045 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 113.132685 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault 1.controller
-  artifactKey: Guid(fb94eeaf7b8c1ae4fa2ac8afc24dce98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault 1.controller using Guid(fb94eeaf7b8c1ae4fa2ac8afc24dce98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '164eca4fd52ce3fffddc59c0f7ebd3ce') in 0.175176 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.954536 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault 2.controller
-  artifactKey: Guid(6fef0c2cc48fbc348a137db5b3e2c4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault 2.controller using Guid(6fef0c2cc48fbc348a137db5b3e2c4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '86673589c264769da001559921774dfa') in 0.172653 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.046566 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault 1.controller
-  artifactKey: Guid(fb94eeaf7b8c1ae4fa2ac8afc24dce98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault 1.controller using Guid(fb94eeaf7b8c1ae4fa2ac8afc24dce98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd007ef3f72e55c184e7767ea062521ba') in 0.171276 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 8.899142 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawSide1.controller
-  artifactKey: Guid(fb94eeaf7b8c1ae4fa2ac8afc24dce98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawSide1.controller using Guid(fb94eeaf7b8c1ae4fa2ac8afc24dce98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '863c53ed2cd83706abadff90db3fab13') in 0.173651 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 6.301138 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawSide2.controller
-  artifactKey: Guid(6fef0c2cc48fbc348a137db5b3e2c4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawSide2.controller using Guid(6fef0c2cc48fbc348a137db5b3e2c4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60dbdaf315e0119e220917712db1758b') in 0.176114 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2.504934 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller
-  artifactKey: Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller using Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9906d1f2058ff71d470e37eb2f3b5751') in 0.171709 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 109.360173 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Heal.anim
-  artifactKey: Guid(7dac8c3072e281e4daba7f6e9e979757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Heal.anim using Guid(7dac8c3072e281e4daba7f6e9e979757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25eb5c0d9b59576076f2cf1aa0215713') in 0.019350 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.652882 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/FireBurn.anim
-  artifactKey: Guid(789807bcbd892bc439ec67d3d12a0c4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/FireBurn.anim using Guid(789807bcbd892bc439ec67d3d12a0c4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '732f8d7848e812d260cc25f25e1982ec') in 0.020874 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.304299 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/FireBurn 1.anim
-  artifactKey: Guid(2b86f84a43dcbe44a97fccb981b4316f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/FireBurn 1.anim using Guid(2b86f84a43dcbe44a97fccb981b4316f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe6bf7cc52a43a8110c77be9998037be') in 0.020959 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.360163 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/FireBurn 2.anim
-  artifactKey: Guid(95ff8c8d89e750a47bd63056875bd551) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/FireBurn 2.anim using Guid(95ff8c8d89e750a47bd63056875bd551) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81e9d012feb03fcff6ec86c1e6cf33f4') in 0.021115 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 8.688823 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/GrassWhistle.anim
-  artifactKey: Guid(95ff8c8d89e750a47bd63056875bd551) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/GrassWhistle.anim using Guid(95ff8c8d89e750a47bd63056875bd551) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11e03943acfdfe84eecc6bf9406558d9') in 0.048830 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.806593 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/FireBurn 1.anim
-  artifactKey: Guid(2b86f84a43dcbe44a97fccb981b4316f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/FireBurn 1.anim using Guid(2b86f84a43dcbe44a97fccb981b4316f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27e0e7aea499f26f1f3fa8cedab3814a') in 0.021145 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 8.700377 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/IceSpike.anim
-  artifactKey: Guid(2b86f84a43dcbe44a97fccb981b4316f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/IceSpike.anim using Guid(2b86f84a43dcbe44a97fccb981b4316f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28a9064fa103637c38282e011915e70d') in 0.023987 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 3.657386 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawSide1.controller
-  artifactKey: Guid(fb94eeaf7b8c1ae4fa2ac8afc24dce98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawSide1.controller using Guid(fb94eeaf7b8c1ae4fa2ac8afc24dce98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82b15958a6bb35fd654479416e6920d3') in 0.174300 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.242101 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller
-  artifactKey: Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawDefault.controller using Guid(d1c67a6726b0e714da1e1b8cce426c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ff8f5e2c045c6bcb99336225d54ae87') in 0.172396 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 19.817868 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawSide2.controller
-  artifactKey: Guid(6fef0c2cc48fbc348a137db5b3e2c4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/OutlawSide2.controller using Guid(6fef0c2cc48fbc348a137db5b3e2c4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed0f5ac4bf0d61de4cf30a0446e90aec') in 0.173959 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 185.880080 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Prefabs/SkeletonOutlaw_NoArmor - LOD1.prefab
-  artifactKey: Guid(873b5865188a3634989f93aea4bd8993) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Prefabs/SkeletonOutlaw_NoArmor - LOD1.prefab using Guid(873b5865188a3634989f93aea4bd8993) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Asset 'OutlawDefault': Transition 'AnyState -> AttackOW' in state 'AnyState' doesn't have an Exit Time or any condition, transition will be ignored
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEditor.EditorUtility:Internal_InstantiateRemoveAllNonAnimationComponentsSingle (UnityEngine.Object,UnityEngine.Vector3,UnityEngine.Quaternion)
-UnityEditor.EditorUtility:InstantiateRemoveAllNonAnimationComponents (UnityEngine.Object,UnityEngine.Vector3,UnityEngine.Quaternion)
-UnityEditor.EditorUtility:InstantiateForAnimatorPreview (UnityEngine.Object)
-UnityEditor.GameObjectInspector/PreviewData:UpdateGameObject (UnityEngine.Object)
-UnityEditor.GameObjectInspector/PreviewData:.ctor (UnityEngine.Object)
-UnityEditor.GameObjectInspector:GetPreviewData ()
-UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
-UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
-UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
-
-[C:\buildslave\unity\build\Editor/Src/Animation/StateMachine.cpp line 1847]
-
-Asset 'OutlawDefault': Transition 'AnyState -> Damage' in state 'AnyState' doesn't have an Exit Time or any condition, transition will be ignored
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEditor.EditorUtility:Internal_InstantiateRemoveAllNonAnimationComponentsSingle (UnityEngine.Object,UnityEngine.Vector3,UnityEngine.Quaternion)
-UnityEditor.EditorUtility:InstantiateRemoveAllNonAnimationComponents (UnityEngine.Object,UnityEngine.Vector3,UnityEngine.Quaternion)
-UnityEditor.EditorUtility:InstantiateForAnimatorPreview (UnityEngine.Object)
-UnityEditor.GameObjectInspector/PreviewData:UpdateGameObject (UnityEngine.Object)
-UnityEditor.GameObjectInspector/PreviewData:.ctor (UnityEngine.Object)
-UnityEditor.GameObjectInspector:GetPreviewData ()
-UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
-UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
-UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
-
-[C:\buildslave\unity\build\Editor/Src/Animation/StateMachine.cpp line 1847]
-
- -> (artifact id: '0a3913fa1195a1d49380ddd52f266294') in 0.670632 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.465539 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/Prefabs/SkeletonOutlaw_Armor - LOD1.prefab
-  artifactKey: Guid(0e725ccdb1371564eabfee8eebbc9be1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/Prefabs/SkeletonOutlaw_Armor - LOD1.prefab using Guid(0e725ccdb1371564eabfee8eebbc9be1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Asset 'OutlawDefault': Transition 'AnyState -> AttackOW' in state 'AnyState' doesn't have an Exit Time or any condition, transition will be ignored
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEditor.EditorUtility:Internal_InstantiateRemoveAllNonAnimationComponentsSingle (UnityEngine.Object,UnityEngine.Vector3,UnityEngine.Quaternion)
-UnityEditor.EditorUtility:InstantiateRemoveAllNonAnimationComponents (UnityEngine.Object,UnityEngine.Vector3,UnityEngine.Quaternion)
-UnityEditor.EditorUtility:InstantiateForAnimatorPreview (UnityEngine.Object)
-UnityEditor.GameObjectInspector/PreviewData:UpdateGameObject (UnityEngine.Object)
-UnityEditor.GameObjectInspector/PreviewData:.ctor (UnityEngine.Object)
-UnityEditor.GameObjectInspector:GetPreviewData ()
-UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
-UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
-UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
-
-[C:\buildslave\unity\build\Editor/Src/Animation/StateMachine.cpp line 1847]
-
-Asset 'OutlawDefault': Transition 'AnyState -> Damage' in state 'AnyState' doesn't have an Exit Time or any condition, transition will be ignored
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEditor.EditorUtility:Internal_InstantiateRemoveAllNonAnimationComponentsSingle (UnityEngine.Object,UnityEngine.Vector3,UnityEngine.Quaternion)
-UnityEditor.EditorUtility:InstantiateRemoveAllNonAnimationComponents (UnityEngine.Object,UnityEngine.Vector3,UnityEngine.Quaternion)
-UnityEditor.EditorUtility:InstantiateForAnimatorPreview (UnityEngine.Object)
-UnityEditor.GameObjectInspector/PreviewData:UpdateGameObject (UnityEngine.Object)
-UnityEditor.GameObjectInspector/PreviewData:.ctor (UnityEngine.Object)
-UnityEditor.GameObjectInspector:GetPreviewData ()
-UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
-UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
-UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
-
-[C:\buildslave\unity\build\Editor/Src/Animation/StateMachine.cpp line 1847]
-
- -> (artifact id: 'cb3c8c1b0eeed4c2c073f0454257a2b0') in 0.199791 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 911.406077 seconds.
-  path: Assets/UnityStore/Kevin Iglesias/SkeletonOutlaw/Textures/SkeletonOutlaw00 1.png
-  artifactKey: Guid(510e2a9e1f219514a86fd498f1f17620) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UnityStore/Kevin Iglesias/SkeletonOutlaw/Textures/SkeletonOutlaw00 1.png using Guid(510e2a9e1f219514a86fd498f1f17620) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4bd2894ab153b8ca9851cf145bbe8b9b') in 0.051776 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 661.983519 seconds.
-  path: Assets/CharactersAndAnimation/Enemies/RockSkeletons/PFP/Materials
-  artifactKey: Guid(f2a040034226aed43bdb421cf34ae0a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CharactersAndAnimation/Enemies/RockSkeletons/PFP/Materials using Guid(f2a040034226aed43bdb421cf34ae0a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd7c9f7d2e37d664568ef24e17cf20f4') in 0.005297 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 274.849069 seconds.
   path: Assets/Scripts/TurnBasedBattleSystem.cs
   artifactKey: Guid(32a877b97682c0346876d14045e3d29a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/TurnBasedBattleSystem.cs using Guid(32a877b97682c0346876d14045e3d29a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e5f7791bc35eead8a8ee41d90c99aec') in 0.062911 seconds 
+Start importing Assets/Scripts/TurnBasedBattleSystem.cs using Guid(32a877b97682c0346876d14045e3d29a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bdc88ed278063416ed0d68949814c70a') in 0.026378 seconds 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.148072 seconds.
+Registered in 0.005908 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.20 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.05 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.154 seconds
+- Completed reload, in  0.888 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1154ms)
-		BeginReloadAssembly (242ms)
+	ReloadAssembly (888ms)
+		BeginReloadAssembly (112ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (18ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (140ms)
-		EndReloadAssembly (873ms)
-			LoadAssemblies (127ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (277ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (48ms)
-			SetupLoadedEditorAssemblies (284ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
-				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (63ms)
-				ProcessInitializeOnLoadAttributes (208ms)
-				ProcessInitializeOnLoadMethodAttributes (4ms)
-				AfterProcessingInitializeOnLoad (2ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (36ms)
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.98 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4932 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 227.9 MB.
-System memory in use after: 228.3 MB.
-
-Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 5644.
-Total: 3.186000 ms (FindLiveObjects: 0.521500 ms CreateObjectMapping: 0.282800 ms MarkObjects: 2.209200 ms  DeleteObjects: 0.171700 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.005692 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.12 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.863 seconds
-Domain Reload Profiling:
-	ReloadAssembly (863ms)
-		BeginReloadAssembly (115ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (33ms)
-		EndReloadAssembly (710ms)
-			LoadAssemblies (85ms)
+		EndReloadAssembly (737ms)
+			LoadAssemblies (87ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (255ms)
+			SetupTypeCache (285ms)
 			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (50ms)
-			SetupLoadedEditorAssemblies (238ms)
+			RebuildScriptCaches (52ms)
+			SetupLoadedEditorAssemblies (249ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (59ms)
-				ProcessInitializeOnLoadAttributes (168ms)
-				ProcessInitializeOnLoadMethodAttributes (4ms)
+				BeforeProcessingInitializeOnLoad (63ms)
+				ProcessInitializeOnLoadAttributes (175ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
 				AfterProcessingInitializeOnLoad (2ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (15ms)
+			AwakeInstancesAfterBackupRestoration (9ms)
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.05 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4932 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 207.4 MB.
+System memory in use after: 207.8 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 5542.
+Total: 2.832200 ms (FindLiveObjects: 0.378700 ms CreateObjectMapping: 0.203900 ms MarkObjects: 2.175800 ms  DeleteObjects: 0.072900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 4.37 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 17 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 108.6 MB.
+System memory in use after: 109.0 MB.
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 5542.
+Total: 3.270900 ms (FindLiveObjects: 0.395800 ms CreateObjectMapping: 0.227800 ms MarkObjects: 2.557700 ms  DeleteObjects: 0.089200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1534.453740 seconds.
+  path: Assets/Scenes/Level3.unity
+  artifactKey: Guid(624ab88fcb62be940bdd311d2303135b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level3.unity using Guid(624ab88fcb62be940bdd311d2303135b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd688e1d77d071b7a5fe3a55ebd9f5457') in 0.086421 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006082 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.00 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.872 seconds
+Domain Reload Profiling:
+	ReloadAssembly (872ms)
+		BeginReloadAssembly (119ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (48ms)
+		EndReloadAssembly (711ms)
+			LoadAssemblies (87ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (267ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (49ms)
+			SetupLoadedEditorAssemblies (248ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (56ms)
+				ProcessInitializeOnLoadAttributes (180ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (10ms)
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.06 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4932 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 207.5 MB.
+System memory in use after: 207.9 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 5545.
+Total: 3.026800 ms (FindLiveObjects: 0.433700 ms CreateObjectMapping: 0.249700 ms MarkObjects: 2.259900 ms  DeleteObjects: 0.082300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 4.61 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 17 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 108.6 MB.
+System memory in use after: 109.1 MB.
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 5545.
+Total: 2.709800 ms (FindLiveObjects: 0.395600 ms CreateObjectMapping: 0.122000 ms MarkObjects: 2.110000 ms  DeleteObjects: 0.081500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005736 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.89 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.918 seconds
+Domain Reload Profiling:
+	ReloadAssembly (918ms)
+		BeginReloadAssembly (112ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (35ms)
+		EndReloadAssembly (765ms)
+			LoadAssemblies (91ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (287ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (52ms)
+			SetupLoadedEditorAssemblies (258ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (59ms)
+				ProcessInitializeOnLoadAttributes (186ms)
+				ProcessInitializeOnLoadMethodAttributes (6ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (10ms)
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.10 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4932 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 207.5 MB.
+System memory in use after: 207.9 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 5548.
+Total: 3.555700 ms (FindLiveObjects: 0.465800 ms CreateObjectMapping: 0.279200 ms MarkObjects: 2.727500 ms  DeleteObjects: 0.081400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005548 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 2.26 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.891 seconds
+Domain Reload Profiling:
+	ReloadAssembly (891ms)
+		BeginReloadAssembly (106ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (34ms)
+		EndReloadAssembly (744ms)
+			LoadAssemblies (87ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (285ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (53ms)
+			SetupLoadedEditorAssemblies (252ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (58ms)
+				ProcessInitializeOnLoadAttributes (181ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (11ms)
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.28 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4932 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 207.6 MB.
+System memory in use after: 208.0 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 5551.
+Total: 2.756000 ms (FindLiveObjects: 0.367200 ms CreateObjectMapping: 0.210300 ms MarkObjects: 2.093600 ms  DeleteObjects: 0.084100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006167 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.97 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.904 seconds
+Domain Reload Profiling:
+	ReloadAssembly (904ms)
+		BeginReloadAssembly (109ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (33ms)
+		EndReloadAssembly (754ms)
+			LoadAssemblies (85ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (286ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (54ms)
+			SetupLoadedEditorAssemblies (262ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (65ms)
+				ProcessInitializeOnLoadAttributes (184ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (10ms)
 Platform modules already initialized, skipping
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Refreshing native plugins compatible for Editor in 1.04 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4931 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 228.0 MB.
-System memory in use after: 228.4 MB.
+Unloading 4932 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 207.4 MB.
+System memory in use after: 207.8 MB.
 
-Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 5647.
-Total: 3.090700 ms (FindLiveObjects: 0.472800 ms CreateObjectMapping: 0.327200 ms MarkObjects: 2.172100 ms  DeleteObjects: 0.117800 ms)
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 5554.
+Total: 2.840200 ms (FindLiveObjects: 0.370700 ms CreateObjectMapping: 0.246400 ms MarkObjects: 2.145200 ms  DeleteObjects: 0.077000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005613 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.01 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.919 seconds
+Domain Reload Profiling:
+	ReloadAssembly (919ms)
+		BeginReloadAssembly (116ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (33ms)
+		EndReloadAssembly (759ms)
+			LoadAssemblies (87ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (283ms)
+			ReleaseScriptCaches (3ms)
+			RebuildScriptCaches (54ms)
+			SetupLoadedEditorAssemblies (259ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (59ms)
+				ProcessInitializeOnLoadAttributes (188ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (14ms)
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.80 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4932 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 207.6 MB.
+System memory in use after: 208.0 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 5557.
+Total: 2.965000 ms (FindLiveObjects: 0.383500 ms CreateObjectMapping: 0.215400 ms MarkObjects: 2.280700 ms  DeleteObjects: 0.084200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005652 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.15 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.902 seconds
+Domain Reload Profiling:
+	ReloadAssembly (902ms)
+		BeginReloadAssembly (113ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (33ms)
+		EndReloadAssembly (748ms)
+			LoadAssemblies (86ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (289ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (52ms)
+			SetupLoadedEditorAssemblies (255ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (58ms)
+				ProcessInitializeOnLoadAttributes (184ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (9ms)
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 2.32 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4932 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 207.6 MB.
+System memory in use after: 208.0 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 5560.
+Total: 2.822600 ms (FindLiveObjects: 0.386900 ms CreateObjectMapping: 0.218200 ms MarkObjects: 2.135300 ms  DeleteObjects: 0.081500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005751 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\University\Year 3\FYP Games\Project\EmotionalSanity_TB_RPG\Emotional_Sanity_FMP\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.00 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.878 seconds
+Domain Reload Profiling:
+	ReloadAssembly (878ms)
+		BeginReloadAssembly (107ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (32ms)
+		EndReloadAssembly (730ms)
+			LoadAssemblies (87ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (277ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (49ms)
+			SetupLoadedEditorAssemblies (252ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (57ms)
+				ProcessInitializeOnLoadAttributes (183ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (10ms)
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.01 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4932 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 207.6 MB.
+System memory in use after: 208.1 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 5563.
+Total: 3.089000 ms (FindLiveObjects: 0.401600 ms CreateObjectMapping: 0.235100 ms MarkObjects: 2.344700 ms  DeleteObjects: 0.106700 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
