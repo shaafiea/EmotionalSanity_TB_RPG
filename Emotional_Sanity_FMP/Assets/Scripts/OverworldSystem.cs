@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class OverworldSystem : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class OverworldSystem : MonoBehaviour
     public GameObject ItemsUI;
     public GameObject itemPickerUI;
     public GameObject teamtargetUI;
-    public GameObject weaponChangeButtonUI;
     public GameObject retireUI;
     public int teamdecider;
     public DisplayMoves dpMove;
@@ -52,6 +52,12 @@ public class OverworldSystem : MonoBehaviour
     public BaseEntities player3;
     public BaseEntities player4;
 
+    //Levels Beat Text
+    public TextMeshProUGUI Level1Done;
+    public TextMeshProUGUI Level2Done;
+    public TextMeshProUGUI Level3Done;
+    public TextMeshProUGUI Level4Done;
+    public TextMeshProUGUI FinalBossDone;
 
 
     public bool inMenu = false;
@@ -64,22 +70,70 @@ public class OverworldSystem : MonoBehaviour
         ItemsUI.SetActive(false);
         itemPickerUI.SetActive(false);
         teamtargetUI.SetActive(false);
-        weaponChangeButtonUI.SetActive(false);
         itemPickerUI.SetActive(false);
         p1_item_text.text = player1.entityName;
         p2_item_text.text = player2.entityName;
         p3_item_text.text = player3.entityName;
         p4_item_text.text = player4.entityName;
+        Level1Done.text = "Level 1: Not Beat!";
+        Level2Done.text = "Level 2: Not Beat!";
+        Level3Done.text = "Level 3: Not Beat!";
+        Level4Done.text = "Level 4: Not Beat!";
+        FinalBossDone.text = "Final Boss: Can't Challenge Yet!";
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Update Text depending on what levels are beat!
+        if (gameManager.LevelOneDone == true)
+        {
+            Level1Done.text = "Level 1: Beaten!";
+        } else
+        {
+            Level1Done.text = "Level 1: Not Beat!";
+        }
+
+        if (gameManager.LevelTwoDone == true)
+        {
+            Level2Done.text = "Level 2: Beaten!";
+        }
+        else
+        {
+            Level2Done.text = "Level 2: Not Beat!";
+        }
+
+        if (gameManager.LevelThreeDone == true)
+        {
+            Level3Done.text = "Level 3: Beaten!";
+        }
+        else
+        {
+            Level3Done.text = "Level 3: Not Beat!";
+        }
+
+        if (gameManager.LevelFourDone == true)
+        {
+            Level4Done.text = "Level 4: Beaten!";
+        }
+        else
+        {
+            Level4Done.text = "Level 4: Not Beat!";
+        }
+
+        if (gameManager.LevelOneDone == true && gameManager.LevelTwoDone == true && gameManager.LevelThreeDone == true && gameManager.LevelFourDone == true && gameManager.FinalBossDone != true)
+        {
+            FinalBossDone.text = "Final Boss: CHALLENGE TERRORBRINGER!";
+        } else
+        {
+            FinalBossDone.text = "Final Boss: Can't Challenge Yet!";
+        }
+
+
         if (Input.GetKeyDown(KeyCode.E) && inMenu == false)
         {
             playermenuUI.SetActive(true);
             ItemsUI.SetActive(true);
-            weaponChangeButtonUI.SetActive(true);
             retireUI.SetActive(true);
             itemPickerUI.SetActive(false);
             dpMove.MenuDisplay("Welcome to the Menu");
@@ -185,7 +239,6 @@ public class OverworldSystem : MonoBehaviour
         playermenuUI.SetActive(false);
         ItemsUI.SetActive(false);
         teamtargetUI.SetActive(true);
-        weaponChangeButtonUI.SetActive(false);
         dpMove.MenuDisplay("Select A Player To Heal");
     }
 
@@ -194,7 +247,6 @@ public class OverworldSystem : MonoBehaviour
         playermenuUI.SetActive(false);
         ItemsUI.SetActive(false);
         teamtargetUI.SetActive(false);
-        weaponChangeButtonUI.SetActive(false);
         itemPickerUI.SetActive(false);
         dpMove.MenuDisplay("");
         inMenu = false;
@@ -206,7 +258,6 @@ public class OverworldSystem : MonoBehaviour
         playermenuUI.SetActive(false);
         ItemsUI.SetActive(false);
         teamtargetUI.SetActive(false);
-        weaponChangeButtonUI.SetActive(false);
         itemPickerUI.SetActive(true);
         dpMove.MenuDisplay("Choose your item");
     }
@@ -216,7 +267,6 @@ public class OverworldSystem : MonoBehaviour
         playermenuUI.SetActive(true);
         ItemsUI.SetActive(true);
         teamtargetUI.SetActive(false);
-        weaponChangeButtonUI.SetActive(true);
         retireUI.SetActive(true);
         itemPickerUI.SetActive(false);
         dpMove.MenuDisplay("Welcome to the Menu");

@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
         enemyStats = GetComponent<BaseEntities>();
         tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
         BUIV = GameObject.Find("BattleUIManager").GetComponent<BattleUIVisuals>();
-        BUIV.enemies.Add(this.gameObject.GetComponent<BaseEntities>());
+        //BUIV.enemies.Remove(this.gameObject.GetComponent<BaseEntities>());
     }
     // Update is called once per frame
     void Update()
@@ -236,6 +236,28 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    public void SmallHealLevel4()
+    {
+        enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[1].mpUsed;
+        enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[1].spUsed;
+        target.TakeHeal(enemyStats.spellmoves[1].damage);
+    }
+
+    public void BigHealLevel4()
+    {
+        enemyStats.MP = enemyStats.MP - enemyStats.spellmoves[2].mpUsed;
+        enemyStats.SP = enemyStats.SP - enemyStats.spellmoves[2].spUsed;
+        if (tbbs.enemy1.HP > 0)
+        {
+            tbbs.enemy1.TakeHeal(enemyStats.spellmoves[2].damage);
+        }
+
+        if (tbbs.enemy2.HP > 0)
+        {
+            tbbs.enemy2.TakeHeal(enemyStats.spellmoves[2].damage);
+        }
+    }
+
     public void SanityRegen()
     {
         enemyStats.SanityRegen();
@@ -305,6 +327,19 @@ public class EnemyAI : MonoBehaviour
         if (n_randomrange == 2)
         {
             target = tbbs.enemy3;
+        }
+        GameObject cloneobject = Instantiate(s_healVFX, target.transform.position, target.transform.rotation);
+        Destroy(cloneobject, 2.5f);
+    }
+
+    public void SmallHealAnimLevel4()
+    {
+        if (tbbs.enemy1.HP > 0)
+        {
+            target = tbbs.enemy1;
+        } else if (tbbs.enemy1.HP <= 0 && tbbs.enemy2.HP > 0)
+        {
+            target = tbbs.enemy2;
         }
         GameObject cloneobject = Instantiate(s_healVFX, target.transform.position, target.transform.rotation);
         Destroy(cloneobject, 2.5f);
@@ -393,6 +428,7 @@ public class EnemyAI : MonoBehaviour
             tbbs.e3_anim.SetBool("isBigHealing", false);
         }
         tbbs.isTargeting = true;
+        tbbs.enemyTD = false;
         tbbs.EndEnemyTurn();
     }
 }

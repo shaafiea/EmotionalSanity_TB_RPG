@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireBurn
   m_EditorClassIdentifier: 
   entityName: FireBurn
-  entityDescription: This move spawns a fireblast below the opponent
+  entityDescription: 'This move spawns a fireblast below the opponent (MP used: 20)'
   damage: 35
   mpUsed: 20
   spUsed: -5

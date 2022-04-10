@@ -124,8 +124,12 @@ public class TurnBasedBattleSystem : MonoBehaviour
     //Targeted State (to stop target from being repeated)
     public bool isTargeting = false;
 
-    //enemyrandom
+    //enemyrandomstate
     public int randomrange;
+    public int m_randomrange;
+    public int h_randomrange;
+    public int a_randomrange;
+    public int fb_randomrange;
     public bool enemyTD = false;
 
     public int t_randomrange;
@@ -272,6 +276,13 @@ public class TurnBasedBattleSystem : MonoBehaviour
         var enemiesToKill = new List<GameObject>();
         var teamToKill = new List<GameObject>();
 
+        //Instant Swap Screen if Player Dies
+        if (player1.HP <= 0)
+        {
+            SceneManager.LoadScene(8);
+        }
+
+
         for (int i = 0; i < players.Count; i++)
         {
             if (currentTurns == turns.players)
@@ -307,7 +318,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                     {
                         //If the player is dead then move on to the next player
                         bui.playerUI.SetActive(false);
-                        SceneManager.LoadScene(0);
+                        SceneManager.LoadScene(8);
                     }
                  
                 }
@@ -475,7 +486,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (p2_State.state == TeamAIController.AIState.SanityRegen || (p2_State.state == TeamAIController.AIState.Random && t_randomrange == 3) && p2_turn == true)
                         {
-                            if (player2.HP > 0 && player2.MP >= player2.spellmoves[1].mpUsed)
+                            if (player2.HP > 0)
                             {
                                 dpMove.SanityRegenDisplay(player2.entityName);
                                 k_anim.SetBool("isSanityRegen", true);
@@ -690,7 +701,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (p3_State.state == TeamAIController.AIState.SanityRegen || (p3_State.state == TeamAIController.AIState.Random && t_randomrange == 3) && p3_turn == true)
                         {
-                            if (player3.HP > 0 && player3.MP >= player3.spellmoves[3].mpUsed)
+                            if (player3.HP > 0)
                             {
                                 dpMove.SanityRegenDisplay(player3.entityName);
                                 s_anim.SetBool("isSanityRegen", true);
@@ -908,7 +919,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (p4_State.state == TeamAIController.AIState.SanityRegen || (p4_State.state == TeamAIController.AIState.Random && t_randomrange == 3) && p4_turn == true)
                         {
-                            if (player4.HP > 0 && player4.MP >= player4.spellmoves[1].mpUsed)
+                            if (player4.HP > 0)
                             {
                                 dpMove.SanityRegenDisplay(player4.entityName);
                                 b_anim.SetBool("isSanityRegen", true);
@@ -1097,19 +1108,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         if (e1_newState == true)
                         {
                             Debug.Log("ENEMY 1 DECIDING");
-                            EnemyState();
+                            MediumEnemyState();
                             e1_newState = false;
                         }
                         //If the player hasnt decided on a target yet then decide on a target at random
                         if (isTargeting == true)
                         {
                             randomrangeacc = Random.Range(0, 100);
-                            Debug.Log("Enemy 1 " + randomrange);
+                            Debug.Log("Enemy 1 " + m_randomrange);
                             e1_state.AITarget();
                             isTargeting = false;
                         }
 
-                        if ((randomrange == 0 || (randomrange == 2 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || randomrange == 4 || randomrange == 8) && e1_turn == true && e1_spell == false)
+                        if ((m_randomrange == 0 || (m_randomrange == 2 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || m_randomrange == 4 || m_randomrange == 8 || m_randomrange == 11) && e1_turn == true && e1_spell == false)
                         {
                             if (e1_isAttacking == true)
                             {
@@ -1158,7 +1169,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             uiOff = true;
 
                         }
-                        if ((randomrange == 1 || randomrange == 3 || randomrange == 5 || (randomrange == 6 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || randomrange == 7) && e1_turn == true && e1_spell == false)
+                        if ((m_randomrange == 1 || m_randomrange == 3 || m_randomrange == 5 || (m_randomrange == 6 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || m_randomrange == 12) && e1_turn == true && e1_spell == false)
                         {
                             if (enemy1.HP > 0)
                             {
@@ -1172,12 +1183,20 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
                         }
 
-                        if (((randomrange == 2 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (randomrange == 6 && enemy1.MP >= enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
+                        if (((m_randomrange == 2 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (m_randomrange == 6 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (m_randomrange == 9 && enemy1.MP >= enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
                         {
                             e1_spell = true;
                             Debug.Log("HELLO");
                             dpMove.DisplaySpellMove(enemy1.entityName, "is using", enemy1.spellmoves[0].name, e1_state.target.entityName);
                             e1_anim.SetBool("isSpelling", true);
+                            uiOff = true;
+                        }
+
+                        if ((m_randomrange == 3 || m_randomrange == 7 ||  m_randomrange == 10 || (m_randomrange == 9 && enemy1.MP < enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
+                        {
+                            e1_spell = true;
+                            dpMove.SanityRegenDisplay(enemy1.entityName);
+                            e1_anim.SetBool("isSanityRegen", true);
                             uiOff = true;
                         }
 
@@ -1204,19 +1223,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         if (e1_newState == true)
                         {
                             Debug.Log("ENEMY 1 DECIDING");
-                            EnemyState();
+                            MediumEnemyState();
                             e1_newState = false;
                         }
                         //If the player hasnt decided on a target yet then decide on a target at random
                         if (isTargeting == true)
                         {
                             randomrangeacc = Random.Range(0, 100);
-                            Debug.Log("Enemy 1 " + randomrange);
+                            Debug.Log("Enemy 1 " + m_randomrange);
                             e1_state.AITarget();
                             isTargeting = false;
                         }
 
-                        if ((randomrange == 0 || (randomrange == 2 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || randomrange == 4 || randomrange == 8) && e1_turn == true && e1_spell == false)
+                        if ((m_randomrange == 0 || (m_randomrange == 2 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || m_randomrange == 4 || m_randomrange == 8 || m_randomrange == 11) && e1_turn == true && e1_spell == false)
                         {
                             if (e1_isAttacking == true)
                             {
@@ -1265,7 +1284,8 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             uiOff = true;
 
                         }
-                        if ((randomrange == 1 || randomrange == 3 || randomrange == 5 || (randomrange == 6 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || randomrange == 7) && e1_turn == true && e1_spell == false)
+
+                        if ((m_randomrange == 1 || m_randomrange == 3 || m_randomrange == 5 || (m_randomrange == 6 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || m_randomrange == 12) && e1_turn == true && e1_spell == false)
                         {
                             if (enemy1.HP > 0)
                             {
@@ -1279,12 +1299,20 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
                         }
 
-                        if (((randomrange == 2 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (randomrange == 6 && enemy1.MP >= enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
+                        if (((m_randomrange == 2 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (m_randomrange == 6 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (m_randomrange == 9 && enemy1.MP >= enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
                         {
                             e1_spell = true;
                             Debug.Log("HELLO");
                             dpMove.DisplaySpellMove(enemy1.entityName, "is using", enemy1.spellmoves[0].name, e1_state.target.entityName);
                             e1_anim.SetBool("isSpelling", true);
+                            uiOff = true;
+                        }
+
+                        if ((m_randomrange == 3 || m_randomrange == 7 || m_randomrange == 10 || (m_randomrange == 9 && enemy1.MP < enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
+                        {
+                            e1_spell = true;
+                            dpMove.SanityRegenDisplay(enemy1.entityName);
+                            e1_anim.SetBool("isSanityRegen", true);
                             uiOff = true;
                         }
 
@@ -1310,19 +1338,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         if (e1_newState == true)
                         {
                             Debug.Log("ENEMY 1 DECIDING");
-                            EnemyState();
+                            HardEnemyState();
                             e1_newState = false;
                         }
                         //If the player hasnt decided on a target yet then decide on a target at random
                         if (isTargeting == true)
                         {
                             randomrangeacc = Random.Range(0, 100);
-                            Debug.Log("Enemy 1 " + randomrange);
+                            Debug.Log("Enemy 1 " + h_randomrange);
                             e1_state.AITarget();
                             isTargeting = false;
                         }
 
-                        if ((randomrange == 0 || (randomrange == 2 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || randomrange == 4 || randomrange == 8) && e1_turn == true && e1_spell == false)
+                        if ((h_randomrange == 0 || (h_randomrange == 2 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || h_randomrange == 4 || h_randomrange == 8 || h_randomrange == 12 || h_randomrange == 13 || h_randomrange == 14) && e1_turn == true && e1_spell == false)
                         {
                             if (e1_isAttacking == true)
                             {
@@ -1371,7 +1399,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             uiOff = true;
 
                         }
-                        if ((randomrange == 1 || randomrange == 3 || randomrange == 5 || (randomrange == 6 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || randomrange == 7) && e1_turn == true && e1_spell == false)
+                        if ((h_randomrange == 1 || h_randomrange == 3 || h_randomrange == 5 || (h_randomrange == 6 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || h_randomrange == 9 || h_randomrange == 15) && e1_turn == true && e1_spell == false)
                         {
                             if (enemy1.HP > 0)
                             {
@@ -1385,12 +1413,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
                         }
 
-                        if (((randomrange == 2 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (randomrange == 6 && enemy1.MP >= enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
+                        if (((h_randomrange == 2 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (h_randomrange == 6 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (h_randomrange == 10 && enemy1.MP >= enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
                         {
                             e1_spell = true;
                             Debug.Log("HELLO");
                             dpMove.DisplaySpellMove(enemy1.entityName, "is using", enemy1.spellmoves[0].name, e1_state.target.entityName);
                             e1_anim.SetBool("isSpelling", true);
+                            uiOff = true;
+                        }
+
+                        if ((m_randomrange == 3 || m_randomrange == 7 || m_randomrange == 11 || m_randomrange == 16 || (m_randomrange == 10 && enemy1.MP < enemy1.spellmoves[0].mpUsed)) && e1_turn == true)
+                        {
+                            dpMove.SanityRegenDisplay(enemy1.entityName);
+                            e1_anim.SetBool("isSanityRegen", true);
                             uiOff = true;
                         }
 
@@ -1416,19 +1451,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         if (e1_newState == true)
                         {
                             Debug.Log("ENEMY 1 DECIDING");
-                            EnemyState();
+                            FinalBossEnemyState();
                             e1_newState = false;
                         }
                         //If the player hasnt decided on a target yet then decide on a target at random
                         if (isTargeting == true)
                         {
                             randomrangeacc = Random.Range(0, 100);
-                            Debug.Log("Enemy 1 " + randomrange);
+                            Debug.Log("Enemy 1 " + fb_randomrange);
                             e1_state.AITarget();
                             isTargeting = false;
                         }
 
-                        if ((randomrange == 0 || (randomrange == 2 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || randomrange == 4 || randomrange == 8) && e1_turn == true && e1_spell == false)
+                        if ((fb_randomrange == 0 || (fb_randomrange == 2 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || (fb_randomrange == 6 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || fb_randomrange == 4 || fb_randomrange == 8 || fb_randomrange == 10 || fb_randomrange == 11 || fb_randomrange == 12) && e1_turn == true && e1_spell == false)
                         {
                             if (e1_isAttacking == true)
                             {
@@ -1477,7 +1512,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             uiOff = true;
 
                         }
-                        if ((randomrange == 1 || randomrange == 3 || randomrange == 5 || (randomrange == 6 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || randomrange == 7) && e1_turn == true && e1_spell == false)
+                        if ((fb_randomrange == 1 || (fb_randomrange == 3 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || fb_randomrange == 5 || (fb_randomrange == 6 && enemy1.MP < enemy1.spellmoves[0].mpUsed) || (fb_randomrange == 7 && enemy1.MP < enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
                         {
                             if (enemy1.HP > 0)
                             {
@@ -1491,7 +1526,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
                         }
 
-                        if (((randomrange == 2 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (randomrange == 6 && enemy1.MP >= enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
+                        if (((fb_randomrange == 2 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (fb_randomrange == 3 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (fb_randomrange == 6 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (fb_randomrange == 7 && enemy1.MP >= enemy1.spellmoves[0].mpUsed) || (fb_randomrange == 9 && enemy1.MP >= enemy1.spellmoves[0].mpUsed)) && e1_turn == true && e1_spell == false)
                         {
                             e1_spell = true;
                             Debug.Log("HELLO");
@@ -1537,7 +1572,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             isTargeting = false;
                         }
 
-                            if (randomrange == 0 || randomrange == 2 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 4 || randomrange == 8 && e2_turn == true)
+                            if (randomrange == 0 || randomrange == 2 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 4 || randomrange == 8 && e2_turn == true && e2_spell == false)
                             {
                                 if (e2_isAttacking == true)
                                 {
@@ -1588,7 +1623,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 uiOff = true;
                             }
 
-                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 7 && e2_turn == true)
+                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 7 && e2_turn == true && e2_spell == false)
                         {
                             if (enemy2.HP > 0)
                             {
@@ -1625,26 +1660,27 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                     if (enemy2.HP > 0)
                     {
+
                         if (e2_newState == true)
                         {
-                            Debug.Log("ENEMY 2 DECIDING");
-                            EnemyState();
+                            Debug.Log("ENEMY 1 DECIDING");
+                            MediumEnemyState();
                             e2_newState = false;
                         }
-
                         //If the player hasnt decided on a target yet then decide on a target at random
                         if (isTargeting == true)
                         {
                             randomrangeacc = Random.Range(0, 100);
-                            Debug.Log("Enemy 2 " + randomrange);
+                            Debug.Log("Enemy 1 " + m_randomrange);
                             e2_state.AITarget();
                             isTargeting = false;
                         }
 
-                        if (randomrange == 0 || randomrange == 2 && enemy2.MP < 25 || randomrange == 4 || randomrange == 8 && e2_turn == true)
+                        if ((m_randomrange == 0 || (m_randomrange == 2 && enemy2.MP < enemy2.spellmoves[0].mpUsed) || m_randomrange == 4 || m_randomrange == 8 || m_randomrange == 11) && e2_turn == true && e2_spell == false)
                         {
                             if (e2_isAttacking == true)
                             {
+
                                 enemy2.gameObject.transform.position = Vector3.MoveTowards(enemy2.gameObject.transform.position, e2_state.target.gameObject.transform.position, step);
                                 if (Vector3.Distance(enemy2.gameObject.transform.position, e2_state.target.gameObject.transform.position) > 5f)
                                 {
@@ -1660,8 +1696,6 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     speed = 0f;
                                     e2_anim.SetBool("isWalking", false);
                                     e2_anim.Play("Attack");
-                                    Debug.Log("yolooooooooooooooooooo");
-
                                 }
                             }
 
@@ -1669,7 +1703,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e2_isAttacking == false && e2_turn == true)
                         {
-                            speed = 6.0f;
+                            speed = 7.0f;
                             Debug.Log("WalkBack");
                             enemy2.gameObject.transform.position = Vector3.MoveTowards(enemy2.gameObject.transform.position, enemy2Target.gameObject.transform.position, step);
                             if (Vector3.Distance(enemy2.gameObject.transform.position, enemy2Target.gameObject.transform.position) > 6f)
@@ -1684,20 +1718,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 e2_anim.SetBool("isWalking", false);
                                 e2_turn = false;
                                 e2_anim.Play("Idle");
-                                enemyTD = false;
                                 isTargeting = true;
                                 EndEnemyTurn();
                             }
 
                             uiOff = true;
-                        }
 
-                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy2.MP < 25 || randomrange == 7 && e2_turn == true)
+                        }
+                        if ((m_randomrange == 1 || m_randomrange == 3 || m_randomrange == 5 || (m_randomrange == 6 && enemy2.MP < enemy2.spellmoves[0].mpUsed) || m_randomrange == 12) && e2_turn == true && e2_spell == false)
                         {
                             if (enemy2.HP > 0)
                             {
-                                Debug.Log("Enemy 2 Block");
                                 dpMove.BlockDisplay(enemy2.entityName);
+                                Debug.Log("Enemy 1 Block");
                                 e2_anim.SetBool("isBlocking", true);
                                 isTargeting = true;
                                 enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
@@ -1706,12 +1739,23 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
                         }
 
-                        if (randomrange == 2 && enemy2.MP >= 25 || randomrange == 6 && enemy2.MP >= 25)
+                        if (((m_randomrange == 2 && enemy2.MP >= enemy2.spellmoves[0].mpUsed) || (m_randomrange == 6 && enemy2.MP >= enemy2.spellmoves[0].mpUsed) || (m_randomrange == 9 && enemy2.MP >= enemy2.spellmoves[0].mpUsed)) && e2_turn == true && e2_spell == false)
                         {
+                            e2_spell = true;
+                            Debug.Log("HELLO");
                             dpMove.DisplaySpellMove(enemy2.entityName, "is using", enemy2.spellmoves[0].name, e2_state.target.entityName);
                             e2_anim.SetBool("isSpelling", true);
                             uiOff = true;
                         }
+
+                        if ((m_randomrange == 3 || m_randomrange == 7 || m_randomrange == 10 || (m_randomrange == 9 && enemy2.MP < enemy2.spellmoves[0].mpUsed)) && e2_turn == true && e2_spell == false)
+                        {
+                            e2_spell = true;
+                            dpMove.SanityRegenDisplay(enemy2.entityName);
+                            e2_anim.SetBool("isSanityRegen", true);
+                            uiOff = true;
+                        }
+
                     }
                     else if (enemy2.HP <= 0)
                     {
@@ -1729,26 +1773,27 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                     if (enemy2.HP > 0)
                     {
+
                         if (e2_newState == true)
                         {
-                            Debug.Log("ENEMY 2 DECIDING");
-                            EnemyState();
+                            Debug.Log("ENEMY 1 DECIDING");
+                            MediumEnemyState();
                             e2_newState = false;
                         }
-
                         //If the player hasnt decided on a target yet then decide on a target at random
                         if (isTargeting == true)
                         {
                             randomrangeacc = Random.Range(0, 100);
-                            Debug.Log("Enemy 2 " + randomrange);
+                            Debug.Log("Enemy 1 " + m_randomrange);
                             e2_state.AITarget();
                             isTargeting = false;
                         }
 
-                        if (randomrange == 0 || randomrange == 2 && enemy2.MP < 25 || randomrange == 4 || randomrange == 8 && e2_turn == true)
+                        if ((m_randomrange == 0 || (m_randomrange == 2 && enemy2.MP < enemy2.spellmoves[0].mpUsed) || m_randomrange == 4 || m_randomrange == 8 || m_randomrange == 11) && e2_turn == true && e2_spell == false)
                         {
                             if (e2_isAttacking == true)
                             {
+
                                 enemy2.gameObject.transform.position = Vector3.MoveTowards(enemy2.gameObject.transform.position, e2_state.target.gameObject.transform.position, step);
                                 if (Vector3.Distance(enemy2.gameObject.transform.position, e2_state.target.gameObject.transform.position) > 5f)
                                 {
@@ -1764,8 +1809,6 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     speed = 0f;
                                     e2_anim.SetBool("isWalking", false);
                                     e2_anim.Play("Attack");
-                                    Debug.Log("yolooooooooooooooooooo");
-
                                 }
                             }
 
@@ -1773,7 +1816,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e2_isAttacking == false && e2_turn == true)
                         {
-                            speed = 6.0f;
+                            speed = 7.0f;
                             Debug.Log("WalkBack");
                             enemy2.gameObject.transform.position = Vector3.MoveTowards(enemy2.gameObject.transform.position, enemy2Target.gameObject.transform.position, step);
                             if (Vector3.Distance(enemy2.gameObject.transform.position, enemy2Target.gameObject.transform.position) > 6f)
@@ -1788,20 +1831,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 e2_anim.SetBool("isWalking", false);
                                 e2_turn = false;
                                 e2_anim.Play("Idle");
-                                enemyTD = false;
                                 isTargeting = true;
                                 EndEnemyTurn();
                             }
 
                             uiOff = true;
-                        }
 
-                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy2.MP < 25 || randomrange == 7 && e2_turn == true)
+                        }
+                        if ((m_randomrange == 1 || m_randomrange == 3 || m_randomrange == 5 || (m_randomrange == 6 && enemy2.MP < enemy2.spellmoves[0].mpUsed) || m_randomrange == 12) && e2_turn == true && e2_spell == false)
                         {
                             if (enemy2.HP > 0)
                             {
-                                Debug.Log("Enemy 2 Block");
                                 dpMove.BlockDisplay(enemy2.entityName);
+                                Debug.Log("Enemy 1 Block");
                                 e2_anim.SetBool("isBlocking", true);
                                 isTargeting = true;
                                 enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
@@ -1810,12 +1852,23 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
                         }
 
-                        if (randomrange == 2 && enemy2.MP >= 25 || randomrange == 6 && enemy2.MP >= 25)
+                        if (((m_randomrange == 2 && enemy2.MP >= enemy2.spellmoves[0].mpUsed) || (m_randomrange == 6 && enemy2.MP >= enemy2.spellmoves[0].mpUsed) || (m_randomrange == 9 && enemy2.MP >= enemy2.spellmoves[0].mpUsed)) && e2_turn == true && e2_spell == false)
                         {
+                            e2_spell = true;
+                            Debug.Log("HELLO");
                             dpMove.DisplaySpellMove(enemy2.entityName, "is using", enemy2.spellmoves[0].name, e2_state.target.entityName);
                             e2_anim.SetBool("isSpelling", true);
                             uiOff = true;
                         }
+
+                        if ((m_randomrange == 3 || m_randomrange == 7 || m_randomrange == 10 || (m_randomrange == 9 && enemy2.MP < enemy2.spellmoves[0].mpUsed)) && e2_turn == true && e2_spell == false)
+                        {
+                            e2_spell = true;
+                            dpMove.SanityRegenDisplay(enemy2.entityName);
+                            e2_anim.SetBool("isSanityRegen", true);
+                            uiOff = true;
+                        }
+
                     }
                     else if (enemy2.HP <= 0)
                     {
@@ -1836,7 +1889,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         if (e2_newState == true)
                         {
                             Debug.Log("ENEMY 2 DECIDING");
-                            EnemyState();
+                            AssistEnemyState();
                             e2_newState = false;
                         }
 
@@ -1849,7 +1902,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             isTargeting = false;
                         }
 
-                        if (randomrange == 0 || randomrange == 2 && enemy2.MP < 25 || randomrange == 4 || randomrange == 8 && e2_turn == true)
+                        if (randomrange == 0 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 2 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 4 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 8 && enemy2.MP < enemy2.spellmoves[0].mpUsed && e2_turn == true && e2_spell == false)
                         {
                             if (e2_isAttacking == true)
                             {
@@ -1900,7 +1953,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             uiOff = true;
                         }
 
-                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy2.MP < 25 || randomrange == 7 && e2_turn == true)
+                        if (randomrange == 1 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 3 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 5 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 6 && enemy2.MP < enemy2.spellmoves[0].mpUsed || randomrange == 7 && enemy2.MP < enemy2.spellmoves[0].mpUsed && e2_turn == true && e2_spell == false)
                         {
                             if (enemy2.HP > 0)
                             {
@@ -1914,10 +1967,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
                         }
 
-                        if (randomrange == 2 && enemy2.MP >= 25 || randomrange == 6 && enemy2.MP >= 25)
+                        if (randomrange == 0 && enemy2.MP >= enemy2.spellmoves[0].mpUsed || randomrange == 2 && enemy2.MP >= enemy2.spellmoves[0].mpUsed || randomrange == 4 && enemy2.MP >= enemy2.spellmoves[0].mpUsed || randomrange == 6 && enemy2.MP >= enemy2.spellmoves[0].mpUsed || randomrange == 8 && enemy2.MP >= enemy2.spellmoves[0].mpUsed && e2_spell == false)
                         {
-                            dpMove.DisplaySpellMove(enemy2.entityName, "is using", enemy2.spellmoves[0].name, e2_state.target.entityName);
-                            e2_anim.SetBool("isSpelling", true);
+                            e2_spell = true;
+                            dpMove.HealOneDisplay(enemy2.entityName, e2_state.target.entityName);
+                            e2_anim.SetBool("isHealing", true);
+                            uiOff = true;
+                        }
+
+                        if (randomrange == 1 && enemy2.MP >= enemy2.spellmoves[0].mpUsed || randomrange == 3 && enemy2.MP >= enemy2.spellmoves[0].mpUsed || randomrange == 5 && enemy2.MP >= enemy2.spellmoves[0].mpUsed || randomrange == 7 && enemy2.MP >= enemy2.spellmoves[0].mpUsed && e2_spell == false)
+                        {
+                            e2_spell = true;
+                            dpMove.HeallAllDisplay(enemy2.entityName);
+                            e2_anim.SetBool("isBigHealing", true);
                             uiOff = true;
                         }
                     }
@@ -1954,7 +2016,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 isTargeting = false;
                             }
 
-                            if (randomrange == 0 || randomrange == 2 && enemy3.MP < 25 || randomrange == 4 || randomrange == 8 && e3_turn == true)
+                            if (randomrange == 0 || randomrange == 2 && enemy3.MP < enemy3.spellmoves[0].mpUsed || randomrange == 4 || randomrange == 8 && e3_turn == true && e3_spell == false)
                             {
                                 if (e3_isAttacking == true)
                                 {
@@ -2005,7 +2067,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                 uiOff = true;
                             }
 
-                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy3.MP < 25 || randomrange == 7 && e3_turn == true)
+                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy3.MP < enemy3.spellmoves[0].mpUsed || randomrange == 7 && e3_turn == true && e3_spell == false)
                         {
                             if (enemy3.HP > 0)
                             {
@@ -2019,8 +2081,9 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
                         }
 
-                        if (randomrange == 2 && enemy3.MP >= 25 || randomrange == 6 && enemy3.MP >= 25)
+                        if (randomrange == 2 && enemy3.MP >= enemy3.spellmoves[0].mpUsed || randomrange == 6 && enemy3.MP >= enemy3.spellmoves[0].mpUsed && e3_spell == false)
                         {
+                            e3_spell = true;
                             dpMove.DisplaySpellMove(enemy3.entityName, "is using", enemy3.spellmoves[0].name, e3_state.target.entityName);
                             e3_anim.SetBool("isSpelling", true);
                             uiOff = true;
@@ -2041,22 +2104,23 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                     if (enemy3.HP > 0)
                     {
+
                         if (e3_newState == true)
                         {
                             Debug.Log("ENEMY 3 DECIDING");
-                            EnemyState();
+                            MediumEnemyState();
                             e3_newState = false;
                         }
                         //If the player hasnt decided on a target yet then decide on a target at random
                         if (isTargeting == true)
                         {
                             randomrangeacc = Random.Range(0, 100);
-                            Debug.Log("Enemy 3 " + randomrange);
+                            Debug.Log("Enemy 3 " + m_randomrange);
                             e3_state.AITarget();
                             isTargeting = false;
                         }
 
-                        if (randomrange == 0 || randomrange == 2 && enemy3.MP < 25 || randomrange == 4 || randomrange == 8 && e3_turn == true)
+                        if ((m_randomrange == 0 || (m_randomrange == 2 && enemy3.MP < enemy3.spellmoves[0].mpUsed) || m_randomrange == 4 || m_randomrange == 8 || m_randomrange == 11) && e3_turn == true && e3_spell == false)
                         {
                             if (e3_isAttacking == true)
                             {
@@ -2076,8 +2140,6 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     speed = 0f;
                                     e3_anim.SetBool("isWalking", false);
                                     e3_anim.Play("Attack");
-                                    Debug.Log("yolooooooooooooooooooo");
-
                                 }
                             }
 
@@ -2085,7 +2147,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e3_isAttacking == false && e3_turn == true)
                         {
-                            speed = 6.0f;
+                            speed = 7.0f;
                             Debug.Log("WalkBack");
                             enemy3.gameObject.transform.position = Vector3.MoveTowards(enemy3.gameObject.transform.position, enemy3Target.gameObject.transform.position, step);
                             if (Vector3.Distance(enemy3.gameObject.transform.position, enemy3Target.gameObject.transform.position) > 6f)
@@ -2105,14 +2167,15 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
 
                             uiOff = true;
+
                         }
 
-                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy3.MP < 25 || randomrange == 7 && e3_turn == true)
+                        if ((m_randomrange == 1 || m_randomrange == 3 || m_randomrange == 5 || (m_randomrange == 6 && enemy3.MP < enemy3.spellmoves[0].mpUsed) || m_randomrange == 12) && e3_turn == true && e3_spell == false)
                         {
                             if (enemy3.HP > 0)
                             {
-                                Debug.Log("Enemy 3 Block");
                                 dpMove.BlockDisplay(enemy3.entityName);
+                                Debug.Log("Enemy 3 Block");
                                 e3_anim.SetBool("isBlocking", true);
                                 isTargeting = true;
                                 enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
@@ -2121,10 +2184,20 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
                         }
 
-                        if (randomrange == 2 && enemy3.MP >= 25 || randomrange == 6 && enemy3.MP >= 25)
+                        if (((m_randomrange == 2 && enemy3.MP >= enemy3.spellmoves[0].mpUsed) || (m_randomrange == 6 && enemy3.MP >= enemy3.spellmoves[0].mpUsed) || (m_randomrange == 9 && enemy3.MP >= enemy3.spellmoves[0].mpUsed)) && e3_turn == true && e3_spell == false)
                         {
+                            e3_spell = true;
+                            Debug.Log("HELLO");
                             dpMove.DisplaySpellMove(enemy3.entityName, "is using", enemy3.spellmoves[0].name, e3_state.target.entityName);
                             e3_anim.SetBool("isSpelling", true);
+                            uiOff = true;
+                        }
+
+                        if ((m_randomrange == 3 || m_randomrange == 7 || m_randomrange == 10 || (m_randomrange == 9 && enemy3.MP < enemy3.spellmoves[0].mpUsed)) && e3_turn == true && e3_spell == false)
+                        {
+                            e3_spell = true;
+                            dpMove.SanityRegenDisplay(enemy3.entityName);
+                            e3_anim.SetBool("isSanityRegen", true);
                             uiOff = true;
                         }
                     }
@@ -2143,22 +2216,23 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                     if (enemy3.HP > 0)
                     {
+
                         if (e3_newState == true)
                         {
                             Debug.Log("ENEMY 3 DECIDING");
-                            EnemyState();
+                            MediumEnemyState();
                             e3_newState = false;
                         }
                         //If the player hasnt decided on a target yet then decide on a target at random
                         if (isTargeting == true)
                         {
                             randomrangeacc = Random.Range(0, 100);
-                            Debug.Log("Enemy 3 " + randomrange);
+                            Debug.Log("Enemy 3 " + m_randomrange);
                             e3_state.AITarget();
                             isTargeting = false;
                         }
 
-                        if (randomrange == 0 || randomrange == 2 && enemy3.MP < 25 || randomrange == 4 || randomrange == 8 && e3_turn == true)
+                        if ((m_randomrange == 0 || (m_randomrange == 2 && enemy3.MP < enemy3.spellmoves[0].mpUsed) || m_randomrange == 4 || m_randomrange == 8 || m_randomrange == 11) && e3_turn == true && e3_spell == false)
                         {
                             if (e3_isAttacking == true)
                             {
@@ -2178,8 +2252,6 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                     speed = 0f;
                                     e3_anim.SetBool("isWalking", false);
                                     e3_anim.Play("Attack");
-                                    Debug.Log("yolooooooooooooooooooo");
-
                                 }
                             }
 
@@ -2187,7 +2259,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e3_isAttacking == false && e3_turn == true)
                         {
-                            speed = 6.0f;
+                            speed = 7.0f;
                             Debug.Log("WalkBack");
                             enemy3.gameObject.transform.position = Vector3.MoveTowards(enemy3.gameObject.transform.position, enemy3Target.gameObject.transform.position, step);
                             if (Vector3.Distance(enemy3.gameObject.transform.position, enemy3Target.gameObject.transform.position) > 6f)
@@ -2207,14 +2279,15 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
 
                             uiOff = true;
+
                         }
 
-                        if (randomrange == 1 || randomrange == 3 || randomrange == 5 || randomrange == 6 && enemy3.MP < 25 || randomrange == 7 && e3_turn == true)
+                        if ((m_randomrange == 1 || m_randomrange == 3 || m_randomrange == 5 || (m_randomrange == 6 && enemy3.MP < enemy3.spellmoves[0].mpUsed) || m_randomrange == 12) && e3_turn == true && e3_spell == false)
                         {
                             if (enemy3.HP > 0)
                             {
-                                Debug.Log("Enemy 3 Block");
                                 dpMove.BlockDisplay(enemy3.entityName);
+                                Debug.Log("Enemy 3 Block");
                                 e3_anim.SetBool("isBlocking", true);
                                 isTargeting = true;
                                 enemies[enemyIndex].GetComponent<EnemyAI>().EnemyBlock();
@@ -2223,10 +2296,20 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             }
                         }
 
-                        if (randomrange == 2 && enemy3.MP >= 25 || randomrange == 6 && enemy3.MP >= 25)
+                        if (((m_randomrange == 2 && enemy3.MP >= enemy3.spellmoves[0].mpUsed) || (m_randomrange == 6 && enemy3.MP >= enemy3.spellmoves[0].mpUsed) || (m_randomrange == 9 && enemy3.MP >= enemy3.spellmoves[0].mpUsed)) && e3_turn == true && e3_spell == false)
                         {
+                            e3_spell = true;
+                            Debug.Log("HELLO");
                             dpMove.DisplaySpellMove(enemy3.entityName, "is using", enemy3.spellmoves[0].name, e3_state.target.entityName);
                             e3_anim.SetBool("isSpelling", true);
+                            uiOff = true;
+                        }
+
+                        if ((m_randomrange == 3 || m_randomrange == 7 || m_randomrange == 10 || (m_randomrange == 9 && enemy3.MP < enemy3.spellmoves[0].mpUsed)) && e3_turn == true && e3_spell == false)
+                        {
+                            e3_spell = true;
+                            dpMove.SanityRegenDisplay(enemy3.entityName);
+                            e3_anim.SetBool("isSanityRegen", true);
                             uiOff = true;
                         }
                     }
@@ -2242,11 +2325,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
             if (enemy1.HP <= 0 && isE1_Alive == true)
             {
-                if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy1")
-                {
-                    enemiesToKill.Add(enemies[i]);
-                }
-
+                enemiesToKill.Add(enemy1.gameObject);
                 enemiesdead++;
                 e1_anim.SetBool("isE1Alive", false);
                 e1_anim.SetBool("isBlocking", false);
@@ -2262,10 +2341,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                 if (enemy2.HP <= 0 && isE2_Alive == true)
                 {
-                    if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy2")
-                    {
-                        enemiesToKill.Add(enemies[i]);
-                    }
+                    enemiesToKill.Add(enemy2.gameObject);
                     enemiesdead++;
                     e2_anim.SetBool("isBlocking", false);
                     e2_anim.SetBool("isE2Alive", false);
@@ -2280,10 +2356,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                 if (enemy3.HP <= 0 && isE3_Alive == true)
                 {
-                    if (enemies[i].GetComponent<BaseEntities>().enemyOrder == "Enemy3")
-                    {
-                        enemiesToKill.Add(enemies[i]);
-                    }
+                    enemiesToKill.Add(enemy3.gameObject);
                     enemiesdead++;
                     e3_anim.SetBool("isBlocking", false);
                     e3_anim.SetBool("isE3Alive", false);
@@ -2308,9 +2381,9 @@ public class TurnBasedBattleSystem : MonoBehaviour
             {
                 gameManager.LevelOneDone = true;
                 gameManager.currentlevel = gameManager.overWorld;
-                gameManager.smallHealItem += 2;
-                gameManager.smallManaItem += 2;
-                gameManager.smallSanityItem += 2;
+                gameManager.smallHealItem += 3;
+                gameManager.smallManaItem += 3;
+                gameManager.smallSanityItem += 3;
                 SceneManager.LoadScene(1);
             }
 
@@ -2321,9 +2394,9 @@ public class TurnBasedBattleSystem : MonoBehaviour
                 gameManager.smallHealItem += 1;
                 gameManager.smallManaItem += 1;
                 gameManager.smallSanityItem += 1;
-                gameManager.mediumHealItem += 2;
-                gameManager.mediumManaItem += 2;
-                gameManager.mediumSanityItem += 2;
+                gameManager.mediumHealItem += 3;
+                gameManager.mediumManaItem += 3;
+                gameManager.mediumSanityItem += 3;
                 SceneManager.LoadScene(1);
             }
 
@@ -2331,9 +2404,9 @@ public class TurnBasedBattleSystem : MonoBehaviour
             {
                 gameManager.LevelThreeDone = true;
                 gameManager.currentlevel = gameManager.overWorld;
-                gameManager.smallHealItem += 1;
-                gameManager.smallManaItem += 1;
-                gameManager.smallSanityItem += 1;
+                gameManager.smallHealItem += 2;
+                gameManager.smallManaItem += 2;
+                gameManager.smallSanityItem += 2;
                 gameManager.mediumHealItem += 2;
                 gameManager.mediumManaItem += 2;
                 gameManager.mediumSanityItem += 2;
@@ -2344,12 +2417,12 @@ public class TurnBasedBattleSystem : MonoBehaviour
             {
                 gameManager.LevelFourDone = true;
                 gameManager.currentlevel = gameManager.overWorld;
-                gameManager.smallHealItem += 1;
-                gameManager.smallManaItem += 1;
-                gameManager.smallSanityItem += 1;
-                gameManager.mediumHealItem += 1;
-                gameManager.mediumManaItem += 1;
-                gameManager.mediumSanityItem += 1;
+                gameManager.smallHealItem += 2;
+                gameManager.smallManaItem += 2;
+                gameManager.smallSanityItem += 2;
+                gameManager.mediumHealItem += 2;
+                gameManager.mediumManaItem += 2;
+                gameManager.mediumSanityItem += 2;
                 gameManager.mediumHealAll += 2;
                 gameManager.mediumManaAll += 2;
                 gameManager.mediumSanityAll += 2;
@@ -2359,16 +2432,19 @@ public class TurnBasedBattleSystem : MonoBehaviour
             if (gameManager.currentlevel == gameManager.FinalBoss)
             {
                 gameManager.FinalBossDone = true;
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(7);
             }
 
+
             //P1
-            PlayerPrefs.SetFloat("Player1HP", player1.HP);
+            player1.HP += 20;
+           PlayerPrefs.SetFloat("Player1HP", player1.HP);
            PlayerPrefs.SetFloat("Player1MP", player1.MP);
            PlayerPrefs.SetFloat("Player1SP", player1.SP);
             //P2
             if (player2.HP > 0)
             {
+                player2.HP += 20;
                 PlayerPrefs.SetFloat("Player2HP", player2.HP);
                 PlayerPrefs.SetFloat("Player2MP", player2.MP);
                 PlayerPrefs.SetFloat("Player2SP", player2.SP);
@@ -2381,6 +2457,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
             //P3
             if (player3.HP > 0)
             {
+                player3.HP += 20;
                 PlayerPrefs.SetFloat("Player3HP", player3.HP);
                 PlayerPrefs.SetFloat("Player3MP", player3.MP);
                 PlayerPrefs.SetFloat("Player3SP", player3.SP);
@@ -2393,6 +2470,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
             //P4
             if (player4.HP > 0)
             {
+                player4.HP += 20;
                 PlayerPrefs.SetFloat("Player4HP", player4.HP);
                 PlayerPrefs.SetFloat("Player4MP", player4.MP);
                 PlayerPrefs.SetFloat("Player4SP", player4.SP);
@@ -2430,6 +2508,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
             e1_spell = false;
             e2_spell = false;
             e3_spell = false;
+            enemyTD = false;
             e1_anim.SetBool("isBlocking", false);
             if (enemiesfighting >= 2)
             {
@@ -2468,6 +2547,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
             e1_spell = false;
             e2_spell = false;
             e3_spell = false;
+            enemyTD = false;
             e1_anim.SetBool("isSpelling", false);
             if (enemiesfighting >= 2)
             { 
@@ -2620,7 +2700,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
     {
         if (enemyTD == false)
         {
-            randomrange = Random.Range(0, 8);
+            m_randomrange = Random.Range(0, 12);
             enemyTD = true;
         }
     }
@@ -2629,7 +2709,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
     {
         if (enemyTD == false)
         {
-            randomrange = Random.Range(0, 8);
+            h_randomrange = Random.Range(0, 16);
             enemyTD = true;
         }
     }
@@ -2638,7 +2718,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
     {
         if (enemyTD == false)
         {
-            randomrange = Random.Range(0, 8);
+            a_randomrange = Random.Range(0, 8);
             enemyTD = true;
         }
     }
@@ -2647,7 +2727,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
     {
          if (enemyTD == false)
         {
-            randomrange = Random.Range(0, 8);
+            fb_randomrange = Random.Range(0, 12);
             enemyTD = true;
         }
     }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: HealDrop
   m_EditorClassIdentifier: 
   entityName: Heal Drop
-  entityDescription: Heal the entire team for 30HP
-  damage: -30
-  mpUsed: 15
+  entityDescription: 'Heal the entire team for 50HP (MP Used: 20)'
+  damage: -50
+  mpUsed: 20
   spUsed: -10
   spTaken: 0
   spellType: 0

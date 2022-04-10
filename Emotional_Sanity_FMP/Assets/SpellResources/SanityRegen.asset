@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SanityRegen
   m_EditorClassIdentifier: 
   entityName: Sanity Regenerate
-  entityDescription: Increase your sanity meter
+  entityDescription: 'Increase your sanity meter by a bit (MP Used: 0)'
   damage: 0
   mpUsed: 5
   spUsed: 20

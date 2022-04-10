@@ -112,6 +112,61 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
+    Assets/Scenes/HowToPlayScene.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1674}
+    - Class: 114
+      Script: {instanceID: 1676}
+    - Class: 114
+      Script: {instanceID: 1678}
+    - Class: 114
+      Script: {instanceID: 3254}
+    - Class: 114
+      Script: {instanceID: 4016}
+    - Class: 114
+      Script: {instanceID: 7138}
+    - Class: 114
+      Script: {instanceID: 7154}
+    - Class: 114
+      Script: {instanceID: 8054}
+    - Class: 114
+      Script: {instanceID: 8298}
+    - Class: 114
+      Script: {instanceID: 8800}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/Level1.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -142,8 +197,6 @@ ScriptsOnlyBuild:
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
-      Script: {instanceID: 0}
-    - Class: 89
       Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
@@ -292,8 +345,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -438,8 +489,6 @@ ScriptsOnlyBuild:
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
-      Script: {instanceID: 0}
-    - Class: 89
       Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
@@ -586,8 +635,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -733,8 +780,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -849,6 +894,61 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 2083052967
       Script: {instanceID: 0}
+    Assets/Scenes/LoseScreen.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1674}
+    - Class: 114
+      Script: {instanceID: 1676}
+    - Class: 114
+      Script: {instanceID: 1678}
+    - Class: 114
+      Script: {instanceID: 3254}
+    - Class: 114
+      Script: {instanceID: 4016}
+    - Class: 114
+      Script: {instanceID: 7138}
+    - Class: 114
+      Script: {instanceID: 7154}
+    - Class: 114
+      Script: {instanceID: 8054}
+    - Class: 114
+      Script: {instanceID: 8298}
+    - Class: 114
+      Script: {instanceID: 8800}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/Main Menu.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -942,6 +1042,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 8054}
     - Class: 114
       Script: {instanceID: 8282}
+    - Class: 114
+      Script: {instanceID: 8298}
     - Class: 114
       Script: {instanceID: 8408}
     - Class: 114
@@ -1060,6 +1162,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6594}
     - Class: 114
+      Script: {instanceID: 7138}
+    - Class: 114
       Script: {instanceID: 7154}
     - Class: 114
       Script: {instanceID: 7312}
@@ -1104,6 +1208,61 @@ ScriptsOnlyBuild:
     - Class: 238
       Script: {instanceID: 0}
     - Class: 258
+      Script: {instanceID: 0}
+    Assets/Scenes/WinScreen.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1674}
+    - Class: 114
+      Script: {instanceID: 1676}
+    - Class: 114
+      Script: {instanceID: 1678}
+    - Class: 114
+      Script: {instanceID: 3254}
+    - Class: 114
+      Script: {instanceID: 4016}
+    - Class: 114
+      Script: {instanceID: 7138}
+    - Class: 114
+      Script: {instanceID: 7154}
+    - Class: 114
+      Script: {instanceID: 8054}
+    - Class: 114
+      Script: {instanceID: 8298}
+    - Class: 114
+      Script: {instanceID: 8800}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -1828,7 +1987,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerToggleHistory
   - hash:
       serializedVersion: 2
-      Hash: 5c1f90a633555a21881fbc0d21f130bd
+      Hash: 98b234c9a6ee36c76faba5382c670ea5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TurnBasedBattleSystem
@@ -2350,7 +2509,7 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionEnter2DMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 62e040979f1bcc5cfdb183bf34b809bf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MMButtons
@@ -2374,7 +2533,7 @@ ScriptsOnlyBuild:
     className: ChannelMixer
   - hash:
       serializedVersion: 2
-      Hash: 5cc62c5f0b9764a89ce4f04f9fa31563
+      Hash: cb72547509dc46d4b40d6eb7cb9de23e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: OverworldSystem
@@ -3215,4 +3374,7 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Level3.unity
   - Assets/Scenes/Level4.unity
   - Assets/Scenes/Level5.unity
-  playerPath: D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/BuildTests/Emotional_Sanity_FMP.exe
+  - Assets/Scenes/WinScreen.unity
+  - Assets/Scenes/LoseScreen.unity
+  - Assets/Scenes/HowToPlayScene.unity
+  playerPath: D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/FinalBuild/Emotional_Sanity_FMP.exe

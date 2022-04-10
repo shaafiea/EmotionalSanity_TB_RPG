@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: RockFall
   m_EditorClassIdentifier: 
   entityName: RockFall
-  entityDescription: This move dumps a rock on the opponents head
+  entityDescription: 'This move dumps a rock on the opponents head (MP Used: 20)'
   damage: 45
-  mpUsed: 10
+  mpUsed: 20
   spUsed: -10
   spTaken: 10
   spellType: 6

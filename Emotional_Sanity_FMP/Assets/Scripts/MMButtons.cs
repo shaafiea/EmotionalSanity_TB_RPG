@@ -5,19 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MMButtons : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameManager gameManager;
+
+
+    private void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     //Set Stats To their Default State
     public void StartGame()
     {
@@ -59,5 +53,25 @@ public class MMButtons : MonoBehaviour
         PlayerPrefs.SetFloat("Player4WeaponDefence", 100);
         PlayerPrefs.SetFloat("Player4WeaponSanity", 5);
         PlayerPrefs.SetFloat("Player4BlockSanity", 10);
+    }
+
+    public void RetireButton()
+    {
+        SceneManager.LoadScene(0);
+        Destroy(gameManager.gameObject);
+    }
+
+    public void GoBackButton()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void HowToPlayButton()
+    {
+        SceneManager.LoadScene(9);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SingleHeal
   m_EditorClassIdentifier: 
   entityName: Single Heal
-  entityDescription: 'Heal a single teammate for 15HP '
-  damage: -15
-  mpUsed: 5
+  entityDescription: 'Heal a single teammate for 30HP (MP Used: 10)'
+  damage: -30
+  mpUsed: 10
   spUsed: 10
   spTaken: 0
   spellType: 0

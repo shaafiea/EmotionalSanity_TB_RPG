@@ -311,6 +311,7 @@
 -r:"D:/Unity Hub/2021.1.10f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Xml.dll"
 -r:"D:/Unity Hub/2021.1.10f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Xml.Linq.dll"
 -r:"D:/Unity Hub/2021.1.10f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll"
+-r:"D:/Unity Hub/2021.1.10f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll"
 -r:"D:/Unity Hub/2021.1.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
 -r:"D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/Emotional_Sanity_FMP/Library/PackageCache/com.unity.cinemachine@2.7.9/Runtime/ThirdParty/clipper_library.dll"
 -r:"D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/Emotional_Sanity_FMP/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/log4netPlastic.dll"

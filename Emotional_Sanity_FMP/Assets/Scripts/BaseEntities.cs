@@ -223,7 +223,6 @@ public class BaseEntities : MonoBehaviour
     //Regens alot of Sanity
     public void SanityRegen()
     {
-        SP = SP + 15;
-        MP = MP - 10;
+        SP += 20;
     }
 }

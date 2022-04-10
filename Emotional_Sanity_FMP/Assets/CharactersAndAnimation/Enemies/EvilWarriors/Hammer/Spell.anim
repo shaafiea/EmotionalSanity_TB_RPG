@@ -94162,14 +94162,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.6666667
+  - time: 2.2666667
     functionName: EnemySpell
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.7
+  - time: 2.8333333
     functionName: EndTurnAfterAnim
     data: 
     objectReferenceParameter: {fileID: 0}

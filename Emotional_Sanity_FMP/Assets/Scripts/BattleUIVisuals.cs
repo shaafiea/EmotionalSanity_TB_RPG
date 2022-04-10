@@ -164,7 +164,7 @@ public class BattleUIVisuals : MonoBehaviour
         {
             if (tbbs.enemies.Count == 1)
             {
-                //enemies.Insert(0, tbbs.enemy1);
+                /*enemies.Add(tbbs.enemy1);*/
 /*                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
                 e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
                 e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();*/
@@ -176,8 +176,8 @@ public class BattleUIVisuals : MonoBehaviour
             }
             else if (enemies.Count == 2)
             {
-                enemies.Insert(0, tbbs.enemy1);
-                enemies.Insert(1, tbbs.enemy2);
+             /*   enemies.Add(tbbs.enemy1);
+                enemies.Add(tbbs.enemy2);*/
 /*                e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
                 e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
                 e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();*/
@@ -193,9 +193,12 @@ public class BattleUIVisuals : MonoBehaviour
             }
             else if (enemies.Count == 3)
             {
-/*               e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
-                e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
-                e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();*/
+              /*  enemies.Add(tbbs.enemy1);
+                enemies.Add(tbbs.enemy2);
+                enemies.Add(tbbs.enemy3);*/
+                /* e1_Button = GameObject.FindGameObjectWithTag("e1Button").GetComponent<GameObject>();
+                  e2_Button = GameObject.FindGameObjectWithTag("e2Button").GetComponent<GameObject>();
+                  e3_Button = GameObject.FindGameObjectWithTag("e3Button").GetComponent<GameObject>();*/
                 e1_wp_text = GameObject.FindGameObjectWithTag("e1Text").GetComponent<Text>();
                 e2_wp_text = GameObject.FindGameObjectWithTag("e2Text").GetComponent<Text>();
                 e3_wp_text = GameObject.FindGameObjectWithTag("e3Text").GetComponent<Text>();
@@ -611,6 +614,7 @@ public class BattleUIVisuals : MonoBehaviour
         itemPickerUI.SetActive(false);
         teamtarget2UI.SetActive(false);
         spellUIMenu = false;
+
     }
 
     public void TakeRockFallDamage()
@@ -810,9 +814,6 @@ public class BattleUIVisuals : MonoBehaviour
 
     public void PlaySanityVFX()
     {
-
-        if (player.MP >= player.spellmoves[0].mpUsed)
-        {
             //playerUI.SetActive(false);
             //spellsUI.SetActive(false);
             //spellUIMenu = false;
@@ -821,11 +822,6 @@ public class BattleUIVisuals : MonoBehaviour
             spellTargetUI.SetActive(false);
             display.OnClickVanish();
             tbbs.dpMove.SanityRegenDisplay(player.entityName);
-        }
-        else
-        {
-            GoBack();
-        }
         //spellLifetime = 3;
         //Destroy(fireVFX, 3);
 
@@ -897,19 +893,19 @@ public class BattleUIVisuals : MonoBehaviour
         gameManager.smallHealItem -= 1;
         if (teamdecider == 0)
         {
-            tbbs.player1.HP += 15;
+            tbbs.player1.HP += 25;
         }
         else if (teamdecider == 1)
         {
-            tbbs.player2.HP += 15;
+            tbbs.player2.HP += 25;
         }
         else if (teamdecider == 2)
         {
-            tbbs.player3.HP += 15;
+            tbbs.player3.HP += 25;
         }
         else if (teamdecider == 3)
         {
-            tbbs.player4.HP += 15;
+            tbbs.player4.HP += 25;
         }
     }
 
@@ -918,19 +914,19 @@ public class BattleUIVisuals : MonoBehaviour
         gameManager.smallManaItem -= 1;
         if (teamdecider == 0)
         {
-            tbbs.player1.MP += 15;
+            tbbs.player1.MP += 25;
         }
         else if (teamdecider == 1)
         {
-            tbbs.player2.MP += 15;
+            tbbs.player2.MP += 25;
         }
         else if (teamdecider == 2)
         {
-            tbbs.player3.MP += 15;
+            tbbs.player3.MP += 25;
         }
         else if (teamdecider == 3)
         {
-            tbbs.player4.MP += 15;
+            tbbs.player4.MP += 25;
         }
     }
 
@@ -939,19 +935,19 @@ public class BattleUIVisuals : MonoBehaviour
         gameManager.smallSanityItem -= 1;
         if (teamdecider == 0)
         {
-            tbbs.player1.SP += 15;
+            tbbs.player1.SP += 25;
         }
         else if (teamdecider == 1)
         {
-            tbbs.player2.SP += 15;
+            tbbs.player2.SP += 25;
         }
         else if (teamdecider == 2)
         {
-            tbbs.player3.SP += 15;
+            tbbs.player3.SP += 25;
         }
         else if (teamdecider == 3)
         {
-            tbbs.player4.SP += 15;
+            tbbs.player4.SP += 25;
         }
     }
 
@@ -960,19 +956,19 @@ public class BattleUIVisuals : MonoBehaviour
         gameManager.mediumHealItem -= 1;
         if (teamdecider == 0)
         {
-            tbbs.player1.HP += 30;
+            tbbs.player1.HP += 50;
         }
         else if (teamdecider == 1)
         {
-            tbbs.player2.HP += 30;
+            tbbs.player2.HP += 50;
         }
         else if (teamdecider == 2)
         {
-            tbbs.player3.HP += 30;
+            tbbs.player3.HP += 50;
         }
         else if (teamdecider == 3)
         {
-            tbbs.player4.HP += 30;
+            tbbs.player4.HP += 50;
         }
     }
 
@@ -981,19 +977,19 @@ public class BattleUIVisuals : MonoBehaviour
         gameManager.mediumManaItem -= 1;
         if (teamdecider == 0)
         {
-            tbbs.player1.MP += 30;
+            tbbs.player1.MP += 50;
         }
         else if (teamdecider == 1)
         {
-            tbbs.player2.MP += 30;
+            tbbs.player2.MP += 50;
         }
         else if (teamdecider == 2)
         {
-            tbbs.player3.MP += 30;
+            tbbs.player3.MP += 50;
         }
         else if (teamdecider == 3)
         {
-            tbbs.player4.MP += 30;
+            tbbs.player4.MP += 50;
         }
     }
 
@@ -1002,47 +998,47 @@ public class BattleUIVisuals : MonoBehaviour
         gameManager.mediumSanityItem -= 1;
         if (teamdecider == 0)
         {
-            tbbs.player1.SP += 30;
+            tbbs.player1.SP += 50;
         }
         else if (teamdecider == 1)
         {
-            tbbs.player2.SP += 30;
+            tbbs.player2.SP += 50;
         }
         else if (teamdecider == 2)
         {
-            tbbs.player3.SP += 30;
+            tbbs.player3.SP += 50;
         }
         else if (teamdecider == 3)
         {
-            tbbs.player4.SP += 30;
+            tbbs.player4.SP += 50;
         }
     }
 
     public void mediumHealAllItem()
     {
         gameManager.mediumHealAll -= 1;
-        tbbs.player1.HP += 30;
-        tbbs.player2.HP += 30;
-        tbbs.player3.HP += 30;
-        tbbs.player4.HP += 30;
+        tbbs.player1.HP += 50;
+        tbbs.player2.HP += 50;
+        tbbs.player3.HP += 50;
+        tbbs.player4.HP += 50;
     }
 
     public void mediumManaAllItem()
     {
         gameManager.mediumManaAll -= 1;
-        tbbs.player1.MP += 30;
-        tbbs.player2.MP += 30;
-        tbbs.player3.MP += 30;
-        tbbs.player4.MP += 30;
+        tbbs.player1.MP += 50;
+        tbbs.player2.MP += 50;
+        tbbs.player3.MP += 50;
+        tbbs.player4.MP += 50;
     }
 
     public void mediumSanityAllItem()
     {
         gameManager.mediumSanityAll -= 1;
-        tbbs.player1.SP += 30;
-        tbbs.player2.SP += 30;
-        tbbs.player3.SP += 30;
-        tbbs.player4.SP += 30;
+        tbbs.player1.SP += 50;
+        tbbs.player2.SP += 50;
+        tbbs.player3.SP += 50;
+        tbbs.player4.SP += 50;
     }
 
     void FootL()
