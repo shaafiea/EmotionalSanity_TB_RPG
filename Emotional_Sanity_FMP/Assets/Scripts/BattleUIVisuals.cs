@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class BattleUIVisuals : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class BattleUIVisuals : MonoBehaviour
     [SerializeField] private PlayerTargetPicker targetPicker = null;
 
     public TurnBasedBattleSystem tbbs;
+
+    //Timer TBBS
+    public TextMeshProUGUI timer;
 
     //Team Target Buttons
     public GameObject p1_Button;
@@ -133,6 +137,7 @@ public class BattleUIVisuals : MonoBehaviour
         tbbs = GameObject.Find("TBBSystem").GetComponent<TurnBasedBattleSystem>();
         player = GameObject.Find("NinjaWarrior").GetComponent<BaseEntities>();
         spellPlayer = GameObject.Find("NinjaWarrior").GetComponentInChildren<PlaySpellAnim>();
+        timer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
         teamMembers.Insert(0, tbbs.player1);
         teamMembers.Insert(1, tbbs.player2);
         teamMembers.Insert(2, tbbs.player3);
@@ -226,12 +231,14 @@ public class BattleUIVisuals : MonoBehaviour
             tipsUI.SetActive(false);
             itemPickerUI.SetActive(false);
             teamtarget2UI.SetActive(false);
+            timer.gameObject.SetActive(true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        timer.text = "Player 1 Turn Timer: " + (int)tbbs.getmoving_timer;
         //If the turn is equal to the player then make blocking true
         if (tbbs.currentTurns == TurnBasedBattleSystem.turns.players && tbbs.playerIndex != 0 && blocking == true || tbbs.currentTurns == TurnBasedBattleSystem.turns.enemies && blocking == true)
         {
@@ -491,6 +498,8 @@ public class BattleUIVisuals : MonoBehaviour
     //Basic Attacking Scripts to test damage
     public void DealAttack()
     {
+        timer.gameObject.SetActive(false);
+        tbbs.getmoving_timer = 60;
         playerUI.SetActive(false);
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
@@ -507,6 +516,8 @@ public class BattleUIVisuals : MonoBehaviour
 
     public void DealSpellAttack()
     {
+        timer.gameObject.SetActive(false);
+        tbbs.getmoving_timer = 60;
         playerUI.SetActive(false);
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
@@ -534,6 +545,8 @@ public class BattleUIVisuals : MonoBehaviour
 
     public void DealHealSpell()
     {
+        timer.gameObject.SetActive(false);
+        tbbs.getmoving_timer = 60;
         playerUI.SetActive(false);
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
@@ -547,6 +560,8 @@ public class BattleUIVisuals : MonoBehaviour
     //Block function (allows the player to take a blocking stance and ends their turn)
     public void Block()
     {
+        timer.gameObject.SetActive(false);
+        tbbs.getmoving_timer = 60;
         playerUI.SetActive(false);
         spellsUI.SetActive(false);
         commandsUI.SetActive(false);
@@ -586,7 +601,7 @@ public class BattleUIVisuals : MonoBehaviour
         commandsUI.SetActive(false);
         itemPickerUI.SetActive(false);
         teamtarget2UI.SetActive(false);
-    spellUIMenu = true;
+        spellUIMenu = true;
     }
 
 
@@ -604,6 +619,7 @@ public class BattleUIVisuals : MonoBehaviour
     //Allows the player to go back in a menu
     public void GoBack()
     {
+        timer.gameObject.SetActive(true);
         playerUI.SetActive(true);
         commandsUI.SetActive(false);
         spellsUI.SetActive(false);
@@ -624,6 +640,7 @@ public class BattleUIVisuals : MonoBehaviour
         tbbs.dpMove.DamageDisplay(target.entityName, "Took", "Damage!");
         target.TakeSpecialDamage(target.entityWeakness[0], (player.spellmoves[4].damage), (player.spellmoves[4].spTaken), player.manastrength);
         target.gameObject.GetComponent<Animator>().Play("Damage");
+        spellPlayer.anim.SetBool("isRock", false);
         player.MP = player.MP - player.spellmoves[4].mpUsed;
         player.SP = player.SP + player.spellmoves[4].spUsed;
     }
@@ -769,6 +786,8 @@ public class BattleUIVisuals : MonoBehaviour
 
         if (player.MP >= player.spellmoves[1].mpUsed)
         {
+            timer.gameObject.SetActive(false);
+            tbbs.getmoving_timer = 60;
             //playerUI.SetActive(false);
             //spellsUI.SetActive(false);
             //spellUIMenu = false;
@@ -794,6 +813,8 @@ public class BattleUIVisuals : MonoBehaviour
 
         if (player.MP >= player.spellmoves[2].mpUsed)
         {
+            timer.gameObject.SetActive(false);
+            tbbs.getmoving_timer = 60;
             //playerUI.SetActive(false);
             //spellsUI.SetActive(false);
             //spellUIMenu = false;
@@ -814,6 +835,8 @@ public class BattleUIVisuals : MonoBehaviour
 
     public void PlaySanityVFX()
     {
+            timer.gameObject.SetActive(false);
+            tbbs.getmoving_timer = 60;
             //playerUI.SetActive(false);
             //spellsUI.SetActive(false);
             //spellUIMenu = false;

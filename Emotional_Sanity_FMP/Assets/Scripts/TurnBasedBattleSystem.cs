@@ -88,6 +88,9 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
     public DisplayMoves dpMove;
 
+    //Timer 
+    public float getmoving_timer;
+
     // Adjust the speed for the application.
     public float speed = 8.0f;
 
@@ -264,6 +267,8 @@ public class TurnBasedBattleSystem : MonoBehaviour
         {
             enemy1.SP = enemy1.maxSP;
         }
+
+        getmoving_timer = 60;
     }
 
     // Update is called once per frame
@@ -280,6 +285,33 @@ public class TurnBasedBattleSystem : MonoBehaviour
         if (player1.HP <= 0)
         {
             SceneManager.LoadScene(8);
+        }
+
+        //Always plays in the background just in case a freeze happens skip the turn of the frozen player
+        getmoving_timer -= Time.deltaTime;
+        if (getmoving_timer <= 0 && (currentTurns == turns.players))
+        {
+            EndPlayerTurn();
+            getmoving_timer = 60;
+        } else if (getmoving_timer <= 0 && currentTurns == turns.enemies)
+        {
+            EndEnemyTurn();
+            getmoving_timer = 60;
+        }
+
+        //Turn off ui if the player isnt moving
+        if (playerIndex != 0)
+        {
+            bui.playerUI.SetActive(false);
+            bui.commandsUI.SetActive(false);
+            bui.spellsUI.SetActive(false);
+            bui.targetUI.SetActive(false);
+            bui.spellTargetUI.SetActive(false);
+            bui.teamTargetUI.SetActive(false);
+            bui.tipsUI.SetActive(false);
+            bui.itemPickerUI.SetActive(false);
+            bui.teamtarget2UI.SetActive(false);
+            bui.timer.gameObject.SetActive(false);
         }
 
 
@@ -333,6 +365,8 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (t2_newState == true)
                         {
+                            getmoving_timer = 15;
+                            uiOff = true;
                             Debug.Log("Teammate 2 is attacking");
                             teamTD = true;
                             RandomTeamState();
@@ -517,6 +551,8 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         //Debug.Log("Player 2 Turn");
                         if (t3_newState == true)
                         {
+                            getmoving_timer = 15;
+                            uiOff = true;
                             p3_State.n_randomrange = Random.Range(0, 3);
                             teamTD = true;
                             Debug.Log("Teammate 3 is attacking");
@@ -662,7 +698,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             {
                                 p3_State.state = TeamAIController.AIState.Random;
                                 p3_Text_State.text = "Random";
-                                t2_newState = true;
+                                t3_newState = true;
                             }
                         }
 
@@ -678,7 +714,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                             {
                                 p3_State.state = TeamAIController.AIState.Random;
                                 p3_Text_State.text = "Random";
-                                t2_newState = true; ;
+                                t3_newState = true; ;
                             }
                         }
 
@@ -733,6 +769,8 @@ public class TurnBasedBattleSystem : MonoBehaviour
                                                              //Debug.Log("Player 2 Turn");
                         if (t4_newState == true)
                         {
+                            getmoving_timer = 15;
+                            uiOff = true;
                             teamTD = true;
                             Debug.Log("Teammate 4 is attacking");
                             RandomTeamState();
@@ -1003,6 +1041,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                             if (e1_newState == true)
                             {
+                                uiOff = true;
                                 Debug.Log("ENEMY 1 DECIDING");
                                 EnemyState();
                                 e1_newState = false;
@@ -1107,6 +1146,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e1_newState == true)
                         {
+                            uiOff = true;
                             Debug.Log("ENEMY 1 DECIDING");
                             MediumEnemyState();
                             e1_newState = false;
@@ -1222,6 +1262,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e1_newState == true)
                         {
+                            uiOff = true;
                             Debug.Log("ENEMY 1 DECIDING");
                             MediumEnemyState();
                             e1_newState = false;
@@ -1337,6 +1378,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e1_newState == true)
                         {
+                            uiOff = true;
                             Debug.Log("ENEMY 1 DECIDING");
                             HardEnemyState();
                             e1_newState = false;
@@ -1450,6 +1492,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e1_newState == true)
                         {
+                            uiOff = true;
                             Debug.Log("ENEMY 1 DECIDING");
                             FinalBossEnemyState();
                             e1_newState = false;
@@ -1558,6 +1601,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (e2_newState == true)
                             {
+                                uiOff = true;
                                 Debug.Log("ENEMY 2 DECIDING");
                                 EnemyState();
                                 e2_newState = false;
@@ -1663,6 +1707,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e2_newState == true)
                         {
+                            uiOff = true;
                             Debug.Log("ENEMY 1 DECIDING");
                             MediumEnemyState();
                             e2_newState = false;
@@ -1776,6 +1821,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e2_newState == true)
                         {
+                            uiOff = true;
                             Debug.Log("ENEMY 1 DECIDING");
                             MediumEnemyState();
                             e2_newState = false;
@@ -1888,6 +1934,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                     {
                         if (e2_newState == true)
                         {
+                            uiOff = true;
                             Debug.Log("ENEMY 2 DECIDING");
                             AssistEnemyState();
                             e2_newState = false;
@@ -2003,6 +2050,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
                         {
                             if (e3_newState == true)
                             {
+                                uiOff = true;
                                 Debug.Log("ENEMY 3 DECIDING");
                                 EnemyState();
                                 e3_newState = false;
@@ -2107,6 +2155,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e3_newState == true)
                         {
+                            uiOff = true;
                             Debug.Log("ENEMY 3 DECIDING");
                             MediumEnemyState();
                             e3_newState = false;
@@ -2219,6 +2268,7 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
                         if (e3_newState == true)
                         {
+                            uiOff = true;
                             Debug.Log("ENEMY 3 DECIDING");
                             MediumEnemyState();
                             e3_newState = false;
@@ -2384,6 +2434,12 @@ public class TurnBasedBattleSystem : MonoBehaviour
                 gameManager.smallHealItem += 3;
                 gameManager.smallManaItem += 3;
                 gameManager.smallSanityItem += 3;
+                gameManager.mediumHealItem += 2;
+                gameManager.mediumManaItem += 2;
+                gameManager.mediumSanityItem += 2;
+                gameManager.mediumHealAll += 1;
+                gameManager.mediumManaAll += 1;
+                gameManager.mediumSanityAll += 1;
                 SceneManager.LoadScene(1);
             }
 
@@ -2391,12 +2447,12 @@ public class TurnBasedBattleSystem : MonoBehaviour
             {
                 gameManager.LevelTwoDone = true;
                 gameManager.currentlevel = gameManager.overWorld;
-                gameManager.smallHealItem += 1;
-                gameManager.smallManaItem += 1;
-                gameManager.smallSanityItem += 1;
-                gameManager.mediumHealItem += 3;
-                gameManager.mediumManaItem += 3;
-                gameManager.mediumSanityItem += 3;
+                gameManager.smallHealItem += 2;
+                gameManager.smallManaItem += 2;
+                gameManager.smallSanityItem += 2;
+                gameManager.mediumHealItem += 1;
+                gameManager.mediumManaItem += 1;
+                gameManager.mediumSanityItem += 1;
                 SceneManager.LoadScene(1);
             }
 
@@ -2410,6 +2466,9 @@ public class TurnBasedBattleSystem : MonoBehaviour
                 gameManager.mediumHealItem += 2;
                 gameManager.mediumManaItem += 2;
                 gameManager.mediumSanityItem += 2;
+                gameManager.mediumHealAll += 1;
+                gameManager.mediumManaAll += 1;
+                gameManager.mediumSanityAll += 1;
                 SceneManager.LoadScene(1);
             }
 
@@ -2438,6 +2497,8 @@ public class TurnBasedBattleSystem : MonoBehaviour
 
             //P1
             player1.HP += 20;
+            player1.MP += 40;
+            player1.SP += 25;
            PlayerPrefs.SetFloat("Player1HP", player1.HP);
            PlayerPrefs.SetFloat("Player1MP", player1.MP);
            PlayerPrefs.SetFloat("Player1SP", player1.SP);
@@ -2445,11 +2506,15 @@ public class TurnBasedBattleSystem : MonoBehaviour
             if (player2.HP > 0)
             {
                 player2.HP += 20;
+                player2.MP += 40;
+                player2.SP += 25;
                 PlayerPrefs.SetFloat("Player2HP", player2.HP);
                 PlayerPrefs.SetFloat("Player2MP", player2.MP);
                 PlayerPrefs.SetFloat("Player2SP", player2.SP);
             } else if (player2.HP <=0)
             {
+                player2.MP += 40;
+                player2.SP += 25;
                 PlayerPrefs.SetFloat("Player2HP", 1);
                 PlayerPrefs.SetFloat("Player2MP", player2.MP);
                 PlayerPrefs.SetFloat("Player2SP", player2.SP);
@@ -2458,11 +2523,15 @@ public class TurnBasedBattleSystem : MonoBehaviour
             if (player3.HP > 0)
             {
                 player3.HP += 20;
+                player3.MP += 40;
+                player3.SP += 25;
                 PlayerPrefs.SetFloat("Player3HP", player3.HP);
                 PlayerPrefs.SetFloat("Player3MP", player3.MP);
                 PlayerPrefs.SetFloat("Player3SP", player3.SP);
             } else if (player3.HP <= 0)
             {
+                player3.MP += 40;
+                player3.SP += 25;
                 PlayerPrefs.SetFloat("Player3HP", 1);
                 PlayerPrefs.SetFloat("Player3MP", player3.MP);
                 PlayerPrefs.SetFloat("Player3SP", player3.SP);
@@ -2471,11 +2540,15 @@ public class TurnBasedBattleSystem : MonoBehaviour
             if (player4.HP > 0)
             {
                 player4.HP += 20;
+                player4.MP += 40;
+                player4.SP += 25;
                 PlayerPrefs.SetFloat("Player4HP", player4.HP);
                 PlayerPrefs.SetFloat("Player4MP", player4.MP);
                 PlayerPrefs.SetFloat("Player4SP", player4.SP);
             } else if (player4.HP <= 0)
             {
+                player4.MP += 40;
+                player4.SP += 25;
                 PlayerPrefs.SetFloat("Player4HP", 1);
                 PlayerPrefs.SetFloat("Player4MP", player4.MP);
                 PlayerPrefs.SetFloat("Player4SP", player4.SP);
@@ -2490,12 +2563,14 @@ public class TurnBasedBattleSystem : MonoBehaviour
     {
 
         playerIndex++;
+        getmoving_timer = 60;
 
         //If the playerindex is more than the player count then make the enemies turn
         if (playerIndex >= players.Count)
         {
             currentTurns = turns.enemies;
             playerIndex = 0;
+            bui.isSpellUsed = false;
             e1_isAttacking = true;
             e2_isAttacking = true;
             e3_isAttacking = true;
@@ -2526,11 +2601,15 @@ public class TurnBasedBattleSystem : MonoBehaviour
     public void EndEnemyTurn()
     {
         enemyIndex++;
+        getmoving_timer = 60;
 
         if (enemyIndex >= enemies.Count)
         {
             currentTurns = turns.players;
+            bui.timer.gameObject.SetActive(true);
+            bui.isSpellUsed = false;
             enemyIndex = 0;
+            playerIndex = 0;
             //Adding this here because if a teammate is to die we can still attack later on
             p2_isAttacking = true;
             p3_isAttacking = true;

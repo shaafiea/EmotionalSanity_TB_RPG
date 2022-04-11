@@ -88,8 +88,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -1987,7 +1989,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerToggleHistory
   - hash:
       serializedVersion: 2
-      Hash: 98b234c9a6ee36c76faba5382c670ea5
+      Hash: bbf12e3a4a08ef53ee91f9c0bc87482d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TurnBasedBattleSystem
@@ -2785,7 +2787,7 @@ ScriptsOnlyBuild:
     className: UnityOnMouseUpAsButtonMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 0f05ea44342eeb6e48fc43372fc28a36
+      Hash: f90d0648cba30eeeceed744fe8df0c3e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleUIVisuals
@@ -3377,4 +3379,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/WinScreen.unity
   - Assets/Scenes/LoseScreen.unity
   - Assets/Scenes/HowToPlayScene.unity
-  playerPath: D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/FinalBuild/Emotional_Sanity_FMP.exe
+  playerPath: D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/TheLastBuild/Emotional_Sanity_FMP.exe
