@@ -3379,4 +3379,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/WinScreen.unity
   - Assets/Scenes/LoseScreen.unity
   - Assets/Scenes/HowToPlayScene.unity
-  playerPath: D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/TheLastBuild/Emotional_Sanity_FMP.exe
+  playerPath: D:/University/Year 3/FYP Games/Project/EmotionalSanity_TB_RPG/Emotional
+    Sanity Build/Emotional_Sanity_FMP.exe

@@ -1,0 +1,3 @@
+These extra files are files that are already in the Unity project 
+but are here to show the creation and downloads of assets
+and animations as well as the texture edits that were created!
